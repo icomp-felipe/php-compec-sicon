@@ -28,16 +28,16 @@ class CpfForm extends CFormModel
 	 * The rules state that cpf is required,
 	 * and need to be :
 	 * 1. cadastrado
-	 * 2. n„o possuir restriÁıes de concursos anteriores
+	 * 2. n√£o possuir restri√ß√µes de concursos anteriores
 	 */
 	public function rules()
 	{
 			return array(
 			// cpf is required
 			array('cpf', 'required','on'=>'cpf'),
-			// cpf È v·lido
+			// cpf √© v√°lido
 			array('cpf', 'ext.validators.CCpfValidator','message'=>'O CPF informado est&aacute; incorreto!','on'=>'cpf'),
-			// cpf est· cadastrado e n„o possui restriÁ„o em concursos anteriores
+			// cpf est√° cadastrado e n√£o possui restri√ß√£o em concursos anteriores
 			array('cpf', 'validarColaborador','on'=>'cpf'),		
 			array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarConcurso'),
 		);
@@ -55,8 +55,8 @@ class CpfForm extends CFormModel
 
 	/**
 	 * Verifica se:
-	 *    1. se o cpf est· cadastrado
-	 *    2. se o cpf n„o possui restriÁıes em concursos anteriores
+	 *    1. se o cpf est√° cadastrado
+	 *    2. se o cpf n√£o possui restri√ß√µes em concursos anteriores
 	 * This is the 'cadastrado' validator as declared in rules().
 	 */
 	public function validarColaborador($attribute,$params)
@@ -70,10 +70,10 @@ class CpfForm extends CFormModel
 			switch($this->errorCode)
 			{
 				case self::ERROR_CADASTRO_NAO_ENCONTRADO:
-					$this->addError('cpf','Infelizmente seu CPF n„o est· cadastrado em nosso Banco de Dados.');
+					$this->addError('cpf','Infelizmente seu CPF n√£o est√° cadastrado em nosso Banco de Dados.');
 					break;
 				case self::ERROR_CADASTRO_COM_PENDENCIAS:
-					$this->addError('cpf','Identificamos pendÍncia(s) em seu cadastro. Por favor dirija-se ‡ sede da COMPEC para maiores esclarecimentos. ');
+					$this->addError('cpf','Identificamos pend√™ncia(s) em seu cadastro. Por favor dirija-se √† sede da COMPEC para maiores esclarecimentos. ');
 					break;
 			}			
 		}
@@ -97,7 +97,7 @@ class CpfForm extends CFormModel
 	}
 
 	/**
-	 * Verifica se o cpf j· est· inscrito no concurso
+	 * Verifica se o cpf j√° est√° inscrito no concurso
 	 */
 	public function verificarDuplicidadeInscricao($attribute,$params)
 	{
@@ -109,8 +109,8 @@ class CpfForm extends CFormModel
 			
 			if ($inscricao != null)
 			{
-				$this->addError('cpf','Verificamos que sua inscriÁ„o neste concurso j· foi realizada!');
-//				$this->addError('cpf','Verificamos que sua inscriÁ„o neste concurso j· foi realizada! Procure a COMPEC (3305-4199 / 4213) para realizar alteraÁıes.');
+				$this->addError('cpf','Verificamos que sua inscri√ß√£o neste concurso j√° foi realizada!');
+//				$this->addError('cpf','Verificamos que sua inscri√ß√£o neste concurso j√° foi realizada! Procure a COMPEC (3305-4199 / 4213) para realizar altera√ß√µes.');
 				
 			}
 		}

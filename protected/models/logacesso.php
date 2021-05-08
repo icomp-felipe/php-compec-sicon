@@ -61,11 +61,11 @@ class Logacesso extends CActiveRecord
 	{
 		return array(
 			'idLogAcesso' => 'Id Log Acesso',
-			'usuario' => 'Usuário',
+			'usuario' => 'UsuÃ¡rio',
 			'Funcionalidades_idFuncionalidade' => 'Funcionalidades Id Funcionalidade',
 			'DataHoraAcesso' => 'Data Hora Acesso',
 			'Conteudo' => 'Conteudo',
-			'AcaoRealizada' => 'Ação Realizada',
+			'AcaoRealizada' => 'AÃ§Ã£o Realizada',
 		);
 	}
 }

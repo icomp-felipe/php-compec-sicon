@@ -26,7 +26,7 @@ class FormInscricaoInstitucional extends CFormModel
 	 * The rules state that cpf is required,
 	 * and need to be :
 	 * 1. cadastrado
-	 * 2. n„o possuir restriÁıes de concursos anteriores
+	 * 2. n√£o possuir restri√ß√µes de concursos anteriores
 	 */
 	public function rules()
 	{
@@ -34,9 +34,9 @@ class FormInscricaoInstitucional extends CFormModel
 			// cpf is required
 			array('cpf', 'required','on'=>'selecionarColaborador'),
 
-			// cpf È v·lido
+			// cpf √© v√°lido
 			array('cpf', 'ext.validators.CCpfValidator','message'=>'O CPF informado est&aacute; incorreto!','on'=>'selecionarColaborador'),
-			// cpf est· cadastrado e n„o possui restriÁ„o em concursos anteriores
+			// cpf est√° cadastrado e n√£o possui restri√ß√£o em concursos anteriores
 			array('cpf', 'validarColaborador','on'=>'selecionarColaborador'),		
 			array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarColaborador'),
 		);
@@ -54,8 +54,8 @@ class FormInscricaoInstitucional extends CFormModel
 
 	/**
 	 * Verifica se:
-	 *    1. se o cpf est· cadastrado
-	 *    2. se o cpf n„o possui restriÁıes em concursos anteriores
+	 *    1. se o cpf est√° cadastrado
+	 *    2. se o cpf n√£o possui restri√ß√µes em concursos anteriores
 	 * This is the 'cadastrado' validator as declared in rules().
 	 */
 	public function validarColaborador($attribute,$params)
@@ -69,10 +69,10 @@ class FormInscricaoInstitucional extends CFormModel
 			switch($this->errorCode)
 			{
 				case self::ERROR_CADASTRO_NAO_ENCONTRADO:
-					$this->addError('cpf','Infelizmente seu CPF n„o est· cadastrado em nosso Banco de Dados.');
+					$this->addError('cpf','Infelizmente seu CPF n√£o est√° cadastrado em nosso Banco de Dados.');
 					break;
 				case self::ERROR_CADASTRO_COM_PENDENCIAS:
-					$this->addError('cpf','Identificamos pendÍncia(s) neste cadastro. Por favor, entre em contato com a COMPEC para obter maiores esclarecimentos. ');
+					$this->addError('cpf','Identificamos pend√™ncia(s) neste cadastro. Por favor, entre em contato com a COMPEC para obter maiores esclarecimentos. ');
 					break;
 			}			
 		}
@@ -97,7 +97,7 @@ class FormInscricaoInstitucional extends CFormModel
 	}	
 	
 	/**
-	 * Verifica se o cpf j· est· inscrito no concurso
+	 * Verifica se o cpf j√° est√° inscrito no concurso
 	 */
 	public function verificarDuplicidadeInscricao($attribute,$params)
 	{
@@ -109,7 +109,7 @@ class FormInscricaoInstitucional extends CFormModel
 			
 			if ($inscricao != null)
 			{
-				$this->addError('cpf','Verificamos que a inscriÁ„o deste candidato j· foi realizada neste concurso!');
+				$this->addError('cpf','Verificamos que a inscri√ß√£o deste candidato j√° foi realizada neste concurso!');
 			}
 		}
 	}
