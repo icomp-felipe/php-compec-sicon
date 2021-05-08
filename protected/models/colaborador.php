@@ -70,7 +70,7 @@ class colaborador extends CActiveRecord
 			array('logradouro','length','max'=>50),
 			array('numero_endereco','length','max'=>5),
 			array('bairro','length','max'=>80),
-			array('cep','length','max'=>8),
+			array('cep','length','max'=>9),
 			array('ddd','length','max'=>2),
 			array('telefone','length','max'=>14),
 			array('celular','length','max'=>15),
@@ -122,23 +122,24 @@ class colaborador extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'idColaborador' => 'Id Colaborador',
+			'idColaborador' => 'ID',
 			'idescolaridade' => 'Escolaridade',
-			'iduf_identidade' => 'Identidade',
-			'idmunicipio' => 'Cidade',
+			'iduf_identidade' => 'UF do RG',
+			'idmunicipio' => 'Município',
 			'nome' => 'Nome',
 			'sexo' => 'Sexo',
 			'data_nascimento' => 'Data de Nascimento',
-			'doc_identidade' => 'Identidade',
+			'doc_identidade' => 'Nº do RG',
 			'orgao_identidade' => 'Órgão',
 			'logradouro' => 'Logradouro',
 			'numero_endereco' => 'Número',
 			'bairro' => 'Bairro',
-			'cep' => 'Cep',
-			'ddd' => 'ddd',
+			'cep' => 'CEP',
+			'ddd' => 'DDD',
 			'telefone' => 'Telefone',
 			'celular' => 'Celular',
-			'email' => 'Email',
+			'email' => 'e-mail',
+			'complemento' => 'Complemento',
 			'cpf' => 'CPF',
 			'tipo_cadastro' => 'Tipo Cadastro',
 			'status_cadastro' => 'Status Cadastro',
@@ -150,7 +151,7 @@ class colaborador extends CActiveRecord
 			'orgaoservidor' => 'Orgaoservidor',
 			'observacoes' => 'Observações',
 			'banco' => 'Banco',
-			'contacorrente' => 'Conta Corrente',
+			'contacorrente' => 'Nº da Conta',
 			'agencia' => 'Agência',
 			'pispasep' => 'PIS/PASEP',
 			'tipo_vinculo_old' => 'Tipo Vinculo Old',
@@ -185,6 +186,7 @@ class colaborador extends CActiveRecord
 		$usuario = $session["usuario"];
 		
 		$this->data_cadastro = null;
+		$this->cep = str_replace('-','',$this->cep);
 		$this->pispasep = str_replace('.','',$this->pispasep);
 		$this->pispasep = str_replace('-','',$this->pispasep);
 		$this->cpf = str_replace('.','',$this->cpf);
