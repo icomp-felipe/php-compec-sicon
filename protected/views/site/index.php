@@ -5,20 +5,20 @@
 	Bem-vindo!
 </h1>
 	<p>
-	Neste site, você poderá ativar-se nos concursos em aberto.
+	Neste site, vocÃª poderÃ¡ ativar-se nos concursos em aberto.
 	</p>
 	<p style="text-align:center; font-weight:bolder; font-family:='Calibri'; font-size:16px ;color:#990000" >
-	<?php //echo CHtml::link('Amigo colaborador, clique aqui e leia as instruções antes de prosseguir!',array('instrucaoInternet')); ?>
+	<?php //echo CHtml::link('Amigo colaborador, clique aqui e leia as instruÃ§Ãµes antes de prosseguir!',array('instrucaoInternet')); ?>
 	</p>
 <?php else: ?>
 	<h1>
 		Bem-vindo, <?php echo Yii::app()->user->name; ?>!
 	</h1>
 	<p>
-	Neste site, você pode identificar os concursos abertos e ativar colaboradores nas funções existentes. 
+	Neste site, vocÃª pode identificar os concursos abertos e ativar colaboradores nas funÃ§Ãµes existentes. 
 	
 	<?php if (isset($instituicoesDirigidas)): ?>
-		<br/>Você pode gerenciar informações na(s) seguinte(s) instituição(ões):
+		<br/>VocÃª pode gerenciar informaÃ§Ãµes na(s) seguinte(s) instituiÃ§Ã£o(Ãµes):
 <ul>
 		<?php foreach($instituicoesDirigidas as $n=>$model): ?>
 			<li><?php echo CHtml::encode($model->nome); ?>
@@ -29,6 +29,6 @@
 	</p>
 	<p style="text-align:center; font-weight:bolder; font-family:='Calibri'; font-size:16px; color:#990000" >
 	
-	<?php //echo CHtml::link('Gestor de escola, clique aqui e leia as instruções antes de prosseguir!',array('instrucaoInstitucional')); ?>
+	<?php //echo CHtml::link('Gestor de escola, clique aqui e leia as instruÃ§Ãµes antes de prosseguir!',array('instrucaoInstitucional')); ?>
 	</p>
 <?php endif;?>

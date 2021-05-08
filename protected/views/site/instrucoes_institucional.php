@@ -2,14 +2,14 @@
 UNIVERSIDADE FEDERAL DO AMAZONAS
 </p>
 <p style="text-align:center; font-weight:bolder; font-family:='Calibri'; font-size:16px" >
-Comiss„o Permanente de Concursos
+Comiss√£o Permanente de Concursos
 </p>
 
 <p style="font-family:Calibri">
 <b>Senhor (a) Gestor (a),</b>
 </p>
 <p style="font-family:Calibri">
-Ative o cadastro ou cadastre seus Colaboradores, <b>preferencialmente, os professores</b> e/ou os administrativos com nÌvel superior completo ou incompleto e ou ensino mÈdio completo, lotados nessa Escola no sitio www.comvest.ufam.edu.br no perÌodo de 12 a 18/08/2013, com os seguintes dados informados pela CONVEST:</p>
+Ative o cadastro ou cadastre seus Colaboradores, <b>preferencialmente, os professores</b> e/ou os administrativos com n√≠vel superior completo ou incompleto e ou ensino m√©dio completo, lotados nessa Escola no sitio www.comvest.ufam.edu.br no per√≠odo de 12 a 18/08/2013, com os seguintes dados informados pela CONVEST:</p>
 <center>
 <table width="300" cellspacing="10" style="border-style:solid; border-width:thin" >
   <tr>
@@ -19,25 +19,25 @@ Ative o cadastro ou cadastre seus Colaboradores, <b>preferencialmente, os profes
 </table>
 </center>
 <p style="font-family:Calibri">
-O Colaborador que ainda n„o possui cadastro no Banco de Dados da COMPEC dever· fazÍ-lo inserindo os dados necess·rios e depois ative com o CPF.
+O Colaborador que ainda n√£o possui cadastro no Banco de Dados da COMPEC dever√° faz√™-lo inserindo os dados necess√°rios e depois ative com o CPF.
 </p>
 
 <p style="font-family:Calibri">
 <b>QUEM PODE PARTICIPAR DO PSTEC/2013: </b><br/>
-* somente o que possuir conta corrente individual, em instituiÁ„o banc·ria.
+* somente o que possuir conta corrente individual, em institui√ß√£o banc√°ria.
 </p>
 
 <p style="font-family:Calibri">
-<b>QUEM N√O PODE PARTICIPAR: </b><br/>
-* o que possui apenas conta poupanÁa; <br/>
+<b>QUEM N√ÉO PODE PARTICIPAR: </b><br/>
+* o que possui apenas conta poupan√ßa; <br/>
 * o que possui apenas conta conjunta; <br/>
-* o que possui apenas conta sal·rio; <br/>
-* o que estiver com restriÁ„o no seu CPF junto a Receita Federal;<br/>
-* o Colaborador que n„o Justificou sua ausÍncia junto a COMPEC em  processos anteriores, ter· sua participaÁ„o vedada por um perÌodo de dois anos ininterruptos contados a partir do dia de sua falta e estar· com restriÁ„o no banco de dados da COMPEC e n„o poder· participar do presente processo.
+* o que possui apenas conta sal√°rio; <br/>
+* o que estiver com restri√ß√£o no seu CPF junto a Receita Federal;<br/>
+* o Colaborador que n√£o Justificou sua aus√™ncia junto a COMPEC em  processos anteriores, ter√° sua participa√ß√£o vedada por um per√≠odo de dois anos ininterruptos contados a partir do dia de sua falta e estar√° com restri√ß√£o no banco de dados da COMPEC e n√£o poder√° participar do presente processo.
 </p>
 
 <p style="font-family:Calibri">
-<b>ESCLARECIMENTO: </b><br/>O Professor ou Administrativo que ativar seu cadastro fora do longin da Escola, dever· cumprir o regulamento da Internet que esta a disposiÁ„o da comunidade e n„o vincular ao procedimento da Escola.
+<b>ESCLARECIMENTO: </b><br/>O Professor ou Administrativo que ativar seu cadastro fora do longin da Escola, dever√° cumprir o regulamento da Internet que esta a disposi√ß√£o da comunidade e n√£o vincular ao procedimento da Escola.
 </p>
 <p style="font-family:Calibri">
 <b>VALORES:</b> <br/>

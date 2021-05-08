@@ -67,7 +67,7 @@ class InscricaoInstitucionalController extends CController
 
 	
 	/**
-	 * Exibe a página de seleção de concursos e etapas
+	 * Exibe a pÃ¡gina de seleÃ§Ã£o de concursos e etapas
 	 */
 	public function actionSelecionarConcursoEtapa()
 	{
@@ -96,7 +96,7 @@ class InscricaoInstitucionalController extends CController
 	}
 	
 	/**
-	 * Exibe a página de seleção de instituições
+	 * Exibe a pÃ¡gina de seleÃ§Ã£o de instituiÃ§Ãµes
 	 */	
 	public function actionSelecionarInstituicao()
 	{
@@ -112,15 +112,15 @@ class InscricaoInstitucionalController extends CController
 		{
 			if(!isset($form,$form->concurso,$form->etapa))
 			{
-				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
+				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o de colaboradores, por favor reinicie o processo!'));
 				return;	
 			}
 		
-			// consulta instituições disponíveis no processo
+			// consulta instituiÃ§Ãµes disponÃ­veis no processo
 			$models = $this->getInstituicoesDisponiveis($form);
 
-			if (count($models) > 0) // há vagas
-				// exibe a página de seleção de instituições
+			if (count($models) > 0) // hÃ¡ vagas
+				// exibe a pÃ¡gina de seleÃ§Ã£o de instituiÃ§Ãµes
 				$this->render('instituicao',array(
 					'models'=>$models,
 					'form'=>$form,
@@ -131,7 +131,7 @@ class InscricaoInstitucionalController extends CController
 	}	
 
 	/**
-	 * Exibe a página de seleção de funções
+	 * Exibe a pÃ¡gina de seleÃ§Ã£o de funÃ§Ãµes
 	 */	
 	public function actionSelecionarFuncao()
 	{
@@ -147,15 +147,15 @@ class InscricaoInstitucionalController extends CController
 		{		
 			if(!isset($form,$form->concurso,$form->etapa, $form->instituicao))
 			{
-				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
+				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o de colaboradores, por favor reinicie o processo!'));
 				return;	
 			}
 			
-			// consulta funções disponíveis no processo
+			// consulta funÃ§Ãµes disponÃ­veis no processo
 			$models = $this->getFuncoesDisponiveis($form->etapa->idetapa, $form->instituicao->idinstituicao);
 	
-			if (count($models) > 0) // há vagas
-				// exibe a página de seleção de instituições
+			if (count($models) > 0) // hÃ¡ vagas
+				// exibe a pÃ¡gina de seleÃ§Ã£o de instituiÃ§Ãµes
 				$this->render('funcao',array(
 					'models'=>$models,
 					'form'=>$form,
@@ -166,7 +166,7 @@ class InscricaoInstitucionalController extends CController
 	}		
 	
 	/**
-	 * Exibe a página de seleção de colaboradores
+	 * Exibe a pÃ¡gina de seleÃ§Ã£o de colaboradores
 	 */
 	public function actionSelecionarColaborador()
 	{
@@ -175,7 +175,7 @@ class InscricaoInstitucionalController extends CController
 	
 		if(!isset($form,$form->concurso,$form->etapa, $form->instituicao))
 		{
-			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
+			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o de colaboradores, por favor reinicie o processo!'));
 				return;	
 		}
 	
@@ -235,11 +235,11 @@ class InscricaoInstitucionalController extends CController
 
 		if(!isset($form,$form->concurso,$form->etapa, $form->instituicao,$form->colaborador))
 		{
-			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
+			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o de colaboradores, por favor reinicie o processo!'));
 				return;	
 		}
 		
-		// exibe a página de seleção de instituições
+		// exibe a pÃ¡gina de seleÃ§Ã£o de instituiÃ§Ãµes
 		$this->render('confirmacao',array(
 			'form'=>$form,
 		));
@@ -247,13 +247,13 @@ class InscricaoInstitucionalController extends CController
 	
 	public function actionConfirmar()
 	{
-		//recupera dados da sessão e os dados postados
+		//recupera dados da sessÃ£o e os dados postados
 		$form = $this->getSessionForm();
 		
-		// consulta se há vaga disponíveis no processo, na instituicao e na funcao selecionada
+		// consulta se hÃ¡ vaga disponÃ­veis no processo, na instituicao e na funcao selecionada
 		$models = $this->getVagasDisponiveis($form->etapa->idetapa, $form->instituicao->idinstituicao, $form->funcao->idFuncao);
 		
-		if (!count($models) > 0) // há vagas
+		if (!count($models) > 0) // hÃ¡ vagas
 		{
 			$this->render('nao_ha_vagas',array('form'=>$form));		
 			return;
@@ -295,14 +295,14 @@ class InscricaoInstitucionalController extends CController
 				else
 				{									
 					$inscricao->delete();
-					$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+					$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o, por favor reinicie o processo!'));	
 					return;	
 				}
 		
 			}
 			else
 			{											
-				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o, por favor reinicie o processo!'));	
 				return;	
 			}	
 			// redireciona
@@ -312,7 +312,7 @@ class InscricaoInstitucionalController extends CController
 	
 	public function actionConfirmado()
 	{
-		//recupera dados da sessão e os dados postados
+		//recupera dados da sessÃ£o e os dados postados
 		$form = $this->getSessionForm();
 		
 		$this->render('confirmado',array('form'=>$form));
@@ -371,14 +371,14 @@ class InscricaoInstitucionalController extends CController
 		$condicao_usuario_interno= '';
 		$params=array();
 		
-		if(UserIdentity::isUsuarioInterno() && $form->concurso->emteste==1) //se for usuário interno da comvest e o concurso estiver em teste
+		if(UserIdentity::isUsuarioInterno() && $form->concurso->emteste==1) //se for usuÃ¡rio interno da comvest e o concurso estiver em teste
 		{
 			$condicao_usuario_interno = '';	// pode inscrever em qualquer escola
 			$params=array('idetapa'=>$form->etapa->idetapa);	
 		}
 		else
 		{
-			$condicao_usuario_interno = 'idResponsavel = :idresponsavel and ';	// somente escolas administradas pelo usuário
+			$condicao_usuario_interno = 'idResponsavel = :idresponsavel and ';	// somente escolas administradas pelo usuÃ¡rio
 			$params=array('idresponsavel'=>$this->usuarioLogado->idColaborador,'idetapa'=>$form->etapa->idetapa);			
 		}	
 	

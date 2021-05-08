@@ -2,7 +2,7 @@
 
 <?php if (!Yii::app()->user->isGuest):?>
 <h1>
-	Instituição Selecionada: <?=$instituicao->nome?>
+	InstituiÃ§Ã£o Selecionada: <?=$instituicao->nome?>
 </h1>
 
 	<?php if (isset($models)): ?>
@@ -17,6 +17,6 @@
 	</p>
 	<p style="text-align:center; font-weight:bolder; font-family:='Calibri'; font-size:16px; color:#990000" >
 	
-	<?php //echo CHtml::link('Gestor de escola, clique aqui e leia as instruções antes de prosseguir!',array('instrucaoInstitucional')); ?>
+	<?php //echo CHtml::link('Gestor de escola, clique aqui e leia as instruÃ§Ãµes antes de prosseguir!',array('instrucaoInstitucional')); ?>
 	</p>
 <?php endif;?>

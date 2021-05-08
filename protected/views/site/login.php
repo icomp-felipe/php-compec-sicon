@@ -1,6 +1,6 @@
-<?php $this->pageTitle=Yii::app()->name . ' - Acessar ¡rea Institucional'; ?>
+<?php $this->pageTitle=Yii::app()->name . ' - Acessar √Årea Institucional'; ?>
 
-<h1>Acesso ‡ ¡rea Institucional</h1>
+<h1>Acesso √† √Årea Institucional</h1>
 
 <div class="yiiForm">
 <?php echo CHtml::beginForm(); ?>
