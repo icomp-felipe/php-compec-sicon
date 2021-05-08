@@ -15,7 +15,7 @@ Arquivos com <span class="required">*</span> s&atilde;o de preenchimento obrigat
 
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'nome'); ?>
-<?php echo CHtml::activeTextField($model,'nome',array('size'=>60,'maxlength'=>60)); ?>
+<?php echo CHtml::activeTextField($model,'nome',array('size'=>50,'maxlength'=>60)); ?>
 </div>
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'doc_identidade'); ?>
@@ -62,7 +62,7 @@ Arquivos com <span class="required">*</span> s&atilde;o de preenchimento obrigat
 </div>
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'bairro'); ?>
-<?php echo CHtml::activeTextField($model,'bairro',array('size'=>60,'maxlength'=>80)); ?>
+<?php echo CHtml::activeTextField($model,'bairro',array('size'=>50,'maxlength'=>80)); ?>
 </div>
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'cep'); ?>
@@ -85,7 +85,7 @@ Arquivos com <span class="required">*</span> s&atilde;o de preenchimento obrigat
 </div>
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'email'); ?>
-<?php echo CHtml::activeTextField($model,'email',array('size'=>60,'maxlength'=>60)); ?>
+<?php echo CHtml::activeTextField($model,'email',array('size'=>50,'maxlength'=>60)); ?>
 </div>
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'sexo'); ?>
@@ -108,11 +108,20 @@ Arquivos com <span class="required">*</span> s&atilde;o de preenchimento obrigat
 </div>
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'pispasep'); ?>
-<?php echo CHtml::activeTextField($model,'pispasep',array('size'=>60,'maxlength'=>100)); ?>
+<?php $this->widget('CMaskedTextField',array(
+        'model'=>$model,
+        'attribute'=>'pispasep',
+        'mask'=>'999.99999.99-9',
+        'placeholder'=>'_',
+        'htmlOptions'=>array(
+            'size'=>11,
+            'maxlength'=>11,
+        )
+    )); ?>
 </div>
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'banco'); ?>
-<?php echo CHtml::activeTextField($model,'banco',array('size'=>60,'maxlength'=>100)); ?>
+<?php echo CHtml::activeTextField($model,'banco',array('size'=>50,'maxlength'=>100)); ?>
 </div>
 <div class="simple">
 <?php echo CHtml::activeLabelEx($model,'agencia'); ?>
