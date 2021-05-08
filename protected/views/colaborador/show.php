@@ -43,4 +43,4 @@
 </tr>
 </table>
 <p/>
-<center>Se houver necessidade de alterar os dados do colaborador, clique no menu "Colaboradores" e no link "atualizar" localizado à esquerda de cada colaborador cadastrado por sua escola.</center>
+<center>Se houver necessidade de alterar os dados do colaborador, clique no menu "Colaboradores" e no link "atualizar" localizado Ã  esquerda de cada colaborador cadastrado por sua escola.</center>
