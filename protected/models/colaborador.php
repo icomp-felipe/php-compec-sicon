@@ -160,26 +160,47 @@ class colaborador extends CActiveRecord
 			'banco' => 'Banco',
 			'contacorrente' => 'Nº da Conta',
 			'agencia' => 'Agência',
-			'pispasep' => 'PIS/PASEP',
-			'tipo_vinculo_old' => 'Tipo Vinculo Old',
+			'pispasep' => 'PIS/PASEP'
 		);
 	}
 	
+	const STATUS_PRE_CADASTRO = 0;
+	const STATUS_ATIVADO      = 1;
+	const STATUS_REJEITADO    = 2;
+	const STATUS_INCOMPLETO   = 3;
+
+	public function getStatusOptions() {
+
+		return array(
+
+			self::STATUS_PRE_CADASTRO => 'Pré-Cadastro',
+			self::STATUS_ATIVADO      => 'Ativado',
+			self::STATUS_REJEITADO    => 'Bloqueado',
+			self::STATUS_INCOMPLETO   => 'Incompleto'
+
+		);
+
+	}
+
+	public function getStatusText() {
+
+		$options = $this->statusOptions;
+		return isset($options[$this->status_cadastro]) ? $options[$this->status_cadastro] : "desconhecido ({$this->status_cadastro})";
+
+	}
+
 	const SEXO_MASCULINO='M';
 	const SEXO_FEMININO='F';
+
 	public function getSexoOptions()
 	{
 		return array(
-			self::SEXO_MASCULINO=>'Masculino',
-			self::SEXO_FEMININO=>'Feminino',
+			self::SEXO_MASCULINO => 'Masculino',
+			self::SEXO_FEMININO  => 'Feminino'
 		);
 	}
 	
-	public function getSexoText()
-	{
-		$options=$this->sexoOptions;
-		return isset($options[$this->sexo]) ? $options[$this->sexo] : "desconhecido ({$this->sexo})";
-	}
+
 	
 	public function behaviors(){
 		return array('datetimeI18NBehavior'=>array('class'=>'ext.DateTimeI18NBehavior'));
@@ -198,7 +219,6 @@ class colaborador extends CActiveRecord
 		$this->pispasep = str_replace('-','',$this->pispasep);
 		$this->cpf = str_replace('.','',$this->cpf);
 		$this->cpf = str_replace('-','',$this->cpf);
-		$this->status_cadastro = 1;
 		$this->tipo_cadastro = 1;
 		if (isset($usuario))
 			$this->idusuario = $usuario->idUsuario;
