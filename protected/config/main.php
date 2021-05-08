@@ -7,9 +7,9 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Ativação de Fiscais',
+	'name'=>'AtivaÃ§Ã£o de Fiscais',
 	
-	'charset' => 'iso-8859-1',
+	'charset' => 'utf-8',
 	
 	'language' => 'pt-br',
 	'sourceLanguage' => 'pt_br',
@@ -40,9 +40,9 @@ return array(
 		),
 		// uncomment the following to set up database
 		'db'=>array(
-			//'connectionString'=>'mysql:host=127.0.0.1;dbname=sicon',
-			'connectionString'=>'mysql:host=200.129.163.56;dbname=sicon',
-			'username' => 'sicon',
+			//'connectionString'=>'mysql:host=200.129.163.56;dbname=sicon',
+			'connectionString'=>'mysql:host=localhost;dbname=sis_fiscalcompec',
+			'username' => 'sis_fiscalcompec',
 			'password' => '20sicon08',
 			'enableParamLogging' => true,
 			'emulatePrepare' => true,
