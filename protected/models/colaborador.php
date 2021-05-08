@@ -61,33 +61,40 @@ class colaborador extends CActiveRecord
 	public function rules()
 	{	
 		return array(
+
+			// Identificação
 			array('nome','length','max'=>60),
-			array('sexo','length','max'=>1),
-			array('doc_identidade','length','max'=>20),
-			array('orgao_identidade','length','max'=>10),
-			array('cpf', 'ext.validators.CCpfValidator','message'=>'O CPF informado est&aacute; incorreto! Favor corrig&iacute;-lo!'),		
+			array('cpf', 'ext.validators.CCpfValidator','message'=>'O número de CPF informado é inválido!'),		
 			array('cpf', 'unique',"allowEmpty"=>false, 'attributeName'=>'cpf','className'=>'colaborador', 'message'=>'O {attribute} "{value}" já foi cadastrado.','on'=>'create'),
-			array('logradouro','length','max'=>50),
-			array('numero_endereco','length','max'=>5),
-			array('bairro','length','max'=>80),
-			array('cep','length','max'=>9),
-			array('ddd','length','max'=>2),
-			array('telefone','length','max'=>14),
-			array('celular','length','max'=>15),
-			array('email','length','max'=>60),
-			array('cursoufam','length','max'=>100),
-			array('orgaoservidor','length','max'=>100),
-            array('data_nascimento', 'type', 'type'=>'date',
+			array('data_nascimento', 'type', 'type'=>'date',
                 'dateFormat'=>Yii::app()->locale->dateFormat,
                 'message' => '{attribute} inválida'
-            ),	
-			array('banco','length','max'=>100),
-			array('contacorrente','length','max'=>20),
-			array('agencia','length','max'=>10),
-			array('pispasep','length','max'=>18),
-			array('cpf, nome, doc_identidade, tipo_vinculo, pispasep, orgao_identidade, idescolaridade,logradouro,numero_endereco, bairro, idmunicipio, banco,agencia,contacorrente', 'required'),
+            ),
+			array('sexo'            ,'length','max' => 1 ),
+			array('pispasep'        ,'length','max' => 18),
+			array('doc_identidade'  ,'length','max' => 20),
+			array('orgao_identidade','length','max' => 10),
+			
+			// Endereço
+			array('logradouro'      ,'length','max' => 50),
+			array('numero_endereco' ,'length','max' => 5 ),
+			array('bairro'          ,'length','max' => 80),
+			array('cep'             ,'length','max' => 9 ),
+			array('complemento'     ,'length','max' => 80),
+
+			// Contatos
+			array('celular','length','max' => 15),
+			array('email'  ,'length','max' => 60),
+
+			// Informações Bancárias
+			array('banco'        ,'length','max' => 80),
+			array('contacorrente','length','max' => 20),
+			array('agencia'      ,'length','max' => 10),
+            
+			// Campos Obrigatórios
+			array('nome, cpf, sexo, pispasep, doc_identidade, orgao_identidade, banco, agencia, contacorrente, tipo_vinculo', 'required'),
 			array('cpf','required', 'on'=>'formCPF'),			
-			array('tipo_cadastro, status_cadastro, tipo_vinculo, anoatualgraduacao, matriculaufam, matriculaservidor, tipo_vinculo_old', 'numerical', 'integerOnly'=>true),
+			array('tipo_cadastro, status_cadastro, tipo_vinculo', 'numerical', 'integerOnly' => true),
 		);
 	}
 	
@@ -143,7 +150,7 @@ class colaborador extends CActiveRecord
 			'cpf' => 'CPF',
 			'tipo_cadastro' => 'Tipo Cadastro',
 			'status_cadastro' => 'Status Cadastro',
-			'tipo_vinculo' => 'Tipo Vinculo',
+			'tipo_vinculo' => 'Tipo Vínculo',
 			'anoatualgraduacao' => 'Anoatualgraduacao',
 			'matriculaufam' => 'Matriculaufam',
 			'cursoufam' => 'Cursoufam',

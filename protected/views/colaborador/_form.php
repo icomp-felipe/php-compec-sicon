@@ -85,15 +85,9 @@
         <?php echo CHtml::activeLabelEx($model,'doc_identidade'); ?>
         <?php echo CHtml::activeTextField($model,'doc_identidade',array('size'=>20,'maxlength'=>20)); ?>
 
-        Órgão
+        Órgão Emissor
 
         <?php echo CHtml::activeTextField($model,'orgao_identidade',array('size'=>5,'maxlength'=>10)); ?>
-
-        UF
-
-        <?php echo CHtml::activeDropDownList($model, 'iduf_identidade', 
-									CHtml::listData(uf::model()->findAll(),'iduf','sigla'),
-									array('empty'=>'Selecione')) ?>
 
     </div>
 
@@ -200,6 +194,13 @@
 									array('empty'=>'Selecione')) ?>
     </div>
 
+    <!-- Observações -->
+    <div class="simple">
+        <?php echo CHtml::activeLabelEx ($model,'observacoes'); ?>
+        <?php echo CHtml::activeTextArea($model,'observacoes', array('rows' => 8, 'cols' => 55, 'disabled' => 'disabled')); ?>
+    </div>
+
+    <!-- Fim dos campos de dados -->
     <br>
 
     <div class="action">
