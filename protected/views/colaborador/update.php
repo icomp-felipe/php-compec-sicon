@@ -1,7 +1,8 @@
-<h2>Colaborador <?php echo $model->nome; ?> - Atualizar</h2>
+<h1>Atualização de Dados</h1>
+<h2>Colaborador: <?php echo $model->nome; ?></h2>
 
 <div class="actionBar">
-[<?php echo CHtml::link('Clique aqui para cadastrar um novo colaborador',array('create')); ?>]
+	[<?php echo CHtml::link('Clique aqui para cadastrar um novo colaborador',array('create')); ?>]
 </div>
 
 <?php echo $this->renderPartial('_form', array(
