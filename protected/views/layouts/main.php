@@ -55,7 +55,7 @@
 			array('label'=>'Início', 'url'=>array('/site/index')),		
 			array('label'=>'Iniciar ativação', 'url'=>array('/inscricaonet/CpfForm'),'visible'=>Yii::app()->user->isGuest),
 			array('label'=>'Iniciar ativação Internet ( Em teste )', 'url'=>array('/inscricaonet/CpfForm'),'visible'=>UserIdentity::isUsuarioInterno()),			
-			array('label'=>'COMPEC', 'url'=>'http://www.comvest.ufam.edu.br'),		
+			array('label'=>'COMPEC', 'url'=>'https://www.compec.ufam.edu.br'),		
 			array('label'=>'Iniciar ativação Institucional', 'url'=>array('/inscricaoInstitucional'), 'visible'=>!Yii::app()->user->isGuest && !UserIdentity::isUsuarioInterno()),
 			array('label'=>'Iniciar ativação Institucional (Em teste)', 'url'=>array('/inscricaoInstitucional'), 'visible'=>UserIdentity::isUsuarioInterno()),		
 			array('label'=>'Colaboradores', 'url'=>array('/colaborador/admin'), 'visible'=>!Yii::app()->user->isGuest),		
