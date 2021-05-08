@@ -98,17 +98,19 @@ class colaborador extends CActiveRecord
 		);
 	}
 	
+	/** Prepara alguns campos antes de serem validados. */
 	protected function beforeValidate(){
+
 		$this->cpf = str_replace('.','',$this->cpf);
 		$this->cpf = str_replace('-','',$this->cpf);
+
 		return true;
 	}
 
 	/**
 	 * @return array relational rules.
 	 */
-	public function relations()
-	{
+	public function relations()	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
@@ -126,41 +128,42 @@ class colaborador extends CActiveRecord
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
-	public function attributeLabels()
-	{
+	public function attributeLabels() {
 		return array(
-			'idColaborador' => 'ID',
-			'idescolaridade' => 'Escolaridade',
-			'iduf_identidade' => 'UF do RG',
-			'idmunicipio' => 'Município',
-			'nome' => 'Nome',
-			'sexo' => 'Sexo',
-			'data_nascimento' => 'Data de Nascimento',
-			'doc_identidade' => 'Nº do RG',
+
+			// Identificação
+			'idColaborador'    => 'Nº da Ficha',
+			'nome'             => 'Nome',
+			'cpf'              => 'CPF' ,
+			'data_nascimento'  => 'Data de Nascimento',
+			'sexo'             => 'Sexo',
+			'idescolaridade'   => 'Escolaridade',
+			'pispasep'         => 'PIS/PASEP',
+			'doc_identidade'   => 'Nº do RG',
 			'orgao_identidade' => 'Órgão',
-			'logradouro' => 'Logradouro',
+
+			// Endereço
+			'logradouro'      => 'Rua/Av',	
 			'numero_endereco' => 'Número',
-			'bairro' => 'Bairro',
-			'cep' => 'CEP',
-			'ddd' => 'DDD',
-			'telefone' => 'Telefone',
+			'bairro'          => 'Bairro',
+			'idmunicipio'     => 'Município',
+			'cep'             => 'CEP',
+			'complemento'     => 'Complemento',
+
+			// Contatos
 			'celular' => 'Celular',
-			'email' => 'e-mail',
-			'complemento' => 'Complemento',
-			'cpf' => 'CPF',
-			'tipo_cadastro' => 'Tipo Cadastro',
-			'status_cadastro' => 'Status Cadastro',
-			'tipo_vinculo' => 'Tipo Vínculo',
-			'anoatualgraduacao' => 'Anoatualgraduacao',
-			'matriculaufam' => 'Matriculaufam',
-			'cursoufam' => 'Cursoufam',
-			'matriculaservidor' => 'Matriculaservidor',
-			'orgaoservidor' => 'Orgaoservidor',
-			'observacoes' => 'Observações',
-			'banco' => 'Banco',
+			'email'   => 'e-mail',
+			
+			// Informações Bancárias
+			'banco'         => 'Banco',
+			'agencia'       => 'Agência',
 			'contacorrente' => 'Nº da Conta',
-			'agencia' => 'Agência',
-			'pispasep' => 'PIS/PASEP'
+
+			// Informações Cadastrais
+			'tipo_vinculo'    => 'Tipo Vínculo',
+			'status_cadastro' => 'Status Cadastro',
+			'observacoes'     => 'Observações'
+			
 		);
 	}
 	

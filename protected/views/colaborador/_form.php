@@ -9,7 +9,7 @@
 
     <!-- Número da Ficha (id do Colaborador) -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'Nº da Ficha'); ?>
+        <?php echo CHtml::activeLabelEx($model,'idColaborador'); ?>
         <?php echo CHtml::activeTextField($model,'idColaborador',array('size'=>8,'maxlength'=>10, 'disabled'=>'disabled')); ?>
     </div>
 
@@ -95,25 +95,25 @@
 
     <!-- Logradouro -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'Rua/Av'); ?>
+        <?php echo CHtml::activeLabelEx($model,'logradouro'); ?>
         <?php echo CHtml::activeTextField($model,'logradouro',array('size'=>50,'maxlength'=>50)); ?>
     </div>
 
     <!-- Número Logradouro -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'Número'); ?>
+        <?php echo CHtml::activeLabelEx($model,'numero_endereco'); ?>
         <?php echo CHtml::activeTextField($model,'numero_endereco',array('size'=>5,'maxlength'=>5)); ?>
     </div>
 
     <!-- Bairro -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'Bairro'); ?>
+        <?php echo CHtml::activeLabelEx($model,'bairro'); ?>
         <?php echo CHtml::activeTextField($model,'bairro',array('size'=>50,'maxlength'=>80)); ?>
     </div>
 
     <!-- Município -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'Município'); ?>
+        <?php echo CHtml::activeLabelEx($model,'idmunicipio'); ?>
         <?php echo CHtml::activeDropDownList($model, 'idmunicipio', 
 									CHtml::listData(municipio::model()->findAll(),'idmunicipio','nome'),
 									array('empty'=>'Selecione')) ?>
