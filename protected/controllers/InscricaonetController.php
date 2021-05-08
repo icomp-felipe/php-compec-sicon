@@ -45,7 +45,7 @@ class InscricaonetController extends CController
 
 	
 	/**
-	 * Displays the CPF (Identificação do Contribuinte) page
+	 * Displays the CPF (IdentificaÃ§Ã£o do Contribuinte) page
 	 */
 	public function actionCpfForm()
 	{
@@ -69,18 +69,18 @@ class InscricaonetController extends CController
 	}
 	
 	/**
-	 * Exibe a página de seleção do concurso
+	 * Exibe a pÃ¡gina de seleÃ§Ã£o do concurso
 	 */
 	
 	public function actionSelecionarConcurso()
 	{
 			
-		//recupera dados da sessão e os dados postados
+		//recupera dados da sessÃ£o e os dados postados
 		$form = $this->getSessionForm();
 		
 		if(!isset($form,$form->colaborador))
 		{
-			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o, por favor reinicie o processo!'));	
 			return;	
 		}
 		
@@ -112,20 +112,20 @@ class InscricaonetController extends CController
 	public function actionSelecionarInstituicao()
 	{
 
-		//recupera dados da sessão e os dados postados
+		//recupera dados da sessÃ£o e os dados postados
 		$form = $this->getSessionForm();
 		
 		if(!isset($form,$form->concurso,$form->etapa,$form->colaborador))
 		{
-			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o, por favor reinicie o processo!'));	
 			return;	
 		}
 		
-		// consulta instituições disponíveis no processo
+		// consulta instituiÃ§Ãµes disponÃ­veis no processo
 		$models = $this->getInstituicoesDisponiveis($form->etapa->idetapa);	
 
-		if (count($models) > 0) // há vagas
-			// exibe a página de seleção de instituições
+		if (count($models) > 0) // hÃ¡ vagas
+			// exibe a pÃ¡gina de seleÃ§Ã£o de instituiÃ§Ãµes
 			$this->render('instituicao',array(
 				'models'=>$models,
 				'form'=>$form,
@@ -137,7 +137,7 @@ class InscricaonetController extends CController
 	
 	public function actionConfirmacao()
 	{
-		//recupera dados da sessão e os dados postados
+		//recupera dados da sessÃ£o e os dados postados
 		$form = $this->getSessionForm();
 		
 		if(isset($_GET['id']))
@@ -146,13 +146,13 @@ class InscricaonetController extends CController
 		}
 		else
 		{
-			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o, por favor reinicie o processo!'));	
 			return;	
 		}
 		
 		$this->setSessionForm($form);		
 		
-		// exibe a página de confirmação
+		// exibe a pÃ¡gina de confirmaÃ§Ã£o
 		$this->render('confirmacao',array(
 			'form'=>$form,
 		));
@@ -160,7 +160,7 @@ class InscricaonetController extends CController
 	
 	public function actionConfirmar()
 	{
-		//recupera dados da sessão e os dados postados
+		//recupera dados da sessÃ£o e os dados postados
 		$form = $this->getSessionForm();
 		
 		if (isset($_POST))
@@ -199,14 +199,14 @@ class InscricaonetController extends CController
 				else
 				{									
 					$inscricao->delete();
-					$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+					$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o, por favor reinicie o processo!'));	
 					return;	
 				}	
 
 			}
 			else
 			{											
-				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistÃªncia no processo de inscriÃ§Ã£o, por favor reinicie o processo!'));	
 				return;	
 			}	
 			// redireciona
@@ -216,7 +216,7 @@ class InscricaonetController extends CController
 	
 	public function actionConfirmado()
 	{
-		//recupera dados da sessão e os dados postados
+		//recupera dados da sessÃ£o e os dados postados
 		$form = $this->getSessionForm();
 		
 		$this->render('confirmado',array('form'=>$form));
