@@ -41,7 +41,7 @@
 	<table width="100%" border="0" cellpadding="5" cellspacing="0" >
 		<tr>
 			<td width="115"><img src="images/ufam-logo-2021.png" width="97" height="100" /></td>
-			<td width="867"><p class="titulo">COMPEC- UFAM</p></td>
+			<td width="867"><p class="titulo">COMPEC-UFAM</p></td>
 		</tr>
 	</table>
 
@@ -53,16 +53,16 @@
 	<div id="mainmenu">
 	<?php $this->widget('application.components.MainMenu',array(
 		'items'=>array(
-			array('label'=>'Início', 'url'=>array('/site/index')),		
-			array('label'=>'Iniciar ativação', 'url'=>array('/inscricaonet/CpfForm'),'visible'=>Yii::app()->user->isGuest),
-			array('label'=>'Iniciar ativação Internet ( Em teste )', 'url'=>array('/inscricaonet/CpfForm'),'visible'=>UserIdentity::isUsuarioInterno()),			
-			array('label'=>'COMPEC', 'url'=>'https://www.compec.ufam.edu.br'),		
-			array('label'=>'Iniciar ativação Institucional', 'url'=>array('/inscricaoInstitucional'), 'visible'=>!Yii::app()->user->isGuest && !UserIdentity::isUsuarioInterno()),
-			array('label'=>'Iniciar ativação Institucional (Em teste)', 'url'=>array('/inscricaoInstitucional'), 'visible'=>UserIdentity::isUsuarioInterno()),		
-			array('label'=>'Colaboradores', 'url'=>array('/colaborador/admin'), 'visible'=>!Yii::app()->user->isGuest),		
-			array('label'=>'Acessar Área Institucional', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-			array('label'=>'Sair', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-		),
+			array('label' => 'Início'                              , 'url' => array('/site/index')),
+			array('label' => 'Site da COMPEC'                      , 'url' => 'https://www.compec.ufam.edu.br'),
+			array('label' => 'Inscrição (Público)'                 , 'url' => array('/inscricaonet/CpfForm'   ), 'visible' => Yii::app()->user->isGuest),
+			array('label' => 'Inscrição (Público - Restrito)'      , 'url' => array('/inscricaonet/CpfForm'   ), 'visible' => UserIdentity::isUsuarioInterno()),			
+			array('label' => 'Inscrição (Institucional)'           , 'url' => array('/inscricaoInstitucional' ), 'visible' => !Yii::app()->user->isGuest && !UserIdentity::isUsuarioInterno()),
+			array('label' => 'Inscrição (Institucional - Restrito)', 'url' => array('/inscricaoInstitucional' ), 'visible' => UserIdentity::isUsuarioInterno()),		
+			array('label' => 'Colaboradores'                       , 'url' => array('/colaborador/admin'      ), 'visible' => !Yii::app()->user->isGuest),		
+			array('label' => 'Área Restrita'                       , 'url' => array('/site/login'             ), 'visible' => Yii::app()->user->isGuest),
+			array('label' => 'Logout'                              , 'url' => array('/site/logout'            ), 'visible' => !Yii::app()->user->isGuest)
+		)
 	)); ?>
 	</div><!-- mainmenu -->
 	</div><!-- header -->
