@@ -183,7 +183,10 @@ class colaborador extends CActiveRecord
 
 		$session=Yii::app()->getSession();	
 		$usuario = $session["usuario"];
-			
+		
+		$this->data_cadastro = null;
+		$this->pispasep = str_replace('.','',$this->pispasep);
+		$this->pispasep = str_replace('-','',$this->pispasep);
 		$this->cpf = str_replace('.','',$this->cpf);
 		$this->cpf = str_replace('-','',$this->cpf);
 		$this->status_cadastro = 1;
