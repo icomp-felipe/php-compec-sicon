@@ -1,14 +1,14 @@
-<h2>Escolha a Função</h2>
+<h2>Escolha a FunÃ§Ã£o</h2>
 
 <div class="actionBar">
 <br/><?php echo $form->concurso->descricao .'. Prova do dia: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).'. '.CHtml::link('Desejo alterar o processo seletivo...',array('concursosEtapas')); ?><br/>
-<?php echo $form->instituicao->nome.'. '.CHtml::link('Desejo alterar a instituição...',array('selecionarInstituicao')); ?>
+<?php echo $form->instituicao->nome.'. '.CHtml::link('Desejo alterar a instituiÃ§Ã£o...',array('selecionarInstituicao')); ?>
 </div>
 <center>
 <table class="dataGrid" style="width:300px">
 <thead>
 	<tr>
-		<th>Função</th>
+		<th>FunÃ§Ã£o</th>
 	</tr>
 </thead>
 <?php foreach($models as $n=>$model): ?>

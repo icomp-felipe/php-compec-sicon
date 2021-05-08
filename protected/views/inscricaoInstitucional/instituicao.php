@@ -1,4 +1,4 @@
-<h2>Escolha a instituição</h2>
+<h2>Escolha a instituiÃ§Ã£o</h2>
 
 <div class="actionBar">
 <br/><?php echo $form->concurso->descricao .'. Prova do dia: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).'. '.CHtml::link('Desejo alterar o processo seletivo...',array('selecionarConcursoEtapa')); ?>

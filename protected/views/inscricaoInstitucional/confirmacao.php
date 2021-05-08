@@ -1,4 +1,4 @@
-<h2>Confirmar os dados desta ativação</h2>
+<h2>Confirmar os dados desta ativaÃ§Ã£o</h2>
 
 <div class="yiiForm">
 	
@@ -12,11 +12,11 @@
     <td><?php echo $form->concurso->descricao .'. Prova do dia: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)); ?></td>
 </tr>
 <tr>
-	<th class="label">Instituição</th>
+	<th class="label">InstituiÃ§Ã£o</th>
     <td><?php echo $form->instituicao->nome; ?></td>
 </tr>
 <tr>
-	<th class="label">Função</th>
+	<th class="label">FunÃ§Ã£o</th>
     <td><?php echo $form->funcao->nome; ?></td>
 </tr>
 <tr>
@@ -31,7 +31,7 @@
 </tr>
 
 <tr>
-	<th class="label">Agência</th>
+	<th class="label">AgÃªncia</th>
     <td><?php echo CHtml::activeTextField($form,'agencia',array('size'=>6,'maxlength'=>6)); ?></td>
 </tr>
 
@@ -61,14 +61,14 @@
 </div><!-- yiiForm -->
 <div class="actionBar">
 <p>
-Se houver algum erro você pode executar uma das ações abaixo:
+Se houver algum erro vocÃª pode executar uma das aÃ§Ãµes abaixo:
 </p>
 
 <ul>
 <li><?php echo $form->concurso->descricao .'. Prova do dia: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).'. '.CHtml::link('Desejo alterar o processo seletivo...',array('concursosEtapas')); ?></li>
 <li>
-<?php echo $form->instituicao->nome.'. '.CHtml::link('Desejo alterar a instituição...',array('selecionarInstituicao')); ?></li>
-<li><?php echo $form->funcao->nome.'. '.CHtml::link('Desejo alterar a função...',array('selecionarFuncao')); ?></li>
+<?php echo $form->instituicao->nome.'. '.CHtml::link('Desejo alterar a instituiÃ§Ã£o...',array('selecionarInstituicao')); ?></li>
+<li><?php echo $form->funcao->nome.'. '.CHtml::link('Desejo alterar a funÃ§Ã£o...',array('selecionarFuncao')); ?></li>
 <li><?php echo $form->colaborador->cpf.' - '. $form->colaborador->nome.' .'.CHtml::link('Desejo alterar o colaborador...',array('selecionarColaborador')); ?></li>
 </ul>
 </div>

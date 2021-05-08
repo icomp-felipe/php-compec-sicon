@@ -3,9 +3,9 @@
 <table class="dataGrid">
   <thead>
   <tr>
-    <th>Descrição</th>
-    <th>Realização</th>
-    <th>Período de Inscrições</th>
+    <th>DescriÃ§Ã£o</th>
+    <th>RealizaÃ§Ã£o</th>
+    <th>PerÃ­odo de InscriÃ§Ãµes</th>
 	<th>Etapa do concurso</th>
   </tr>
   </thead>
