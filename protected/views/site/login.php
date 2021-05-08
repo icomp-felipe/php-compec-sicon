@@ -1,26 +1,27 @@
-<?php $this->pageTitle=Yii::app()->name . ' - Acessar Área Institucional'; ?>
+<?php $this->pageTitle=Yii::app()->name . ' - Área Restrita'; ?>
 
-<h1>Acesso à Área Institucional</h1>
+<h2>Login na Área Restrita</h2>
 
 <div class="yiiForm">
-<?php echo CHtml::beginForm(); ?>
+    <?php echo CHtml::beginForm(); ?>
+    <?php echo CHtml::errorSummary($form); ?>
 
-<?php echo CHtml::errorSummary($form); ?>
+    <div class="simple">
+        <?php echo CHtml::activeLabel($form,'Usuário'); ?>
+        <?php echo CHtml::activeTextField($form,'username') ?>
+    </div>
 
-<div class="simple">
-<?php echo CHtml::activeLabel($form,'Usu&aacute;rio'); ?>
-<?php echo CHtml::activeTextField($form,'username') ?>
-</div>
+    <div class="simple">
+        <?php echo CHtml::activeLabel($form,'Senha'); ?>
+        <?php echo CHtml::activePasswordField($form,'password') ?>
+    </div>
 
-<div class="simple">
-<?php echo CHtml::activeLabel($form,'Senha'); ?>
-<?php echo CHtml::activePasswordField($form,'password') ?>
-</div>
+    <br>
 
-<div class="action">
-<?php echo CHtml::submitButton('Acessar'); ?>
-</div>
+    <div class="action">
+        <?php echo CHtml::submitButton('Login'); ?>
+    </div>
 
-<?php echo CHtml::endForm(); ?>
+    <?php echo CHtml::endForm(); ?>
 
 </div><!-- yiiForm -->
