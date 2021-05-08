@@ -3,6 +3,5 @@
 <h2>Oops! Algo aconteceu fora do planejado!</h2>
 
 <div class="errorSummary">
-<?php echo $mensagem ?>
+    <?php echo $mensagem ?>
 </div>
-
