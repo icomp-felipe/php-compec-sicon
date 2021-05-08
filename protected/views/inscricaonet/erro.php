@@ -1,4 +1,4 @@
-<?php $this->pageTitle=Yii::app()->name . ' - Identificação do Colaborador'; ?>
+<?php $this->pageTitle=Yii::app()->name . ' - IdentificaÃ§Ã£o do Colaborador'; ?>
 
 <h2>Oops! Algo aconteceu fora do planejado!</h2>
 

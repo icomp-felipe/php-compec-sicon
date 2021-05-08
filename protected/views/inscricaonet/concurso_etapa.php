@@ -1,18 +1,18 @@
 <h2>Escolha o concurso</h2>
 
 <div class="actionBar">
-<?php echo $form->colaborador->nome .'. '. CHtml::link('Este não sou eu...',array('CpfForm')); ?>
+<?php echo $form->colaborador->nome .'. '. CHtml::link('Este nÃ£o sou eu...',array('CpfForm')); ?>
 
 </div>
 
-<?php echo CHtml::errorSummary($form,'Atenção!'); ?>
+<?php echo CHtml::errorSummary($form,'AtenÃ§Ã£o!'); ?>
 
 <table class="dataGrid">
   <thead>
   <tr>
-    <th>Descrição</th>
-    <th>Realização</th>
-    <th>Período de Inscrições</th>
+    <th>DescriÃ§Ã£o</th>
+    <th>RealizaÃ§Ã£o</th>
+    <th>PerÃ­odo de InscriÃ§Ãµes</th>
 	<th>Etapa do concurso</th>
   </tr>
   </thead>

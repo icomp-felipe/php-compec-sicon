@@ -1,7 +1,7 @@
-<h2>Escolha a instituição</h2>
+<h2>Escolha a instituiÃ§Ã£o</h2>
 
 <div class="actionBar">
-<?php echo $form->colaborador->nome .'. '. CHtml::link('Este não sou eu...',array('CpfForm')); ?>
+<?php echo $form->colaborador->nome .'. '. CHtml::link('Este nÃ£o sou eu...',array('CpfForm')); ?>
 <br/><?php echo $form->concurso->descricao .'. Prova do dia: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).'. '.CHtml::link('Desejo alterar o processo seletivo...',array('selecionarConcurso')); ?>
 </div>
 

@@ -1,9 +1,9 @@
-<h2>Identificação do Colaborador</h2>
+<h2>IdentificaÃ§Ã£o do Colaborador</h2>
 
 <div class="yiiForm">
 <?php echo CHtml::beginForm(); ?>
 
-<?php echo CHtml::errorSummary($form,'Atenção!'); ?>
+<?php echo CHtml::errorSummary($form,'AtenÃ§Ã£o!'); ?>
 
 <div class="simple">
 <?php echo CHtml::activeLabel($form,'cpf'); ?>

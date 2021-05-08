@@ -7,7 +7,7 @@
 
 <table class="dataGrid">
 <tr>
-	<th class="label">Identificação</th>
+	<th class="label">IdentificaÃ§Ã£o</th>
     <td><?php echo $form->cpf; ?> - 
 		<?php echo $form->colaborador->nome; ?></td>
 </tr>
@@ -16,7 +16,7 @@
     <td><?php echo $form->concurso->descricao .'. Prova do dia: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)); ?></td>
 </tr>
 <tr>
-	<th class="label">Instituição</th>
+	<th class="label">InstituiÃ§Ã£o</th>
     <td><?php echo $form->instituicao->nome; ?></td>
 </tr>
 
@@ -26,7 +26,7 @@
 </tr>
 
 <tr>
-	<th class="label">Agência</th>
+	<th class="label">AgÃªncia</th>
     <td><?php echo CHtml::activeTextField($form,'agencia',array('size'=>6,'maxlength'=>6)); ?></td>
 </tr>
 
