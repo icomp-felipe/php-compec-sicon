@@ -40,7 +40,6 @@ return array(
 		),
 		// uncomment the following to set up database
 		'db'=>array(
-			//'connectionString'=>'mysql:host=200.129.163.56;dbname=sicon',
 			'connectionString'=>'mysql:host=localhost;dbname=sis_fiscalcompec',
 			'username' => 'sis_fiscalcompec',
 			'password' => '20sicon08',
@@ -53,6 +52,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'felipeandresouza@hotmail.com',
 	),
 );

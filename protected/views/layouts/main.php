@@ -6,6 +6,7 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
 	<style type="text/css">
 		<!--
@@ -39,7 +40,7 @@
 
 	<table width="100%" border="0" cellpadding="5" cellspacing="0" >
 		<tr>
-			<td width="115"><img src="images/ufamLogo.gif" width="97" height="100" /></td>
+			<td width="115"><img src="images/ufam-logo-2021.png" width="97" height="100" /></td>
 			<td width="867"><p class="titulo">COMPEC- UFAM</p></td>
 		</tr>
 	</table>
