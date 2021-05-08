@@ -167,6 +167,7 @@ class colaborador extends CActiveRecord
 		);
 	}
 	
+	// Definição dos Status de Cadastro (no código mesmo pq não tem modelo)
 	const STATUS_PRE_CADASTRO = 0;
 	const STATUS_ATIVADO      = 1;
 	const STATUS_REJEITADO    = 2;
@@ -192,41 +193,57 @@ class colaborador extends CActiveRecord
 
 	}
 
-	const SEXO_MASCULINO='M';
-	const SEXO_FEMININO='F';
+	// Definição dos Sexos (apenas ajustando os nomes para as views)
+	const SEXO_MASCULINO = 'M';
+	const SEXO_FEMININO  = 'F';
 
-	public function getSexoOptions()
-	{
+	public function getSexoOptions() {
+
 		return array(
+
 			self::SEXO_MASCULINO => 'Masculino',
 			self::SEXO_FEMININO  => 'Feminino'
+
 		);
+
 	}
 	
+	public function getSexoText() {
 
+		$options = $this->sexoOptions;
+		return isset($options[$this->sexo]) ? $options[$this->sexo] : "desconhecido ({$this->sexo})";
+
+	}
 	
 	public function behaviors(){
 		return array('datetimeI18NBehavior'=>array('class'=>'ext.DateTimeI18NBehavior'));
 	}
 	
+	/** Prepara os campos antes de serem salvos no BD. */
 	protected function beforeSave(){
+
 		if (!parent::beforeSave())
 			return false;
 
+		// Recuperando dados da sessão
 		$session=Yii::app()->getSession();	
 		$usuario = $session["usuario"];
 		
+		// Ajustando campos
 		$this->data_cadastro = null;
-		$this->cep = str_replace('-','',$this->cep);
-		$this->pispasep = str_replace('.','',$this->pispasep);
-		$this->pispasep = str_replace('-','',$this->pispasep);
-		$this->cpf = str_replace('.','',$this->cpf);
-		$this->cpf = str_replace('-','',$this->cpf);
+
+		$this->cep      = preg_replace( '/[^0-9]/is', '', $this->cep);
+		$this->cpf      = preg_replace( '/[^0-9]/is', '', $this->cpf);
+		$this->pispasep = preg_replace( '/[^0-9]/is', '', $this->pispasep);
+
+		// Cadastro externo
 		$this->tipo_cadastro = 1;
+
+		// Vincula no objeto 'colaborador' qual usuário o criou
 		if (isset($usuario))
 			$this->idusuario = $usuario->idUsuario;
+
 		return true;
-	}	
-	
+	}
 	
 }
