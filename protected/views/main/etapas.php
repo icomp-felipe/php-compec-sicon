@@ -9,7 +9,7 @@
 			<ul>
 				<?php foreach($models as $n=>$model): ?>
 					<li><?php echo CHtml::encode($model->etapa->concurso->descricao); ?>
-      				&nbsp;[<?php echo CHtml::link('Gerar Lista',array('entregafolder','idetapa'=>$model->idetapa,'idinstituicao'=>$instituicao->idinstituicao),array('target'=>'_blank')); ?>]</li>			
+      				&nbsp;[<?php echo CHtml::link('Gerar Lista',array('entregaManual','idetapa'=>$model->idetapa,'idinstituicao'=>$instituicao->idinstituicao),array('target'=>'_blank')); ?>]</li>			
 				<?php endforeach; ?>
 			</ul>
 	<?php endif; ?>
