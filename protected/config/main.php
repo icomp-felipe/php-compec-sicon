@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Ativação de Fiscais',
+	'name'=>'Inscrição de Aplicadores',
 	
 	'charset' => 'utf-8',
 	
