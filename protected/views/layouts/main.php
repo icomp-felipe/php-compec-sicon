@@ -53,15 +53,15 @@
 	<div id="mainmenu">
 	<?php $this->widget('application.components.MainMenu',array(
 		'items'=>array(
-			array('label' => 'Início'                              , 'url' => array('/site/index')),
+			array('label' => 'Início'                              , 'url' => array('/main/index')),
 			array('label' => 'Site da COMPEC'                      , 'url' => 'https://www.compec.ufam.edu.br'),
 			array('label' => 'Inscrição (Público)'                 , 'url' => array('/inscricaonet/CpfForm'   ), 'visible' => Yii::app()->user->isGuest),
 			array('label' => 'Inscrição (Público - Restrito)'      , 'url' => array('/inscricaonet/CpfForm'   ), 'visible' => UserIdentity::isUsuarioInterno()),			
 			array('label' => 'Inscrição (Institucional)'           , 'url' => array('/inscricaoInstitucional' ), 'visible' => !Yii::app()->user->isGuest && !UserIdentity::isUsuarioInterno()),
 			array('label' => 'Inscrição (Institucional - Restrito)', 'url' => array('/inscricaoInstitucional' ), 'visible' => UserIdentity::isUsuarioInterno()),		
 			array('label' => 'Colaboradores'                       , 'url' => array('/colaborador/admin'      ), 'visible' => !Yii::app()->user->isGuest),		
-			array('label' => 'Área Restrita'                       , 'url' => array('/site/login'             ), 'visible' => Yii::app()->user->isGuest),
-			array('label' => 'Logout'                              , 'url' => array('/site/logout'            ), 'visible' => !Yii::app()->user->isGuest)
+			array('label' => 'Área Restrita'                       , 'url' => array('/main/login'             ), 'visible' => Yii::app()->user->isGuest),
+			array('label' => 'Logout'                              , 'url' => array('/main/logout'            ), 'visible' => !Yii::app()->user->isGuest)
 		)
 	)); ?>
 	</div><!-- mainmenu -->

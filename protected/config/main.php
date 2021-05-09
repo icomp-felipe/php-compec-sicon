@@ -6,52 +6,62 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Inscrição de Aplicadores',
+
+	'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+
+	'name'              => 'Inscrição de Aplicadores',
+	'defaultController' => 'main',
 	
 	'charset' => 'utf-8',
-	
-	'language' => 'pt-br',
+
+	'language'       => 'pt-br',
 	'sourceLanguage' => 'pt_br',
 
-	// preloading 'log' component
-	'preload'=>array('log'),
+	// Carregando componente 'log'
+	'preload' => array('log'),
 
-	// autoloading model and component classes
-	'import'=>array(
+	// Carregando modelos e classes de componentes
+	'import' => array(
 		'application.models.*',
 		'application.components.*',
 	),
 
-	// application components
-	'components'=>array(
-		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
+	// Componentes da aplicação
+	'components' => array(
+
+		'log' => array(
+			'class'  => 'CLogRouter',
+			'routes' => array(
+					array(
+						'class'  => 'CFileLogRoute',
+						'levels' => 'error, warning',
+					),
 			),
 		),
-		'user'=>array(
-			// enable cookie-based authentication
+		'user' => array(
+
+			// Ativa autenticação baseada em cookies
 			'allowAutoLogin'=>true,
 		),
-		// uncomment the following to set up database
-		'db'=>array(
-			'connectionString'=>'mysql:host=localhost;dbname=sis_fiscalcompec',
-			'username' => 'sis_fiscalcompec',
-			'password' => '20sicon08',
+
+		// Configurações do Bando de Dados
+		'db' => array(
+			'connectionString'   =>'mysql:host=localhost;dbname=sis_fiscalcompec',
+			'username'           => 'sis_fiscalcompec',
+			'password'           => '20sicon08',
 			'enableParamLogging' => true,
-			'emulatePrepare' => true,
-		),	
+			'emulatePrepare'     => true
+		)
+
 	),
 
-	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
+	// Parâmetros a nível de aplicação que podem ser acessados
+	// via Yii::app()->params['nomeParametro']
 	'params'=>array(
-		// this is used in contact page
+
+		// Usado na página de contatos
 		'adminEmail'=>'felipeandresouza@hotmail.com',
-	),
+
+	)
+
 );
