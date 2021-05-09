@@ -8,7 +8,7 @@ class InscricaoPublicoController extends CController {
 
 		$session=Yii::app()->getSession();
 
-		$form = new CpfForm();		
+		$form = new CpfForm();
 
 		$form->cpf = $session["cpf"];
 		$form->colaborador = $session["colaborador"];
@@ -157,62 +157,67 @@ class InscricaoPublicoController extends CController {
 		$this->render('confirmacao',array(
 			'form'=>$form,
 		));
-	}	
+	}
 	
-	public function actionConfirmar()
-	{
+	public function actionConfirmar() {
+
 		//recupera dados da sessão e os dados postados
 		$form = $this->getSessionForm();
 		
-		if (isset($_POST))
-		{
-		
-			$inscricao = new inscricao();
-			$inscricao->idinstituicaoopcao1 = $form->instituicao->idinstituicao;
-			$inscricao->idconcurso 			= $form->etapa->idconcurso;
-			$inscricao->idetapa 			= $form->etapa->idetapa;
-			$inscricao->idColaborador		= $form->colaborador->idColaborador;
-			$inscricao->selecionado			= 'N';
-			//$inscricao->codinscricao		= 'N';
-			$inscricao->tipoinscricao		= 1;
-			$inscricao->candidatociente		= 'N';		
-			$inscricao->idFuncao			= 1;
-			$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
-		
-			if($inscricao->save())
-			{
-			
-				$colaborador = $this->loadcolaborador($inscricao->idColaborador);
-				$colaborador->banco = $_POST['CpfForm']['banco'];
-				$colaborador->agencia = $_POST['CpfForm']['agencia'];
-				$colaborador->contacorrente = $_POST['CpfForm']['contacorrente'];
-				$colaborador->pispasep = $_POST['CpfForm']['pispasep'];
-				$colaborador->doc_identidade = $_POST['CpfForm']['doc_identidade'];
-		
-				if ($colaborador->save(false))
-				{
-					$form->colaborador->banco = $colaborador->banco;
-					$form->colaborador->agencia = $colaborador->agencia;
-					$form->colaborador->contacorrente = $colaborador->contacorrente;
-					$form->colaborador->pispasep = $colaborador->pispasep;
-					$form->colaborador->doc_identidade = $colaborador->doc_identidade;
-				}
-				else
-				{									
-					$inscricao->delete();
-					$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
-					return;	
-				}	
+		if (isset($_POST['CpfForm'])) {
 
+			$form->attributes = $_POST['CpfForm'];
+
+			if($form->validate('inscricaoPublico')) {
+	
+				$inscricao = new inscricao();
+				$inscricao->idinstituicaoopcao1 = $form->instituicao->idinstituicao;
+				$inscricao->idconcurso 			= $form->etapa->idconcurso;
+				$inscricao->idetapa 			= $form->etapa->idetapa;
+				$inscricao->idColaborador		= $form->colaborador->idColaborador;
+				$inscricao->selecionado			= 'N';
+				//$inscricao->codinscricao		= 'N';
+				$inscricao->tipoinscricao		= 1;
+				$inscricao->candidatociente		= 'N';		
+				$inscricao->idFuncao			= 1;
+				$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
+		
+				if($inscricao->save()) {
+			
+					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
+					$colaborador->banco = $_POST['CpfForm']['banco'];
+					$colaborador->agencia = $_POST['CpfForm']['agencia'];
+					$colaborador->contacorrente = $_POST['CpfForm']['contacorrente'];
+					$colaborador->pispasep = $_POST['CpfForm']['pispasep'];
+					$colaborador->doc_identidade = $_POST['CpfForm']['doc_identidade'];
+
+					$colaborador->setScenario('inscricaoPublico');
+		
+					if ($colaborador->save()) {
+						$form->colaborador->banco = $colaborador->banco;
+						$form->colaborador->agencia = $colaborador->agencia;
+						$form->colaborador->contacorrente = $colaborador->contacorrente;
+						$form->colaborador->pispasep = $colaborador->pispasep;
+						$form->colaborador->doc_identidade = $colaborador->doc_identidade;
+					}
+					else {									
+						$inscricao->delete();
+						$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+						return;	
+					}
+
+
+					$this->redirect(array('confirmado'));
+
+				}
+
+				$this->setSessionForm($form);
+				return;
 			}
-			else
-			{											
-				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
-				return;	
-			}	
-			// redireciona
-			$this->redirect(array('confirmado'));
+
 		}
+
+		$this->render('confirmacao',array('form'=>$form));
 	}	
 	
 	public function actionConfirmado()

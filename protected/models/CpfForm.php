@@ -40,6 +40,7 @@ class CpfForm extends CFormModel
 			// cpf está cadastrado e não possui restrição em concursos anteriores
 			array('cpf', 'validarColaborador','on'=>'cpf'),		
 			array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarConcurso'),
+			array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on'=>'inscricaoPublico')
 		);
 	}
 
@@ -49,7 +50,13 @@ class CpfForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'cpf'=>'CPF',		
+			'cpf'=>'CPF',
+			'pispasep' => 'PIS | PASEP | NIS | NIT',
+			'doc_identidade' => 'Nº do RG',
+			'banco' => 'Nome do Banco',
+			'agencia' => 'Nº da Agência',
+			'contacorrente' => 'Nº da Conta'
+
 		);
 	}
 

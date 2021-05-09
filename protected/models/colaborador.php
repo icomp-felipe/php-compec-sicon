@@ -68,7 +68,8 @@ class colaborador extends CActiveRecord {
             
 			// Campos Obrigatórios
 			array('nome, cpf, sexo, pispasep, doc_identidade, orgao_identidade, banco, agencia, contacorrente, tipo_vinculo', 'required'),
-			array('cpf','required', 'on'=>'formCPF'),			
+			array('cpf','required', 'on'=>'formCPF'),
+			array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
 			array('tipo_cadastro, status_cadastro, tipo_vinculo', 'numerical', 'integerOnly' => true),
 		);
 	}
