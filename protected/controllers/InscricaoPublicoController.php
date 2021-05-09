@@ -1,14 +1,15 @@
 <?php
 
-class InscricaonetController extends CController
-{
+class InscricaoPublicoController extends CController {
 
-	public $defaultAction='cpfForm';
+	public $defaultAction = 'autentica';
 
-	function getSessionForm()
-	{
-		$form = new CpfForm();
+	function getSessionForm() {
+
 		$session=Yii::app()->getSession();
+
+		$form = new CpfForm();		
+
 		$form->cpf = $session["cpf"];
 		$form->colaborador = $session["colaborador"];
 		$form->concurso = $session["concurso"];
@@ -24,19 +25,19 @@ class InscricaonetController extends CController
 		return $form;
 	}
 
-	function setSessionForm($form)
-	{
+	function setSessionForm($form)	{
 		$session=Yii::app()->getSession();
+
 		$session["cpf"] = $form->cpf;
 		$session["colaborador"] = $form->colaborador;
 		$session["concurso"] = $form->concurso;
 		$session["etapa"] = $form->etapa;
 		$session["instituicao"] = $form->instituicao;
-		$session["funcao"] = $form->funcao;		
+		$session["funcao"] = $form->funcao;
+
 	}
 	
-	function getUsuario()
-	{
+	function getUsuario() {
 	
 		$session=Yii::app()->getSession();
 		return $session["usuario"];
@@ -47,7 +48,7 @@ class InscricaonetController extends CController
 	/**
 	 * Displays the CPF (Identificação do Contribuinte) page
 	 */
-	public function actionCpfForm()
+	public function actionAutentica()
 	{
 		$form=new CpfForm;
 		$this->setSessionForm($form);

@@ -6,7 +6,7 @@
     <?php else: ?>
         Colaborador:
     <?php endif; ?>
-    <?php echo $form->colaborador->nome .' ['. CHtml::link('Trocar]',array('CpfForm')); ?>
+    <?php echo $form->colaborador->nome .' ['. CHtml::link('Trocar',array('')).']'; ?>
 </h3>
 
 <?php echo CHtml::errorSummary($form,'Atenção!'); ?>

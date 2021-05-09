@@ -133,7 +133,7 @@ class colaborador extends CActiveRecord {
 		$usuario = $session["usuario"];
 		
 		// Ajustando campos
-		$this->data_cadastro = null;
+		$this->data_cadastro = date('Y-m-d H:i:s',time());
 
 		$this->cep      = preg_replace( '/[^0-9]/is', '', $this->cep);
 		$this->cpf      = preg_replace( '/[^0-9]/is', '', $this->cpf);
