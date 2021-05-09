@@ -29,8 +29,13 @@
 		</tr>
 
 		<tr>
+			<th class="label">Função:</th>
+			<td><?php echo $form->funcao->nome; ?></td>
+		</tr>
+
+		<tr>
 			<th class="label">PIS | PASEP | NIS | NIT:</th>
-    		<td><?php echo $form->colaborador->pispasep; ?></td>
+    		<td><?php echo $form->colaborador->pisFormatado; ?></td>
 		</tr>
 
 		<tr>

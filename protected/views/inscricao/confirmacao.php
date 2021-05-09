@@ -81,7 +81,7 @@
 	<br>
 
 	<div class="action">
-		<?php echo CHtml::submitButton('Inscrever',array('submit'=>array('inscricaoInstitucional/confirmar'))); ?>
+		<?php echo CHtml::submitButton('Inscrever',array('submit'=>array('confirmar'))); ?>
 	</div>
 
 	<?php echo CHtml::endForm(); ?>

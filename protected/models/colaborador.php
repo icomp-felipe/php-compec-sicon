@@ -200,5 +200,15 @@ class colaborador extends CActiveRecord {
 	public function behaviors(){
 		return array('datetimeI18NBehavior'=>array('class'=>'ext.DateTimeI18NBehavior'));
 	}
+
+	// Retorna o PIS com a sua devida máscara (apenas se o PIS tiver exatamente 11 dígitos)
+	public function getPisFormatado() {
+		return (strlen($this->pispasep) == 11) ? vsprintf("%s%s%s.%s%s%s%s%s.%s%s-%s", str_split($this->pispasep)) : $this->pispasep;
+	}
 	
+	// Retorna o CPF com a sua devida máscara (apenas se o CPF tiver exatamente 11 dígitos)
+	public function getCpfFormatado() {
+		return (strlen($this->cpf) == 11) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($this->cpf)) : $this->cpf;
+	}
+
 }

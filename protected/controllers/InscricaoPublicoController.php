@@ -151,7 +151,7 @@ class InscricaoPublicoController extends CController {
 			return;	
 		}
 		
-		$this->setSessionForm($form);		
+		$this->setSessionForm($form);	
 		
 		// exibe a página de confirmação
 		$this->render('confirmacao',array(
