@@ -1,4 +1,4 @@
-<h2>Escolha uma instituição</h2>
+<h2>Escolha uma Instituição</h2>
 
 <h3 class="actionBar">
 	<?php if($form->colaborador->sexo == 'F'): ?>
