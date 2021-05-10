@@ -8,7 +8,7 @@ class InscricaoPublicoController extends CController {
 
 		$session=Yii::app()->getSession();
 
-		$form = new CpfForm();
+		$form = new FormInscricaoPublico();
 
 		$form->cpf = $session["cpf"];
 		$form->colaborador = $session["colaborador"];
@@ -52,12 +52,12 @@ class InscricaoPublicoController extends CController {
 	 */
 	public function actionAutentica()
 	{
-		$form=new CpfForm;
+		$form=new FormInscricaoPublico;
 		$this->setSessionForm($form);
 		// collect user input data
-		if(isset($_POST['CpfForm']))
+		if(isset($_POST['FormInscricaoPublico']))
 		{
-			$form->attributes=$_POST['CpfForm'];
+			$form->attributes=$_POST['FormInscricaoPublico'];
 			// validate 
 			if($form->validate('cpf')){
 
@@ -166,9 +166,9 @@ class InscricaoPublicoController extends CController {
 		//recupera dados da sessão e os dados postados
 		$form = $this->getSessionForm();
 		
-		if (isset($_POST['CpfForm'])) {
+		if (isset($_POST['FormInscricaoPublico'])) {
 
-			$form->attributes = $_POST['CpfForm'];
+			$form->attributes = $_POST['FormInscricaoPublico'];
 
 			if($form->validate('inscricaoPublico')) {
 	
@@ -187,13 +187,13 @@ class InscricaoPublicoController extends CController {
 				if($inscricao->save()) {
 			
 					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
-					$colaborador->banco = $_POST['CpfForm']['banco'];
-					$colaborador->agencia = $_POST['CpfForm']['agencia'];
-					$colaborador->contacorrente = $_POST['CpfForm']['contacorrente'];
-					$colaborador->pispasep = $_POST['CpfForm']['pispasep'];
-					$colaborador->doc_identidade = $_POST['CpfForm']['doc_identidade'];
-					$colaborador->celular = $_POST['CpfForm']['celular'];
-					$colaborador->email = $_POST['CpfForm']['email'];
+					$colaborador->banco = $_POST['FormInscricaoPublico']['banco'];
+					$colaborador->agencia = $_POST['FormInscricaoPublico']['agencia'];
+					$colaborador->contacorrente = $_POST['FormInscricaoPublico']['contacorrente'];
+					$colaborador->pispasep = $_POST['FormInscricaoPublico']['pispasep'];
+					$colaborador->doc_identidade = $_POST['FormInscricaoPublico']['doc_identidade'];
+					$colaborador->celular = $_POST['FormInscricaoPublico']['celular'];
+					$colaborador->email = $_POST['FormInscricaoPublico']['email'];
 					$colaborador->data_atualizacao = date('Y-m-d H:i:s',time());
 					$colaborador->idColaborador_atualizacao = $colaborador->idColaborador;
 

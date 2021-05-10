@@ -1,6 +1,6 @@
 <?php
 
-class CpfForm extends CFormModel {
+class FormInscricaoPublico extends CFormModel {
 
 	public $cpf;
 	public $colaborador=null;
