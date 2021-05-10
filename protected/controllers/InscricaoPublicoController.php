@@ -192,6 +192,8 @@ class InscricaoPublicoController extends CController {
 					$colaborador->contacorrente = $_POST['CpfForm']['contacorrente'];
 					$colaborador->pispasep = $_POST['CpfForm']['pispasep'];
 					$colaborador->doc_identidade = $_POST['CpfForm']['doc_identidade'];
+					$colaborador->celular = $_POST['CpfForm']['celular'];
+					$colaborador->email = $_POST['CpfForm']['email'];
 					$colaborador->data_atualizacao = date('Y-m-d H:i:s',time());
 					$colaborador->idColaborador_atualizacao = $colaborador->idColaborador;
 
@@ -203,6 +205,8 @@ class InscricaoPublicoController extends CController {
 						$form->colaborador->contacorrente = $colaborador->contacorrente;
 						$form->colaborador->pispasep = $colaborador->pispasep;
 						$form->colaborador->doc_identidade = $colaborador->doc_identidade;
+						$form->colaborador->celular = $colaborador->celular;
+						$form->colaborador->email = $colaborador->email;
 					}
 					else {									
 						$inscricao->delete();

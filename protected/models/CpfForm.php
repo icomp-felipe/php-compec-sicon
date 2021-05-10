@@ -55,12 +55,15 @@ class CpfForm extends CFormModel {
 
 			'cpf'            => 'CPF',
 			'celular'        => 'Celular (WhatsApp)',
+			'concurso'       => 'Concurso',
+			'instituicao'    => 'Instituição',
+			'funcao'         => 'Função',
 			'email'          => 'e-mail',
 			'pispasep'       => 'PIS | PASEP | NIS | NIT',
 			'doc_identidade' => 'Nº do RG',
 			'banco'          => 'Nome do Banco',
-			'agencia'        => 'Nº da Agência',
-			'contacorrente'  => 'Nº da Conta'
+			'agencia'        => 'Nº da Agência (s/ dígito)',
+			'contacorrente'  => 'Nº da Conta (com dígito)'
 
 		);
 	}
