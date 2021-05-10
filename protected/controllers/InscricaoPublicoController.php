@@ -20,7 +20,9 @@ class InscricaoPublicoController extends CController {
 		$form->agencia = $form->colaborador->agencia;
 		$form->contacorrente = $form->colaborador->contacorrente;
 		$form->pispasep = $form->colaborador->pispasep;	
-		$form->doc_identidade = $form->colaborador->doc_identidade;	
+		$form->doc_identidade = $form->colaborador->doc_identidade;
+		$form->email = $form->colaborador->email;
+		$form->celular = $form->colaborador->celular;
 				
 		return $form;
 	}

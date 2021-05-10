@@ -33,6 +33,27 @@
 		</tr>
 
 		<tr>
+			<th class="label">Celular (WhatsApp):</th>
+    		<td>
+				<?php $this->widget('CMaskedTextField',array(
+						'model'=>$form,
+						'attribute'=>'celular',
+						'mask'=>'(99) 99999-9999',
+						'placeholder'=>'_',
+						'htmlOptions'=>array(
+							'size'=>15,
+							'maxlength'=>20,
+						)
+					)); ?>
+			</td>
+		</tr>
+
+		<tr>
+			<th class="label">e-mail:</th>
+    		<td><?php echo CHtml::activeTextField($form,'email',array('size'=>44,'maxlength'=>45)); ?></td>
+		</tr>
+
+		<tr>
 			<th class="label">PIS | PASEP | NIS | NIT:</th>
     		<td>
 				<?php $this->widget('CMaskedTextField',array(
@@ -42,7 +63,7 @@
 					'placeholder'=>'_',
 					'htmlOptions'=>array(
 						'size'=>15,
-						'maxlength'=>15,
+						'maxlength'=>20,
 					)
         		)); ?>
 			</td>

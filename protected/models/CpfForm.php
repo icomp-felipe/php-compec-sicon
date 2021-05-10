@@ -13,6 +13,8 @@ class CpfForm extends CFormModel {
 	public $contacorrente=null;
 	public $pispasep=null;
 	public $doc_identidade=null;
+	public $celular=null;
+	public $email=null;
 	
 	public $errorCode = 0;
 
@@ -40,7 +42,7 @@ class CpfForm extends CFormModel {
 			array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarConcurso'),
 
 			// Define campos obrigatórios no cenário 'inscricaoPublico'
-			array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
+			array('celular, email, pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
 
 			// Validação (externa) dos dígitos do PIS, no cenário 'inscricaoPublico'
 			array('pispasep', 'ext.validators.PISValidator','message'=>'O PIS informado é inválido!','on'=>'inscricaoPublico')
@@ -52,6 +54,8 @@ class CpfForm extends CFormModel {
 		return array(
 
 			'cpf'            => 'CPF',
+			'celular'        => 'Celular (WhatsApp)',
+			'email'          => 'e-mail',
 			'pispasep'       => 'PIS | PASEP | NIS | NIT',
 			'doc_identidade' => 'Nº do RG',
 			'banco'          => 'Nome do Banco',
