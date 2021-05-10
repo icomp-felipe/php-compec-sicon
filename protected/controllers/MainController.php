@@ -1,42 +1,86 @@
 <?php
 
+/** Controlador principal do sistema.
+ *  Revisado em: 10/05/2021
+ *  Felipe André - felipeandresouza@hotmail.com */
 class MainController extends CController {
 
-	/**This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users. */
+	/** Faz login no sistema. */
+	public function actionLogin() {
+
+		// Instanciando formulário de login
+		$form = new FormLogin;
+
+		// Executada após submeter o formulário
+		if(isset($_POST['FormLogin'])) {
+
+			// Preparando objeto de validação de dados
+			$form->attributes = $_POST['FormLogin'];
+
+			// Valida o usuário e o redireciona para a página anterior, se válido
+			if($form->validate())
+				$this->redirect(Yii::app()->user->returnUrl);
+
+		}
+
+		// Exibe a tela de login
+		$this->render('login', array('form' => $form));
+	}
+
+	/** Faz logoff e redireciona o usuário para a homepage. */
+	public function actionLogout() {
+
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);
+
+	}
+
+	/** Comportamento da homepage */
 	public function actionIndex() {
 
-		// renders the view file 'protected/views/main/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$session=Yii::app()->getSession();
+		// Recuperando sessão
+		$session = Yii::app()->getSession();
 
-		$instituicoesDirigidas = null;
-		$colaborador = null;
+		// Recuperando usuário logado
 		$usuario = $session["usuario"];
 
+		// Definindo colaborador logado e instituições que ele tem acesso
+		$colaborador           = null;
+		$instituicoesDirigidas = null;	
+
+		// Recuperando colaborador e lista de instituições
 		if (isset($usuario, $usuario->colaborador)) {
-			$instituicoesDirigidas = $usuario->colaborador->instituicoesDirigidas;
 			$colaborador = $usuario->colaborador;
+			$instituicoesDirigidas = $usuario->colaborador->instituicoesDirigidas;
 		}
 		
-		$this->render('index',array('instituicoesDirigidas'=>$instituicoesDirigidas, 'colaborador' => $colaborador));
+		// Renderizando o index
+		$this->render('index', array('instituicoesDirigidas' => $instituicoesDirigidas, 'colaborador' => $colaborador));
 	}
 	
-	public function actionEtapas() {
+	/** Comportamento do menu de entrga de manual. */
+	public function actionConcursosManual() {
 
-		$session=Yii::app()->getSession();	
-		$etapas  = null;
+		// Recuperando sessão
+		$session=Yii::app()->getSession();
+
+		// Recuperando usuário logado
 		$usuario = $session["usuario"];
+
+		// Definindo as variáveis da instituição e concursos
+		$concursos   = null;
 		$instituicao = new instituicao();
 		
-		if (isset($usuario,$usuario->colaborador) and isset($_GET['id'])) {
+		// Recuperando os concursos que a instituição participa ou já participou
+		if (isset($usuario, $usuario->colaborador) and isset($_GET['id'])) {
 
 			$instituicao = $instituicao->getInstituicao($_GET['id']);
-			$etapas      = $instituicao->getEtapasEmQueParticipou($_GET['id']);
+			$concursos   = $instituicao->getEtapasEmQueParticipou($_GET['id']);
 			
 		}
 		
-		$this->render('etapas',array('models'=>$etapas,'instituicao'=>$instituicao));
+		// Renderizando a página
+		$this->render('concursos_manual', array('models' => $concursos, 'instituicao' => $instituicao));
 	}	
 	
 	public function actionEntregaManual() {		
@@ -62,34 +106,6 @@ class MainController extends CController {
 		$this->renderPartial('entrega_manual',array('model'=>$instituicao, 
 												'inscricoes' => $inscricoes, 
 												'descricaoConcursoSelecionado' => $etapa->concurso->descricao));
-	}	
-
-	/** Displays the login page	 */
-	public function actionLogin() {
-
-		$form=new LoginForm;
-
-		// collect user input data
-		if(isset($_POST['LoginForm'])) {
-
-			$form->attributes=$_POST['LoginForm'];
-
-			// validate user input and redirect to previous page if valid
-			if($form->validate())
-				$this->redirect(Yii::app()->user->returnUrl);
-
-		}
-
-		// display the login form
-		$this->render('login',array('form'=>$form));
-	}
-
-	/** Logout the current user and redirect to homepage. */
-	public function actionLogout() {
-
-		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
-
 	}
 
 }

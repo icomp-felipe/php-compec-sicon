@@ -29,7 +29,7 @@
 		<ul>
 			<?php foreach($instituicoesDirigidas as $n=>$model): ?>
 				<li><?php echo CHtml::encode($model->nome); ?>
-				&nbsp;[<?php echo CHtml::link('Entrega de Manual',array('etapas','id'=>$model->idinstituicao)); ?>]</li>			
+				&nbsp;[<?php echo CHtml::link('Entrega de Manual',array('concursosManual','id'=>$model->idinstituicao)); ?>]</li>			
 			<?php endforeach; ?>
 		</ul>
 
