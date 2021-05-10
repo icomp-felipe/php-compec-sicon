@@ -213,4 +213,21 @@ class colaborador extends CActiveRecord {
 		return (strlen($this->cpf) == 11) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($this->cpf)) : $this->cpf;
 	}
 
+	public function getNomeNormalizado() {
+
+		if ($this->nome == null)
+			return null;
+		
+		$array = explode(" ", strtolower($this->nome));
+		$nova  = "";
+
+		foreach ($array as $parte) {
+
+			$nova . strtoupper($parte[0]) . substr($parte, 1) . " ";
+
+		}
+
+		return $nova;
+	}
+
 }

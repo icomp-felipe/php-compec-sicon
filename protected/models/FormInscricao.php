@@ -1,6 +1,6 @@
 <?php
 
-class CpfForm extends CFormModel {
+class FormInscricao extends CFormModel {
 
 	public $cpf;
 	public $colaborador=null;
@@ -20,30 +20,30 @@ class CpfForm extends CFormModel {
 	const ERRO_COLAB_SEM_CADASTRO = 1;
 	const ERRO_COLAB_BLOQUEADO    = 2;
 
-	public function rules() {
+	public function rules()	{
 
 		return array(
 
-			// CPF é um campo obrigatório no cenário 'cpf'
-			array('cpf', 'required','on'=>'cpf'),
+			// CPF é um campo obrigatório no cenário 'selecionarColaborador'
+			array('cpf', 'required', 'on' => 'selecionarColaborador'),
 
-			// Validação (externa) dos dígitos do CPF, no cenário 'cpf'
-			array('cpf', 'ext.validators.CPFValidator','message'=>'O CPF informado é inválido!','on'=>'cpf'),
+			// Validação (externa) dos dígitos do CPF no cenário 'selecionarColaborador'
+			array('cpf', 'ext.validators.CPFValidator','message'=>'O CPF informado est&aacute; incorreto!','on' => 'selecionarColaborador'),
 
-			// Validação (interna) do colaborador, no cenário 'cpf':
+			// Validação (interna) do colaborador, no cenário 'selecionarColaborador':
 			// 1. verifica se o mesmo possui cadastro;
 			// 2. verifica se ele está apto a se inscrever (possui status_cadastro = 1)
-			array('cpf', 'validarColaborador','on'=>'cpf'),
+			array('cpf', 'validarColaborador', 'on' => 'selecionarColaborador'),
 
-			// Validação (interna) do colaborador, no cenário 'selecionarConcurso':
+			// Validação (interna) do colaborador, no cenário 'selecionarColaborador':
 			// Colaborador já foi inscrito no concurso selecionado?
-			array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarConcurso'),
+			array('cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarColaborador'),
 
-			// Define campos obrigatórios no cenário 'inscricaoPublico'
-			array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
+			// Define campos obrigatórios no cenário 'inscricao'
+			array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on' => 'inscricao'),
 
-			// Validação (externa) dos dígitos do PIS, no cenário 'inscricaoPublico'
-			array('pispasep', 'ext.validators.PISValidator','message'=>'O PIS informado é inválido!','on'=>'inscricaoPublico')
+			// Validação (externa) dos dígitos do PIS, no cenário 'inscricao'
+			array('pispasep', 'ext.validators.PISValidator', 'message' => 'O PIS informado é inválido!','on' => 'inscricao')
 
 		);
 	}
@@ -64,7 +64,7 @@ class CpfForm extends CFormModel {
 	/** Verifica se o colaborador, identificado por seu CPF:
 	 *  1. possui cadastro na base de dados;
 	 *  2. está apto a se inscrever (possui status_cadastro = 1) */
-	public function validarColaborador($attribute, $params) {
+	public function validarColaborador($attribute, $params)	{
 
 		if(!$this->hasErrors()) {
 
@@ -86,9 +86,9 @@ class CpfForm extends CFormModel {
 
 		}
 	}
-
+	
 	/** Busca o cadastro do colaborador identificado por 'cpf' e verifica se este existe e está ativo. */
-	public function validarCadastro($cpf) {
+	private function validarCadastro($cpf) {
 
 		// Extrai apenas os dígitos do CPF
 	    $cpf = preg_replace( '/[^0-9]/is', '', $cpf);
@@ -110,7 +110,7 @@ class CpfForm extends CFormModel {
 	/** Verifica se o colaborador possui inscrição no concurso selecionado. */
 	public function verificarDuplicidadeInscricao($attribute, $params) {
 	
-		if(!$this->hasErrors()) {
+		if (!$this->hasErrors() && $this->colaborador != null)  {
 			
 			// Recupera a inscrição do colaborador no concurso selecionado
 			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->idColaborador, $this->etapa->idetapa);
@@ -122,5 +122,5 @@ class CpfForm extends CFormModel {
 		}
 
 	}
-
+	
 }

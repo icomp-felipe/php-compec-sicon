@@ -29,25 +29,24 @@
 
     <tr>
 	    <th class="label"><?php echo CHtml::encode($model->getAttributeLabel('nome')); ?></th>
-        <td><?php echo CHtml::encode($model->nome); ?>
-    </td>
-
+        <td><?php echo CHtml::encode($model->nome); ?></td>
     </tr>
-        <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('cpf')); ?></th>
-        <td><?php echo CHtml::encode($model->cpfFormatado); ?>
-    </td>
 
+    <tr>
+        <th class="label"><?php echo CHtml::encode($model->getAttributeLabel('cpf')); ?></th>
+        <td><?php echo CHtml::encode($model->cpfFormatado); ?></td>
     </tr>
-        <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('doc_identidade')); ?></th>
-        <td><?php echo CHtml::encode($model->doc_identidade); ?>
-    </td>
 
+    <tr>
+        <th class="label"><?php echo CHtml::encode($model->getAttributeLabel('doc_identidade')); ?></th>
+        <td><?php echo CHtml::encode($model->doc_identidade); ?></td>
     </tr>
-        <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('pispasep')); ?></th>
-        <td><?php echo CHtml::encode($model->pisFormatado); ?>
-    </td>
 
+    <tr>
+        <th class="label"><?php echo CHtml::encode($model->getAttributeLabel('pispasep')); ?></th>
+        <td><?php echo CHtml::encode($model->pisFormatado); ?></td>
     </tr>
+    
         <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('banco')); ?></th>
         <td><?php echo CHtml::encode($model->banco); ?>
     </td>

@@ -206,7 +206,6 @@ class InscricaoPublicoController extends CController {
 						return;	
 					}
 
-
 					$this->redirect(array('confirmado'));
 
 				}
