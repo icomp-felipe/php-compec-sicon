@@ -1,12 +1,7 @@
 <?php
 
-/**
- * CpfForm class.
- * LoginForm is the data structure for keeping
- * user login form data. It is used by the 'login' action of 'SiteController'.
- */
-class CpfForm extends CFormModel
-{
+class CpfForm extends CFormModel {
+
 	public $cpf;
 	public $colaborador=null;
 	public $concurso=null;
@@ -19,107 +14,112 @@ class CpfForm extends CFormModel
 	public $pispasep=null;
 	public $doc_identidade=null;
 	
-	public $errorCode=0;
-	const ERROR_CADASTRO_NAO_ENCONTRADO=1;
-	const ERROR_CADASTRO_COM_PENDENCIAS=2;	
+	public $errorCode = 0;
 
-	/**
-	 * Declares the validation rules.
-	 * The rules state that cpf is required,
-	 * and need to be :
-	 * 1. cadastrado
-	 * 2. não possuir restrições de concursos anteriores
-	 */
-	public function rules()
-	{
+	// Constantes de validação de colaborador
+	const ERRO_COLAB_SEM_CADASTRO = 1;
+	const ERRO_COLAB_BLOQUEADO    = 2;
+
+	public function rules() {
+
 			return array(
-			// cpf is required
-			array('cpf', 'required','on'=>'cpf'),
-			// cpf é válido
-			array('cpf', 'ext.validators.CCpfValidator','message'=>'O CPF informado est&aacute; incorreto!','on'=>'cpf'),
-			// cpf está cadastrado e não possui restrição em concursos anteriores
-			array('cpf', 'validarColaborador','on'=>'cpf'),		
-			array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarConcurso'),
-			array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on'=>'inscricaoPublico')
+
+				// CPF é um campo obrigatório no cenário 'cpf'
+				array('cpf', 'required','on'=>'cpf'),
+
+				// Validação (externa) dos dígitos do CPF no cenário 'cpf'
+				array('cpf', 'ext.validators.CCpfValidator','message'=>'O CPF informado é inválido!','on'=>'cpf'),
+
+				// Validação (interna) do colaborador, no cenário 'cpf':
+				// 1. verifica se o mesmo possui cadastro;
+				// 2. verifica se ele está apto a se inscrever (possui status_cadastro <= 1)
+				array('cpf', 'validarColaborador','on'=>'cpf'),
+
+				// Validação (interna) do colaborador, no cenário 'selecionarConcurso':
+				// Colaborador já foi inscrito no concurso selecionado?
+				array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarConcurso'),
+
+				// Define campos obrigatórios no cenário 'inscricaoPublico'
+				array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
+
+				array('pispasep', 'ext.validators.PISValidator','message'=>'O PIS informado é inválido!','on'=>'inscricaoPublico')
+
 		);
 	}
 
-	/**
-	 * Declares attribute labels.
-	 */
-	public function attributeLabels()
-	{
+	public function attributeLabels() {
 		return array(
-			'cpf'=>'CPF',
-			'pispasep' => 'PIS | PASEP | NIS | NIT',
+
+			'cpf'            => 'CPF',
+			'pispasep'       => 'PIS | PASEP | NIS | NIT',
 			'doc_identidade' => 'Nº do RG',
-			'banco' => 'Nome do Banco',
-			'agencia' => 'Nº da Agência',
-			'contacorrente' => 'Nº da Conta'
+			'banco'          => 'Nome do Banco',
+			'agencia'        => 'Nº da Agência',
+			'contacorrente'  => 'Nº da Conta'
 
 		);
 	}
 
-	/**
-	 * Verifica se:
-	 *    1. se o cpf está cadastrado
-	 *    2. se o cpf não possui restrições em concursos anteriores
-	 * This is the 'cadastrado' validator as declared in rules().
-	 */
-	public function validarColaborador($attribute,$params)
-	{
-		if(!$this->hasErrors())  // we only want to authenticate when no input errors
-		{
-			$this->colaborador = new colaborador();
-		
+	/** Verifica se o colaborador, identificado por seu CPF:
+	 *  1. possui cadastro na base de dados;
+	 *  2. está apto a se inscrever (possui status_cadastro <= 1) */
+	public function validarColaborador($attribute,$params) {
+
+		if(!$this->hasErrors()) {
+
+			// Recupera o cadastro do colaborador
 			$this->colaborador = $this->validarCadastro($this->cpf);
 
-			switch($this->errorCode)
-			{
-				case self::ERROR_CADASTRO_NAO_ENCONTRADO:
-					$this->addError('cpf','Infelizmente seu CPF não está cadastrado em nosso Banco de Dados.');
+			// Se o colaborador não possui cadastro, ou não está ativo, o switch é ativado
+			switch($this->errorCode) {
+
+				case self::ERRO_COLAB_SEM_CADASTRO:
+					$this->addError('cpf','Colaborador sem cadastrado na Base de Dados da COMPEC.');
 					break;
-				case self::ERROR_CADASTRO_COM_PENDENCIAS:
-					$this->addError('cpf','Identificamos pendência(s) em seu cadastro. Por favor dirija-se à sede da COMPEC para maiores esclarecimentos. ');
+
+				case self::ERRO_COLAB_BLOQUEADO:
+					$this->addError('cpf','Colaborador com cadastro bloqueado!<br>Entre em contato com a COMPEC para mais informações.');
 					break;
-			}			
+				
+			}
+
 		}
 	}
 
-	public function validarCadastro($cpf)
-	{		
-//		$cpf = str_pad(ereg_replace('[^0-9]', '', $cpf), 11, '0', STR_PAD_LEFT);
-	    $cpf = str_replace('.','',$cpf);
-	    $cpf = str_replace('-','',$cpf);		
-	    $cpf = str_pad($cpf, STR_PAD_LEFT);		
+	/** Busca o cadastro do colaborador identificado por 'cpf' e verifica se este existe e está ativo. */
+	public function validarCadastro($cpf) {
+
+		// Extrai apenas os dígitos do CPF
+	    $cpf = preg_replace( '/[^0-9]/is', '', $cpf);
 		
+		// Recuperando o colaborador da base de dados
 		$colaborador = colaborador::model()->findByAttributes(array('cpf' => $cpf));
 		
+		// Verifica se o colaborador possui cadastro
 		if ($colaborador == null)
-			$this->errorCode=self::ERROR_CADASTRO_NAO_ENCONTRADO;
+			$this->errorCode=self::ERRO_COLAB_SEM_CADASTRO;
+		
+		// Verifica se o colaborador está ativo
 		elseif ($colaborador->status_cadastro > 1)
-			$this->errorCode=self::ERROR_CADASTRO_COM_PENDENCIAS;		
+			$this->errorCode=self::ERRO_COLAB_BLOQUEADO;
 		
 		return $colaborador;
 	}
 
-	/**
-	 * Verifica se o cpf já está inscrito no concurso
-	 */
-	public function verificarDuplicidadeInscricao($attribute,$params)
-	{
+	/** Verifica se o colaborador possui inscrição no concurso selecionado. */
+	public function verificarDuplicidadeInscricao($attribute, $params) {
 	
-		if(!$this->hasErrors())  // we only want to authenticate when no input errors
-		{
+		if(!$this->hasErrors()) {
 			
+			// Recupera a inscrição do colaborador no concurso selecionado
 			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->idColaborador, $this->etapa->idetapa);
 			
+			// Se existe inscrição, um erro é gerado
 			if ($inscricao != null)
-			{
-				$this->addError('cpf','Verificamos que sua inscrição neste concurso já foi realizada!');
-//				$this->addError('cpf','Verificamos que sua inscrição neste concurso já foi realizada! Procure a COMPEC (3305-4199 / 4213) para realizar alterações.');
-				
-			}
+				$this->addError('cpf','Colaborador já possui inscrição no concurso selecionado!');
+
 		}
+
 	}
+
 }
