@@ -78,15 +78,25 @@ class InscricaoController extends CController
 		{
 			$form->etapa = $this->loadEtapa($_GET['idetapa']);
 			$form->concurso = $form->etapa->concurso;	
-			$this->setSessionForm($form);			
+			$this->setSessionForm($form);
 			$this->actionSelecionarInstituicao();						
 		}
 		else
 		{
 			$models = $this->getConcursosEmAndamento();
-			if(count($models))
-			{
-				$this->render('concurso_etapa',array('models'=>$models));
+			if(count($models)) {
+
+				if (count($models) == 1) {
+
+					$form->etapa    = $models[0]->etapas[0];
+					$form->concurso = $models[0];
+
+					$this->setSessionForm($form);
+					$this->actionSelecionarInstituicao();
+
+				}
+				else
+					$this->render('concurso_etapa',array('models'=>$models));
 			}
 			else
 			{
@@ -120,7 +130,17 @@ class InscricaoController extends CController
 			$models = $this->getInstituicoesDisponiveis($form);
 
 			if (count($models) > 0) // há vagas
-				// exibe a página de seleção de instituições
+			
+				if (count($models) == 1) {
+
+					$form->instituicao = $models[0];
+
+					$this->setSessionForm($form);
+					$this->actionSelecionarFuncao();
+
+				}
+				else
+
 				$this->render('instituicao',array(
 					'models'=>$models,
 					'form'=>$form,
