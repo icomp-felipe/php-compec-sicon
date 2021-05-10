@@ -1,13 +1,20 @@
 <h2>Escolha uma Instituição</h2>
 
 <h3 class="actionBar">
-	<?php if($form->colaborador->sexo == 'F'): ?>
-        Colaboradora:
-    <?php else: ?>
-        Colaborador:
-    <?php endif; ?>
-    <?php echo $form->colaborador->nome .' ['. CHtml::link('Trocar',array('inscricaoPublico/autentica')).']'; ?><br>
-	<?php echo $form->concurso->descricao .' - Realização: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).' ['.CHtml::link('Trocar]',array('selecionarConcurso')); ?>
+	<ul>
+
+		<li>
+			<?php if($form->colaborador->sexo == 'F'): ?>
+				Colaboradora:
+			<?php else: ?>
+				Colaborador:
+			<?php endif; ?>
+			<?php echo $form->colaborador->nome .' ['. CHtml::link('Trocar',array('inscricaoPublico/autentica')).']'; ?>
+		</li>
+
+		<li><?php echo $form->concurso->descricao .' - Realização: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).' ['.CHtml::link('Trocar]',array('selecionarConcurso')); ?></li>
+
+	</ul>
 </h3>
 
 <table class="dataGrid">

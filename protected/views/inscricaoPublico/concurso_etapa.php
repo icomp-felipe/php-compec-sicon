@@ -1,12 +1,16 @@
 <h2>Escolha um Concurso</h2>
 
 <h3 class="actionBar">
-    <?php if($form->colaborador->sexo == 'F'): ?>
-        Colaboradora:
-    <?php else: ?>
-        Colaborador:
-    <?php endif; ?>
-    <?php echo $form->colaborador->nome .' ['. CHtml::link('Trocar',array('/inscricaoPublico')).']'; ?>
+    <ul>
+        <li>
+            <?php if($form->colaborador->sexo == 'F'): ?>
+                Colaboradora:
+            <?php else: ?>
+                Colaborador:
+            <?php endif; ?>
+            <?php echo $form->colaborador->nome .' ['. CHtml::link('Trocar',array('/inscricaoPublico')).']'; ?>
+        </li>
+    </ul>
 </h3>
 
 <?php echo CHtml::errorSummary($form,'Atenção!'); ?>
