@@ -28,7 +28,7 @@ class CpfForm extends CFormModel {
 				array('cpf', 'required','on'=>'cpf'),
 
 				// Validação (externa) dos dígitos do CPF no cenário 'cpf'
-				array('cpf', 'ext.validators.CCpfValidator','message'=>'O CPF informado é inválido!','on'=>'cpf'),
+				array('cpf', 'ext.validators.CPFValidator','message'=>'O CPF informado é inválido!','on'=>'cpf'),
 
 				// Validação (interna) do colaborador, no cenário 'cpf':
 				// 1. verifica se o mesmo possui cadastro;

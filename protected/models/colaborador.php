@@ -39,7 +39,7 @@ class colaborador extends CActiveRecord {
 
 			// Identificação
 			array('nome','length','max'=>60),
-			array('cpf', 'ext.validators.CCpfValidator','message'=>'O número de CPF informado é inválido!'),		
+			array('cpf', 'ext.validators.CPFValidator','message'=>'O número de CPF informado é inválido!'),		
 			array('cpf', 'unique',"allowEmpty"=>false, 'attributeName'=>'cpf','className'=>'colaborador', 'message'=>'O {attribute} "{value}" já foi cadastrado.','on'=>'create'),
 			array('data_nascimento', 'type', 'type'=>'date',
                 'dateFormat'=>Yii::app()->locale->dateFormat,
