@@ -134,9 +134,7 @@ class colaborador extends CActiveRecord {
 		$session=Yii::app()->getSession();	
 		$usuario = $session["usuario"];
 		
-		// Ajustando campos
-		$this->data_cadastro = date('Y-m-d H:i:s',time());
-
+		// Preparando algumas strings
 		$this->cep      = preg_replace( '/[^0-9]/is', '', $this->cep);
 		$this->cpf      = preg_replace( '/[^0-9]/is', '', $this->cpf);
 		$this->pispasep = preg_replace( '/[^0-9]/is', '', $this->pispasep);
@@ -144,9 +142,11 @@ class colaborador extends CActiveRecord {
 		// Cadastro externo
 		$this->tipo_cadastro = 1;
 
-		// Vincula no objeto 'colaborador' qual usuário o criou
-		if (isset($usuario))
+		// Vincula no objeto 'colaborador' qual usuário o criou/atualizou
+		if (isset($usuario)) {
 			$this->idusuario = $usuario->idUsuario;
+			$this->idColaborador_atualizacao = $usuario->idColaborador;
+		}
 
 		return true;
 	}

@@ -199,7 +199,7 @@
         <?php echo CHtml::activeLabelEx($model,'status_cadastro'); ?>
         <?php echo CHtml::activeDropDownList($model,'status_cadastro',
 												            colaborador::model()->statusOptions,
-												            array('empty' => 'Selecione', 'disabled' => 'disabled')); ?>
+												            array('empty' => 'Ativado', 'disabled' => 'disabled')); ?>
     </div>
 
     <!-- Observações -->

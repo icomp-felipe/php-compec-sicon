@@ -32,7 +32,7 @@
 
 		<tr>
 			<th class="label">PIS | PASEP | NIS | NIT:</th>
-    		<td><?php echo $form->colaborador->pispasep; ?></td>
+    		<td><?php echo $form->colaborador->pisFormatado; ?></td>
 		</tr>
 
 		<tr>
@@ -41,7 +41,7 @@
 		</tr>
 
 		<tr>
-			<th class="label">Nome do Banco</th>
+			<th class="label">Nome do Banco:</th>
 			<td><?php echo $form->colaborador->banco; ?></td>
 		</tr>
 

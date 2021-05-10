@@ -65,6 +65,9 @@ class ColaboradorController extends CController
 		
 		if(isset($_POST['colaborador']))
 		{
+			$model->status_cadastro = 1;
+			$model->data_cadastro   = date('Y-m-d H:i:s',time());
+
 			$model->attributes=$_POST['colaborador'];
 			$model->setScenario('create');
 			if($model->save())
@@ -82,6 +85,9 @@ class ColaboradorController extends CController
 		$model=$this->loadcolaborador();
 		if(isset($_POST['colaborador']))
 		{
+
+			$model->data_atualizacao = date('Y-m-d H:i:s',time());
+
 			$model->attributes=$_POST['colaborador'];
 			if($model->save())
 				$this->redirect(array('show','id'=>$model->idColaborador,'update'=>true));

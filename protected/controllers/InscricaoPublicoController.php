@@ -190,6 +190,8 @@ class InscricaoPublicoController extends CController {
 					$colaborador->contacorrente = $_POST['CpfForm']['contacorrente'];
 					$colaborador->pispasep = $_POST['CpfForm']['pispasep'];
 					$colaborador->doc_identidade = $_POST['CpfForm']['doc_identidade'];
+					$colaborador->data_atualizacao = date('Y-m-d H:i:s',time());
+					$colaborador->idColaborador_atualizacao = $colaborador->idColaborador;
 
 					$colaborador->setScenario('inscricaoPublico');
 		
