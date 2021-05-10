@@ -171,16 +171,16 @@ class InscricaoPublicoController extends CController {
 			if($form->validate('inscricaoPublico')) {
 	
 				$inscricao = new inscricao();
+
 				$inscricao->idinstituicaoopcao1 = $form->instituicao->idinstituicao;
 				$inscricao->idconcurso 			= $form->etapa->idconcurso;
-				$inscricao->idetapa 			= $form->etapa->idetapa;
 				$inscricao->idColaborador		= $form->colaborador->idColaborador;
-				$inscricao->selecionado			= 'N';
-				//$inscricao->codinscricao		= 'N';
+				$inscricao->selecionado			= 'W';
 				$inscricao->tipoinscricao		= 1;
-				$inscricao->candidatociente		= 'N';		
+				$inscricao->candidatociente		= 'W';
 				$inscricao->idFuncao			= 1;
 				$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
+				$inscricao->idetapa 			= $form->etapa->idetapa;			
 		
 				if($inscricao->save()) {
 			
