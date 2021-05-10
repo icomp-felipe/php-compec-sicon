@@ -19,34 +19,27 @@
 
 <table class="dataGrid">
 
-	<?php $grupo = null; ?>
-	<?php $linha = 0; ?>
-
-	<?php foreach($models as $n=>$model): ?>
-
-		<?php $mudougrupo = false;?>
-
-		<?php if ($grupo != $model->idgrupoinstituicao): ?>
-
-			<thead>
-				<tr>
-					<th colspan="2"><?php echo CHtml::encode($model->grupoinstituicao->nome); ?></th>
-				</tr>
-			</thead>
-
-			<?php $grupo = $model->idgrupoinstituicao;?>
-			<?php $linha = 0;?>
-
-		<?php endif; ?>
-
-		<?php $linha = $linha + 1;?>
-
-		<tr class="<?php echo $linha % 2 ? 'even' : 'odd';?>">
-			<td><?php echo CHtml::link($model->nome,array('confirmacao','id'=>$model->idinstituicao)); ?></td>
-			<td><?php echo $model->getEndereco(); ?>
+	<thead>
+		<tr>
+			<th>Nome da Instituição</th>
+			<th>Endereço Completo</th>
+			<th>Localização (Google)</th>
 		</tr>
+	</thead>
 
-	<?php endforeach; ?>
+	<tbody>
+
+		<?php foreach($models as $n=>$model): ?>
+
+			<tr class="<?php echo $n % 2 ? 'even' : 'odd';?>">
+
+				<td><?php echo CHtml::link($model->nomeSemId,array('confirmacao','id'=>$model->idinstituicao)); ?></td>
+				<td><?php echo $model->getEndereco(); ?></td>
+				<td><a href="<?php echo $model->localizacao; ?>" target="_blank" rel="noopener noreferrer"><?php echo $model->localizacao; ?></a></td>
+
+			</tr>
+
+		<?php endforeach; ?>
 
   	</tbody>
 

@@ -8,18 +8,28 @@
 	<table class="dataGrid">
 
 		<tr>
-			<th class="label">CPF + Nome:</th>
-    		<td><?php echo $form->cpf; ?> - <?php echo $form->colaborador->nome; ?></td>
+			<th class="label">Nome:</th>
+    		<td><?php echo $form->colaborador->nome; ?></td>
+		</tr>
+
+		<tr>
+			<th class="label">CPF:</th>
+    		<td><?php echo $form->cpf; ?></td>
 		</tr>
 
 		<tr>
 			<th class="label">Concurso:</th>
-    		<td><?php echo $form->concurso->descricao .'. <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)); ?></td>
+    		<td><?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)); ?></td>
 		</tr>
 
 		<tr>
 			<th class="label">Instituição:</th>
-    		<td><?php echo $form->instituicao->nome; ?></td>
+    		<td><?php echo $form->instituicao->nomeSemId; ?></td>
+		</tr>
+
+		<tr>
+			<th class="label">Função:</th>
+    		<td>Aplicador (Sala ou Volante)</td>
 		</tr>
 
 		<tr>

@@ -277,7 +277,7 @@ class InscricaoPublicoController extends CController {
 	public function getInstituicoesDisponiveis($idetapa)
 	{
 		$data = array(
-					'order'=>'grupoinstituicao.nome, cod_interno desc',
+					'order'=>'substr(instituicao.nome,5)',
 					'condition'=>' idinstituicao in 
 										(select idinstituicao from config_concurso cc1
 												where idetapa  = :idetapa 

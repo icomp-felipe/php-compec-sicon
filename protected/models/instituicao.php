@@ -134,6 +134,8 @@ class instituicao extends CActiveRecord
 		return $this->model()->findbyPk($id);
 	}	
 	
-	
+	public function getNomeSemId() {
+		return substr($this->nome,4);
+	}
 	
 }
