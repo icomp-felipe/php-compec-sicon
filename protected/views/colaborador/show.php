@@ -20,10 +20,6 @@
 
 </h2>
 
-<div class="actionBar">
-    [<?php echo CHtml::link('Editar',array('update','id'=>$model->idColaborador)); ?>]
-</div>
-
 <table class="dataGrid">
 
     <tr>
@@ -39,6 +35,16 @@
     </tr>
         <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('cpf')); ?></th>
         <td><?php echo CHtml::encode($model->cpfFormatado); ?>
+    </td>
+
+    </tr>
+        <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('doc_identidade')); ?></th>
+        <td><?php echo CHtml::encode($model->doc_identidade); ?>
+    </td>
+
+    </tr>
+        <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('pispasep')); ?></th>
+        <td><?php echo CHtml::encode($model->pisFormatado); ?>
     </td>
 
     </tr>
@@ -60,4 +66,11 @@
 
 <br>
 
-<center>Se houver necessidade de alterar os dados do colaborador, clique no menu "Colaboradores" e no link "atualizar" localizado à esquerda de cada colaborador cadastrado por sua escola.</center>
+<div class="actionBar">
+
+    <ul>
+        <li>Se ainda desejar alterar dados, clique aqui → [<?php echo CHtml::link('Editar',array('update','id'=>$model->idColaborador)); ?>]</li>
+        <li>Para cadastrar um novo colaborador, clique aqui → [<?php echo CHtml::link('Novo',array('create')); ?>]</li>
+    </ul>
+    
+</div>
