@@ -26,7 +26,7 @@
 		}
 		-->
 	</style>
-	<title><?php echo $this->pageTitle; ?></title>
+	<title>Sicon v.2.0 - UFAM</title>
 </head>
 
 <body>

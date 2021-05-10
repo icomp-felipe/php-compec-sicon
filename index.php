@@ -1,8 +1,10 @@
-<!-- Linker do framework Yii com a aplicação.
-     Revisado em: 09/05/2021
-     Felipe André - felipeandresouza@hotmail.com
--->
+<!-- Sicon v.2.0 build 20210510, por Felipe André -->
+
 <?php
+
+/** Linker do framework Yii com a aplicação.
+ *  Revisado em: 09/05/2021
+ *  Felipe André - felipeandresouza@hotmail.com */
 
 // change the following paths if necessary
 $yii    = dirname(__FILE__).'/../yii/framework/yii.php' ;

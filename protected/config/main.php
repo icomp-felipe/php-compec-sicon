@@ -9,7 +9,7 @@ return array(
 
 	'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 
-	'name'              => 'Inscrição de Aplicadores',
+	'name'              => 'Inscrição de Colaboradores',
 	'defaultController' => 'main',
 	
 	'charset' => 'utf-8',
