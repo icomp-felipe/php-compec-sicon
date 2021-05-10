@@ -68,7 +68,7 @@ class ColaboradorController extends CController
 			$model->attributes=$_POST['colaborador'];
 			$model->setScenario('create');
 			if($model->save())
-				$this->redirect(array('show','id'=>$model->idColaborador));
+				$this->redirect(array('show','id'=>$model->idColaborador,'update'=>false));
 		}
 		$this->render('create',array('model'=>$model));
 	}
