@@ -266,17 +266,17 @@ class InscricaoController extends CController
 			if($form->validate('inscricao')) {
 
 				$inscricao = new inscricao();
+
 				$inscricao->idinstituicaoopcao1 = $form->instituicao->idinstituicao;
 				$inscricao->idconcurso 			= $form->etapa->idconcurso;
-				$inscricao->idetapa 			= $form->etapa->idetapa;
 				$inscricao->idColaborador		= $form->colaborador->idColaborador;
-				$inscricao->selecionado			= 'N';
-				//$inscricao->codinscricao		= 'N';
+				$inscricao->selecionado			= 'W';
 				$inscricao->tipoinscricao		= 2;
-				$inscricao->candidatociente		= 'N';		
+				$inscricao->candidatociente		= 'W';
 				$inscricao->idFuncao			= $form->funcao->idFuncao;
 				$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
-			
+				$inscricao->idetapa 			= $form->etapa->idetapa;
+		
 				if($inscricao->save()) {
 				
 					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
@@ -412,7 +412,7 @@ class InscricaoController extends CController
 	{
 		$data = array(
 					'order'=>'nome',					
-					'condition'=>' idfuncao in (select idfuncao 
+					'condition'=>' idfuncao in (1,2,3,5) and idfuncao in (select idfuncao 
 													from config_concurso cc1 
 													where idetapa = :idetapa
 													  and idinstituicao = :idinstituicao
