@@ -2,20 +2,6 @@
 
 class MainController extends CController {
 
-	/** Declares class-based actions. */
-	public function actions() {
-		return array(
-
-			// captcha action renders the CAPTCHA image
-			// this is used by the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xEBF4FB,
-			),
-
-		);
-	}
-
 	/**This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users. */
 	public function actionIndex() {
@@ -25,12 +11,15 @@ class MainController extends CController {
 		$session=Yii::app()->getSession();
 
 		$instituicoesDirigidas = null;
+		$colaborador = null;
 		$usuario = $session["usuario"];
 
-		if (isset($usuario, $usuario->colaborador))
+		if (isset($usuario, $usuario->colaborador)) {
 			$instituicoesDirigidas = $usuario->colaborador->instituicoesDirigidas;
+			$colaborador = $usuario->colaborador;
+		}
 		
-		$this->render('index',array('instituicoesDirigidas'=>$instituicoesDirigidas));
+		$this->render('index',array('instituicoesDirigidas'=>$instituicoesDirigidas, 'colaborador' => $colaborador));
 	}
 	
 	public function actionEtapas() {
