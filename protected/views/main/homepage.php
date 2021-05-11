@@ -10,10 +10,14 @@
 <?php else: ?>
 
 	<?php if ($colaborador->sexo == 'F'): ?>
-		<h1>Bem vinda, gestora!</h1>
+		<center><h1>Seja bem vinda ao site de Inscrição de Colaboradores!</h1></center>
+		<h2>Gestora: <?php echo CHtml::encode($colaborador->nome); ?></h2>
 	<?php else: ?>
-		<h1>Bem vindo, gestor!</h1>
+		<center><h1>Seja bem vindo ao site de Inscrição de Colaboradores!</h1></center>
+		<h2>Gestor: <?php echo CHtml::encode($colaborador->nome); ?></h2>
 	<?php endif;?>
+
+	<p></p>
 
 	<h3>Neste site você pode identificar os concursos abertos e inscrever colaboradores nas funções disponibilizadas.
 	    Basta usar os links na barra do menu superior.<br><br>
@@ -26,10 +30,9 @@
 			Você pode gerenciar informações das seguintes instituições:
 		<?php endif;?>
 
-		<ul>
+		<ul style="color: green;">
 			<?php foreach($instituicoesDirigidas as $n=>$model): ?>
-				<li><?php echo CHtml::encode($model->nome); ?>
-				&nbsp;[<?php echo CHtml::link('Entrega de Manual',array('concursosManual','id'=>$model->idinstituicao)); ?>]</li>			
+				<li><?php echo CHtml::encode($model->nome); ?></li>			
 			<?php endforeach; ?>
 		</ul>
 

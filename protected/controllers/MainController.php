@@ -55,7 +55,7 @@ class MainController extends CController {
 		}
 		
 		// Renderizando o index
-		$this->render('index', array('instituicoesDirigidas' => $instituicoesDirigidas, 'colaborador' => $colaborador));
+		$this->render('homepage', array('instituicoesDirigidas' => $instituicoesDirigidas, 'colaborador' => $colaborador));
 	}
 	
 	/** Comportamento do menu de entrga de manual. */
