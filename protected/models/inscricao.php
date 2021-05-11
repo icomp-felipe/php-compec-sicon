@@ -108,6 +108,13 @@ class inscricao extends CActiveRecord
 		$options = $this->getTipoinscricaoOptions();
 		return $options[$this->tipoinscricao];
 	}
+
+	public static function getInscricoes($etapa, $instituicao) {
+
+		return inscricao::model()->findAllByAttributes(
+			array('idFuncao' => array(1,2,3,5), 'tipoinscricao' => 2, 'idetapa' => $etapa->idetapa, 'idinstituicaoopcao1' => $instituicao->idinstituicao));
+
+	}
 	
 	
 }

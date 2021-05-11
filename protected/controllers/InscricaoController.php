@@ -7,6 +7,8 @@ class InscricaoController extends CController
 	
 	public $usuarioLogado = null;
 
+	private $_model;
+
 	function getSessionForm()
 	{
 		$form = new FormInscricao();
@@ -136,7 +138,8 @@ class InscricaoController extends CController
 					$form->instituicao = $models[0];
 
 					$this->setSessionForm($form);
-					$this->actionSelecionarFuncao();
+					//$this->actionSelecionarFuncao();
+					$this->actionListarInscritos();
 
 				}
 				else
@@ -148,7 +151,41 @@ class InscricaoController extends CController
 			else
 				$this->render('nao_ha_vagas',array('form'=>$form));		
 		}
-	}	
+	}
+
+	public function actionListarInscritos() {
+
+		$this->processAdminCommand();
+
+		$form = $this->getSessionForm();
+
+		$inscricoes = inscricao::getInscricoes($form->etapa, $form->instituicao);
+
+		$this->render('lista_inscritos',array('form' => $form, 'inscricoes' => $inscricoes));
+
+	}
+
+	protected function processAdminCommand()
+	{
+		if(isset($_POST['command'], $_POST['id']) && $_POST['command']==='delete')
+		{
+			$this->loadInscricao($_POST['id'])->delete();
+			// reload the current page to avoid duplicated delete actions
+			$this->refresh();
+		}
+	}
+
+	public function loadInscricao($id=null)
+	{
+		if($this->_model===null)
+		{
+			if($id!==null || isset($_GET['id']))
+				$this->_model=inscricao::model()->findbyPk($id!==null ? $id : $_GET['id']);
+			if($this->_model===null)
+				throw new CHttpException(404,'The requested page does not exist.');
+		}
+		return $this->_model;
+	}
 
 	/**
 	 * Exibe a página de seleção de funções
