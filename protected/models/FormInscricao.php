@@ -14,6 +14,8 @@ class FormInscricao extends CFormModel {
 	public $pispasep=null;
 	public $doc_identidade=null;
 	public $inscricao=null;
+	public $multiplosConcursos=false;
+	public $multiplasInstituicoes=false;
 	
 	public $errorCode = 0;
 

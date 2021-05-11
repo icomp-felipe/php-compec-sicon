@@ -21,6 +21,9 @@ class InscricaoController extends CController
 		$form->funcao = $session["funcao_inst"];
 		$form->inscricao = $session["inscricao_inst"];
 
+		$form->multiplosConcursos = $session["multiplosConcursos"];
+		$form->multiplasInstituicoes = $session["multiplasInstituicoes"];
+
 		$this->usuarioLogado = $session["usuario"];
 		
 		if (isset($form->colaborador))
@@ -45,6 +48,9 @@ class InscricaoController extends CController
 		$session["instituicao_inst"] = $form->instituicao;
 		$session["funcao_inst"] = $form->funcao;
 		$session["inscricao_inst"] = $form->inscricao;
+		$session["multiplosConcursos"] = $form->multiplosConcursos;
+		$session["multiplasInstituicoes"] = $form->multiplasInstituicoes;
+
 	}
 
 
@@ -81,6 +87,7 @@ class InscricaoController extends CController
 
 		if (isset($_GET['idetapa']))
 		{
+			$form->multiplosConcursos = true;
 			$form->etapa = $this->loadEtapa($_GET['idetapa']);
 			$form->concurso = $form->etapa->concurso;	
 			$this->setSessionForm($form);
@@ -119,6 +126,7 @@ class InscricaoController extends CController
 		
 		if (isset($_GET['idinstituicao']))
 		{
+			$form->multiplasInstituicoes = true;
 			$form->instituicao = $this->loadinstituicao($_GET['idinstituicao']);
 			$this->setSessionForm($form);
 			$this->actionSelecionarFuncao();
@@ -145,12 +153,14 @@ class InscricaoController extends CController
 					$this->actionListarInscritos();
 
 				}
-				else
+				else {
 
-				$this->render('instituicao',array(
-					'models'=>$models,
-					'form'=>$form,
-				));
+					$this->render('instituicao',array(
+						'models'=>$models,
+						'form'=>$form,
+					));
+
+				}
 			else
 				$this->render('nao_ha_vagas',array('form'=>$form));		
 		}

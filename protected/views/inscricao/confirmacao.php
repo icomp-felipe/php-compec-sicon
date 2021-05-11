@@ -2,17 +2,39 @@
 
 <div class="actionBar">
     <ul>
-        <li><b>Concurso</b>: <?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).' ['.CHtml::link('Trocar',array('selecionarConcursoEtapa')).']'; ?></li>
-        <li><b>Instituição</b>: <?php echo $form->instituicao->nome.' ['.CHtml::link('Trocar',array('selecionarInstituicao')).']'; ?></li>
+
+        <li><b>Concurso</b>: <?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)); ?>
+
+            <?php // Só mostra o botão de trocar caso haja mais de um concurso disponível ?>
+            <?php if ($form->multiplosConcursos): ?>
+                <?php echo ' ['.CHtml::link('Trocar',array('selecionarConcursoEtapa')).']'; ?>
+            <?php endif; ?><br>
+
+        </li>
+
+		<li><b>Instituição</b>: <?php echo $form->instituicao->nome; ?>
+
+            <?php // Só mostra o botão de trocar caso haja mais de uma instituição disponível ?> 
+            <?php if ($form->multiplasInstituicoes): ?>
+                <?php echo ' ['.CHtml::link('Trocar',array('selecionarInstituicao')).']'; ?>
+            <?php endif; ?>
+
+        </li>
+
 		<li><b>
+				
+			<?php // Apenas conveniência, ajusta o pronome de acordo com o sexo do colaborador ?>
 			<?php if($form->colaborador->sexo == 'F'): ?>
 				Colaboradora:
 			<?php else: ?>
 				Colaborador:
 			<?php endif; ?></b>
 			<?php echo $form->colaborador->nome.' ['.CHtml::link('Trocar',array('selecionarColaborador')).']'; ?>
+
 		</li>
+
 		<li><b>Função</b>: <?php echo $form->funcao->nome.' ['.CHtml::link('Trocar',array('selecionarFuncao')).']'; ?></li>
+		
     </ul>
 </div>
 
