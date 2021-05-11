@@ -165,21 +165,17 @@ class InscricaoController extends CController
 		$etapa = $form->etapa;
 		$instituicao = $form->instituicao;
 
-		/*$condition = 'idFuncao in (1,2,3,5) and tipoinscricao = :tipoinscricao and idetapa = :idetapa and idinstituicaoopcao1 = :idinstituicaoopcao1';
-		$params = array(':tipoinscricao' => 2, ':idetapa' => $etapa->idetapa, ':idinstituicaoopcao1' => $instituicao->idinstituicao);
+		$condition = 'idetapa = :idetapa and idinstituicao = :idinstituicao';
+		$params = array(':idetapa' => $etapa->idetapa, ':idinstituicao' => $instituicao->idinstituicao);
 
 		$criteria = new CDbCriteria(array('condition' => $condition, 'params' => $params));
-		$criteria->with = array('colaborador');
-		$criteria->compare('nome')
 
-		$sort=new CSort('inscricao');
+		$sort=new CSort('inscritos');
 		$sort->applyOrder($criteria);
 
-		$inscricoes = inscricao::model()->findAll($criteria);*/
+		$inscricoes = inscritos::model()->findAll($criteria);
 
-		$inscricoes = inscricao::getInscricoes($form->etapa, $form->instituicao);
-
-		$this->render('lista_inscritos',array('form' => $form, 'inscricoes' => $inscricoes/*, 'sort' => $sort*/));
+		$this->render('lista_inscritos',array('form' => $form, 'inscricoes' => $inscricoes, 'sort' => $sort));
 
 	}
 

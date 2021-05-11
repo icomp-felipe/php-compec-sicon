@@ -18,9 +18,9 @@
 
     <thead>
         <tr>
-            <th><?php echo 'CPF';  ?></th>
-            <th><?php echo 'Nome'; ?></th>
-            <th><?php echo 'Função';?></th>
+            <th>CPF</th>
+            <th><?php echo $sort->link('nome'); ?></th>
+            <th><?php echo $sort->link('funcao'); ?></th>
 	        <th>Operações</th>
         </tr>
     </thead>
@@ -31,15 +31,15 @@
 
             <tr class="<?php echo $n % 2 ? 'even' : 'odd'; ?>">
 
-                <td><?php echo CHtml::link  ($inscricao->colaborador->cpfFormatado, array('colaborador/update','id' => $inscricao->idColaborador)); ?></td>
-                <td><?php echo CHtml::encode($inscricao->colaborador->nome); ?></td>
-                <td><?php echo CHtml::encode($inscricao->funcao->nome); ?></td>
+                <td><?php echo CHtml::link  ($inscricao->cpfFormatado, array('colaborador/update','id' => $inscricao->idColaborador)); ?></td>
+                <td><?php echo CHtml::encode($inscricao->nome); ?></td>
+                <td><?php echo CHtml::encode($inscricao->funcao); ?></td>
                 <td>
                     <?php echo CHtml::link('Trocar Função', array('selecionarFuncao', 'idinscricao' => $inscricao->idinscricao)); ?><br>
                     <?php echo CHtml::linkButton('Cancelar Inscrição', array(
                                 'submit'  => '',
                                 'params'  => array('command' => 'delete', 'id' => $inscricao->idinscricao),
-                                'confirm' => "Confirma o cancelamento da inscrição do colaborador: '{$inscricao->colaborador->nome}'?")); ?>
+                                'confirm' => "Confirma o cancelamento da inscrição do colaborador: '{$inscricao->nome}'?")); ?>
                 </td>
             </tr>
         <?php endforeach; ?>
