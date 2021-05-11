@@ -32,6 +32,7 @@
 
     <thead>
         <tr>
+            <th>#</th>
             <th>CPF</th>
             <th><?php echo $sort->link('nome'); ?></th>
             <th><?php echo $sort->link('funcao'); ?></th>
@@ -41,10 +42,12 @@
 
     <tbody>
 
+        <?php $i = 1; ?>
         <?php foreach($inscricoes as $n => $inscricao): ?>
 
             <tr class="<?php echo $n % 2 ? 'even' : 'odd'; ?>">
 
+                <td style="text-align: center;"><?php echo $i++; ?></td>
                 <td style="text-align: center;"><?php echo CHtml::link  ($inscricao->cpfFormatado, array('colaborador/update','id' => $inscricao->idColaborador)); ?></td>
                 <td><?php echo CHtml::encode($inscricao->nome); ?></td>
                 <td style="text-align: center;"><?php echo CHtml::encode($inscricao->funcao); ?></td>
