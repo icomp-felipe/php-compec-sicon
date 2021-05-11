@@ -13,6 +13,7 @@ class FormInscricao extends CFormModel {
 	public $contacorrente=null;
 	public $pispasep=null;
 	public $doc_identidade=null;
+	public $inscricao=null;
 	
 	public $errorCode = 0;
 

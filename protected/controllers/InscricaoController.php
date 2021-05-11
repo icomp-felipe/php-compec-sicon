@@ -19,6 +19,8 @@ class InscricaoController extends CController
 		$form->etapa = $session["etapa_inst"];
 		$form->instituicao = $session["instituicao_inst"];
 		$form->funcao = $session["funcao_inst"];
+		$form->inscricao = $session["inscricao_inst"];
+
 		$this->usuarioLogado = $session["usuario"];
 		
 		if (isset($form->colaborador))
@@ -41,7 +43,8 @@ class InscricaoController extends CController
 		$session["concurso_inst"] = $form->concurso;
 		$session["etapa_inst"] = $form->etapa;
 		$session["instituicao_inst"] = $form->instituicao;
-		$session["funcao_inst"] = $form->funcao;		
+		$session["funcao_inst"] = $form->funcao;
+		$session["inscricao_inst"] = $form->inscricao;
 	}
 
 
@@ -159,9 +162,24 @@ class InscricaoController extends CController
 
 		$form = $this->getSessionForm();
 
+		$etapa = $form->etapa;
+		$instituicao = $form->instituicao;
+
+		/*$condition = 'idFuncao in (1,2,3,5) and tipoinscricao = :tipoinscricao and idetapa = :idetapa and idinstituicaoopcao1 = :idinstituicaoopcao1';
+		$params = array(':tipoinscricao' => 2, ':idetapa' => $etapa->idetapa, ':idinstituicaoopcao1' => $instituicao->idinstituicao);
+
+		$criteria = new CDbCriteria(array('condition' => $condition, 'params' => $params));
+		$criteria->with = array('colaborador');
+		$criteria->compare('nome')
+
+		$sort=new CSort('inscricao');
+		$sort->applyOrder($criteria);
+
+		$inscricoes = inscricao::model()->findAll($criteria);*/
+
 		$inscricoes = inscricao::getInscricoes($form->etapa, $form->instituicao);
 
-		$this->render('lista_inscritos',array('form' => $form, 'inscricoes' => $inscricoes));
+		$this->render('lista_inscritos',array('form' => $form, 'inscricoes' => $inscricoes/*, 'sort' => $sort*/));
 
 	}
 
@@ -175,16 +193,9 @@ class InscricaoController extends CController
 		}
 	}
 
-	public function loadInscricao($id=null)
+	public function loadInscricao($id)
 	{
-		if($this->_model===null)
-		{
-			if($id!==null || isset($_GET['id']))
-				$this->_model=inscricao::model()->findbyPk($id!==null ? $id : $_GET['id']);
-			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
-		}
-		return $this->_model;
+		return inscricao::model()->findbyPk($id);
 	}
 
 	/**
@@ -198,7 +209,7 @@ class InscricaoController extends CController
 		{
 			$form->funcao = $this->loadfuncao($_GET['idfuncao']);
 			$this->setSessionForm($form);
-			$this->actionSelecionarColaborador();
+			$this->actionConfirmar();
 		}
 		else
 		{		
@@ -206,6 +217,12 @@ class InscricaoController extends CController
 			{
 				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
 				return;	
+			}
+
+			if (isset($_GET['idinscricao'])) {
+				$form->inscricao   = $this->loadInscricao($_GET['idinscricao']);
+				$form->colaborador = $form->inscricao->colaborador;
+				$this->setSessionForm($form);
 			}
 			
 			// consulta funções disponíveis no processo
@@ -225,10 +242,9 @@ class InscricaoController extends CController
 	/**
 	 * Exibe a página de seleção de colaboradores
 	 */
-	public function actionSelecionarColaborador()
-	{
+	public function actionSelecionarColaborador() {
 	
-		$form = $this->getSessionForm();	
+		$form = $this->getSessionForm();
 	
 		if(!isset($form,$form->concurso,$form->etapa, $form->instituicao))
 		{
@@ -240,12 +256,13 @@ class InscricaoController extends CController
 		{
 			$form->attributes=$_POST['FormInscricao'];
 			if($form->validate('selecionarColaborador')){
-				$this->setSessionForm($form);				
-				/*if (isset($form->colaborador))
-					$this->actionAtualizarColaborador();
-				else
-					$this->actionCriarColaborador();*/
-				$this->actionConfirmacao();
+
+				$this->setSessionForm($form);			
+				//if (isset($form->colaborador))
+					//$this->actionAtualizarColaborador();
+				//else
+					//$this->actionCriarColaborador();
+				$this->actionSelecionarFuncao();
 				return;
 			}
 		}
@@ -255,7 +272,7 @@ class InscricaoController extends CController
 			
 		$this->setSessionForm($form);	
 		
-		$this->render('colaborador',array('form'=>$form));		
+		$this->render('colaborador',array('form'=>$form));
 	}	
 	
 	public function actionCriarColaborador()
@@ -322,7 +339,7 @@ class InscricaoController extends CController
 
 			if($form->validate('inscricao')) {
 
-				$inscricao = new inscricao();
+				$inscricao = isset($form->inscricao) ? $form->inscricao : new inscricao();
 
 				$inscricao->idinstituicaoopcao1 = $form->instituicao->idinstituicao;
 				$inscricao->idconcurso 			= $form->etapa->idconcurso;
@@ -333,7 +350,7 @@ class InscricaoController extends CController
 				$inscricao->idFuncao			= $form->funcao->idFuncao;
 				$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
 				$inscricao->idetapa 			= $form->etapa->idetapa;
-		
+
 				if($inscricao->save()) {
 				
 					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
@@ -407,7 +424,7 @@ class InscricaoController extends CController
 	public function loadcolaborador($id)
 	{
 		return colaborador::model()->findbyPk($id!==null ? $id : $_GET['id']);
-	}		
+	}
 		
 	public function getConcursosEmAndamento($id=null)
 	{

@@ -3,8 +3,16 @@
 <div class="actionBar">
 
 	<ul>
-		<li><b>Concurso</b>: <?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).' ['.CHtml::link('Trocar',array('selecionarConcursoEtapa')).']'; ?><br></li>
-		<li><b>Instituição</b>: <?php echo $form->instituicao->nome.' ['.CHtml::link('Trocar',array('selecionarInstituicao')).']'; ?></li>
+		<li><b>Concurso:</b> <?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)).' ['.CHtml::link('Trocar',array('selecionarConcursoEtapa')).']'; ?><br></li>
+		<li><b>Instituição:</b> <?php echo $form->instituicao->nome.' ['.CHtml::link('Trocar',array('selecionarInstituicao')).']'; ?></li>
+		<li>
+			<?php if($form->colaborador->sexo == 'F'): ?>
+				<b>Colaboradora:</b> 
+			<?php else: ?>
+				<b>Colaborador:</b> 
+			<?php endif; ?>
+			<?php echo $form->colaborador->nome; ?>
+		</li>
 	</ul>
 
 </div>

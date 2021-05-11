@@ -43,7 +43,7 @@ class inscricao extends CActiveRecord
 			array('selecionado','length','max'=>1),
 			array('candidatociente','length','max'=>1),
 			array('dt_hr', 'required'),
-			array('codinscricao, tipoinscricao', 'numerical', 'integerOnly'=>true),
+			array('codinscricao, tipoinscricao', 'numerical', 'integerOnly'=>true)
 		);
 	}
 
@@ -115,6 +115,5 @@ class inscricao extends CActiveRecord
 			array('idFuncao' => array(1,2,3,5), 'tipoinscricao' => 2, 'idetapa' => $etapa->idetapa, 'idinstituicaoopcao1' => $instituicao->idinstituicao));
 
 	}
-	
-	
+
 }

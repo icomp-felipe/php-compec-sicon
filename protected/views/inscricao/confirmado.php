@@ -13,9 +13,13 @@
 		</tr>
 
 		<tr>
-			<th class="label">CPF + Nome:</th>
-			<td><?php echo $form->cpf; ?> - 
-				<?php echo $form->colaborador->nome; ?></td>
+			<th class="label">Nome:</th>
+			<td><?php echo $form->colaborador->nome; ?></td>
+		</tr>
+
+		<tr>
+			<th class="label">CPF:</th>
+			<td><?php echo $form->colaborador->cpfFormatado; ?></td>
 		</tr>
 
 		<tr>
@@ -63,5 +67,6 @@
 </div><!-- yiiForm -->
 
 <div class="actionBar">
-	[<?php echo CHtml::link('Inscrever outro colaborador no mesmo concurso, instituição e função',array('selecionarColaborador','cpf'=>'')); ?>]
+	[<?php echo CHtml::link('Inscrever outro colaborador no mesmo concurso, instituição e função',array('selecionarColaborador','cpf'=>'')); ?>]<br>
+	[<?php echo CHtml::link('Ir para a listagem de inscritos',array('/inscricao')); ?>]
 </div>
