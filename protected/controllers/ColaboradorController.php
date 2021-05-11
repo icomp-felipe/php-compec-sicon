@@ -2,7 +2,7 @@
 
 class ColaboradorController extends CController
 {
-	const PAGE_SIZE=10;
+	const PAGE_SIZE = 15;
 
 	/**
 	 * @var string specifies the default action to be 'list'.

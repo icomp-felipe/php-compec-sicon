@@ -10,7 +10,7 @@
         <tr>
             <th><?php echo $sort->link('cpf'); ?></th>	
             <th><?php echo $sort->link('nome'); ?></th>
-            <th><?php echo $sort->link('idmunicipio'); ?></th>	
+            <th><?php echo $sort->link('idmunicipio'); ?></th>
             <th><?php echo $sort->link('celular'); ?></th>
             <th><?php echo $sort->link('banco'); ?></th>
             <th><?php echo $sort->link('contacorrente'); ?></th>
@@ -22,7 +22,7 @@
     <tbody>
     <?php foreach($models as $n=>$model): ?>
         <tr class="<?php echo $n%2 ? 'even' : 'odd'; ?>">
-            <td><?php echo CHtml::link  ($model->cpf, array('show','id'=>$model->idColaborador)); ?></td>
+            <td><?php echo CHtml::link  ($model->cpfFormatado, array('show','id'=>$model->idColaborador)); ?></td>
             <td><?php echo CHtml::encode($model->nome           ); ?></td>	
             <td><?php echo CHtml::encode($model->municipio->nome); ?></td>	
             <td><?php echo CHtml::encode($model->celular        ); ?></td>
