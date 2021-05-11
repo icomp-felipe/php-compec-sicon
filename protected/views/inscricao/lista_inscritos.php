@@ -45,10 +45,10 @@
 
             <tr class="<?php echo $n % 2 ? 'even' : 'odd'; ?>">
 
-                <td><?php echo CHtml::link  ($inscricao->cpfFormatado, array('colaborador/update','id' => $inscricao->idColaborador)); ?></td>
+                <td style="text-align: center;"><?php echo CHtml::link  ($inscricao->cpfFormatado, array('colaborador/update','id' => $inscricao->idColaborador)); ?></td>
                 <td><?php echo CHtml::encode($inscricao->nome); ?></td>
-                <td><?php echo CHtml::encode($inscricao->funcao); ?></td>
-                <td>
+                <td style="text-align: center;"><?php echo CHtml::encode($inscricao->funcao); ?></td>
+                <td style="text-align: center;">
                     <?php echo CHtml::link('Trocar Função', array('selecionarFuncao', 'idinscricao' => $inscricao->idinscricao)); ?><br>
                     <?php echo CHtml::linkButton('Cancelar Inscrição', array(
                                 'submit'  => '',
