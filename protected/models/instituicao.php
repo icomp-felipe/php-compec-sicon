@@ -1,25 +1,9 @@
 <?php
 
-class instituicao extends CActiveRecord
-{
-	/**
-	 * The followings are the available columns in table 'instituicao':
-	 * @var integer $idinstituicao
-	 * @var integer $idResponsavel
-	 * @var integer $idgrupoinstituicao
-	 * @var integer $idbairro
-	 * @var string $nome
-	 * @var string $logradouro
-	 * @var string $numero_endereco
-	 * @var string $cep
-	 * @var string $ddd
-	 * @var string $telefone
-	 * @var string $fax
-	 * @var string $email
-	 * @var string $ativa
-	 * @var integer $tipo
-	 * @var integer $cod_interno
-	 */
+class instituicao extends CActiveRecord {
+
+	private $municipio = null;
+	private $uf = null;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -107,6 +91,21 @@ class instituicao extends CActiveRecord
 		$endereco = $this->logradouro;
 		$endereco = $endereco . (isset($endereco) && ($endereco!='') && ($this->numero_endereco!='')?', ':'').$this->numero_endereco;
 		$endereco = $endereco . (isset($endereco) && ($endereco!='') && isset($this->bairro)?', ':'').$this->bairro->nome;
+
+		if (isset($this->bairro) && !isset($this->municipio)) {
+
+			$this->municipio = municipio::model()->findByPk($this->bairro->idmunicipio);
+			$endereco = $endereco . ', ' . $this->municipio->nome;
+
+		}
+
+		if (isset($this->municipio)) {
+
+			$this->uf = uf::model()->findByPk($this->municipio->iduf);
+			$endereco = $endereco . ' - ' . $this->uf->sigla;
+
+		}
+
 		return $endereco;
 	}
 

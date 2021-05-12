@@ -300,6 +300,6 @@ class InscricaoPublicoController extends CController {
 
 		$criteria=new CDbCriteria($data);
 
-		return instituicao::model()->with('grupoinstituicao')->findAll($criteria);
+		return instituicao::model()->with('bairro')->findAll($criteria);
 	}	
 }
