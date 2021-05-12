@@ -129,7 +129,7 @@ class InscricaoController extends CController
 			$form->multiplasInstituicoes = true;
 			$form->instituicao = $this->loadinstituicao($_GET['idinstituicao']);
 			$this->setSessionForm($form);
-			$this->actionSelecionarFuncao();
+			$this->actionListarInscritos();
 		}
 		else
 		{
