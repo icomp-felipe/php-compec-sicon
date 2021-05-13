@@ -8,30 +8,18 @@
 
 <table class="dataGrid">
 
-	<?php $grupo = null; ?>
 	<?php $linha = 0; ?>
+
+	<thead>
+			<tr>
+				<th colspan="2">Instituições Disponíveis</th>
+			</tr>
+		</thead>
 
 	<?php foreach($models as $n=>$model): ?>
 
-		<?php $mudougrupo = false;?>
-
-		<?php if ($grupo != $model->idgrupoinstituicao): ?>
-
-			<thead>
-				<tr>
-					<th colspan="2"><?php echo CHtml::encode($model->grupoinstituicao->nome); ?></th>
-				</tr>
-			</thead>
-
-			<?php $grupo = $model->idgrupoinstituicao;?>
-			<?php $linha = 0;?>
-
-		<?php endif; ?>
-
-		<?php $linha = $linha + 1;?>
-
 		<tr class="<?php echo $linha % 2 ? 'even' : 'odd';?>">
-			<td><?php echo CHtml::link($model->nome,array('selecionarInstituicao','idinstituicao'=>$model->idinstituicao)); ?></td>
+			<td><?php echo CHtml::link($model->inst_nome,array('selecionarInstituicao','idinstituicao'=>$model->inst_id_pk)); ?></td>
 			<td><?php echo $model->getEndereco(); ?>
 		</tr>
 

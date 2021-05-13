@@ -26,7 +26,7 @@ class colaborador extends CActiveRecord {
 			'idescolaridade0' => array(self::BELONGS_TO, 'escolaridade', 'idescolaridade'),
 			'envio_emails' => array(self::HAS_MANY, 'envioEmail', 'idColaborador'),
 			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idColaborador'),
-			'instituicoesDirigidas' => array(self::HAS_MANY, 'instituicao', 'idResponsavel'),
+			'instituicoesDirigidas' => array(self::HAS_MANY, 'instituicao', 'inst_coordenador_id'),
 			'usuarios' => array(self::HAS_MANY, 'usuario', 'idColaborador'),
 			'vinculos' => array(self::HAS_MANY, 'vinculo', 'idColaborador'),
 		);

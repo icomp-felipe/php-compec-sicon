@@ -33,9 +33,9 @@
 
 			<tr class="<?php echo $n % 2 ? 'even' : 'odd';?>">
 
-				<td><?php echo CHtml::link($model->nomeSemId,array('confirmacao','id'=>$model->idinstituicao)); ?></td>
+				<td><?php echo CHtml::link($model->nomeSemId,array('confirmacao','id'=>$model->inst_id_pk)); ?></td>
 				<td><?php echo $model->getEndereco(); ?></td>
-				<td><a href="<?php echo $model->localizacao; ?>" target="_blank" rel="noopener noreferrer"><?php echo $model->localizacao; ?></a></td>
+				<td><a href="<?php echo $model->inst_maps; ?>" target="_blank" rel="noopener noreferrer"><?php echo $model->inst_maps; ?></a></td>
 
 			</tr>
 

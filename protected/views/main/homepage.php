@@ -32,7 +32,7 @@
 
 		<ul style="color: green;">
 			<?php foreach($instituicoesDirigidas as $n=>$model): ?>
-				<li><?php echo CHtml::encode($model->nome); ?></li>			
+				<li><?php echo CHtml::encode($model->inst_nome); ?></li>			
 			<?php endforeach; ?>
 		</ul>
 

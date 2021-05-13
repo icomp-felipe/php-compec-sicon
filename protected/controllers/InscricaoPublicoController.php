@@ -174,7 +174,7 @@ class InscricaoPublicoController extends CController {
 	
 				$inscricao = new inscricao();
 
-				$inscricao->idinstituicaoopcao1 = $form->instituicao->idinstituicao;
+				$inscricao->idinstituicaoopcao1 = $form->instituicao->inst_id_pk;
 				$inscricao->idconcurso 			= $form->etapa->idconcurso;
 				$inscricao->idColaborador		= $form->colaborador->idColaborador;
 				$inscricao->selecionado			= 'W';
@@ -283,8 +283,8 @@ class InscricaoPublicoController extends CController {
 	public function getInstituicoesDisponiveis($idetapa)
 	{
 		$data = array(
-					'order'=>'substr(instituicao.nome,5)',
-					'condition'=>' idinstituicao in 
+					'order'=>'substr(instituicao.inst_nome,5)',
+					'condition'=>' inst_id_pk in 
 										(select idinstituicao from config_concurso cc1
 												where idetapa  = :idetapa 
 												  and idfuncao = 1 /*fiscal*/
@@ -295,11 +295,11 @@ class InscricaoPublicoController extends CController {
 																				 and cc1.idinstituicao =
 																				     i1.idinstituicaoopcao1
 																				 and tipoinscricao = 1 /*internet*/))',
-					'params'=>array('idetapa'=>$idetapa),
+					'params'=>array('idetapa' => $idetapa),
 				 );
 
 		$criteria=new CDbCriteria($data);
 
-		return instituicao::model()->with('bairro')->findAll($criteria);
+		return instituicao::model()->findAll($criteria);
 	}	
 }

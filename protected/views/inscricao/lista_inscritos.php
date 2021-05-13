@@ -11,7 +11,7 @@
             <?php endif; ?><br>
 
         </li>
-		<li><b>Instituição</b>: <?php echo $form->instituicao->nome; ?>
+		<li><b>Instituição</b>: <?php echo $form->instituicao->inst_nome; ?>
 
             <?php // Só mostra o botão de trocar caso haja mais de uma instituição disponível ?> 
             <?php if ($form->multiplasInstituicoes): ?>

@@ -44,9 +44,8 @@ class Municipio extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bairros' => array(self::HAS_MANY, 'Bairro', 'idmunicipio'),
-			'colaboradors' => array(self::HAS_MANY, 'colaborador', 'idmunicipio'),
-			'iduf0' => array(self::BELONGS_TO, 'Uf', 'iduf'),
+			'colaboradors'  => array(self::HAS_MANY, 'colaborador', 'idmunicipio'),
+			'instituicoes'  => array(self::HAS_MANY, 'instituicao', 'inst_municipio_id')
 		);
 	}
 

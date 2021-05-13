@@ -2,9 +2,6 @@
 
 class instituicao extends CActiveRecord {
 
-	private $municipio = null;
-	private $uf = null;
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return CActiveRecord the static model class
@@ -28,85 +25,61 @@ class instituicao extends CActiveRecord {
 	public function rules()
 	{
 		return array(
-			array('nome','length','max'=>100),
-			array('logradouro','length','max'=>50),
-			array('numero_endereco','length','max'=>5),
-			array('cep','length','max'=>8),
-			array('ddd','length','max'=>2),
-			array('telefone','length','max'=>8),
-			array('fax','length','max'=>8),
-			array('email','length','max'=>60),
-			array('ativa','length','max'=>1),
-			array('tipo, cod_interno', 'numerical', 'integerOnly'=>true),
+			array('inst_nome'      ,'length','max' => 100),
+			array('inst_apelido'   ,'length','max' =>  45),
+			array('inst_logradouro','length','max' =>  50),
+			array('inst_numero'    ,'length','max' =>   5),
+			array('inst_bairro'    ,'length','max' =>  50),
+			array('inst_cep'       ,'length','max' =>   8),
+			array('inst_maps'      ,'length','max' =>  40),
+			array('inst_telefone'  ,'length','max' =>  15),
+			array('inst_celular'   ,'length','max' =>  15),
+			array('inst_email'     ,'length','max' =>  60),
+			array('inst_codigo, inst_salas, inst_coordenador_id, inst_tipo', 'numerical', 'integerOnly'=>true),
 		);
 	}
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
+	public function relations()	{
+		
+		// 'variável interna' => array(self::HAS_MANY  , 'tabela relacionada', 'indice da tabela relacionada')
+		// 'variável interna' => array(self::BELONGS_TO, 'tabela relacionada', 'indice desta tabela')
 		return array(
-			'concursos' => array(self::HAS_MANY, 'concurso', 'idinstituicaorealizadora'),
+			'concursos'        => array(self::HAS_MANY, 'concurso', 'idinstituicaorealizadora'),
 			'config_concursos' => array(self::HAS_MANY, 'configConcurso', 'idinstituicao'),
-			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idinstituicaoopcao2'),
-			'bairro' => array(self::BELONGS_TO, 'bairro', 'idbairro'),
-			'grupoinstituicao' => array(self::BELONGS_TO, 'grupoinstituicao', 'idgrupoinstituicao', 'alias'=>'grupoinstituicao'),
-			'idResponsavel0' => array(self::BELONGS_TO, 'colaborador', 'idResponsavel'),
-			'selecaos' => array(self::HAS_MANY, 'selecao', 'idinstituicao'),
-			'vinculos' => array(self::HAS_MANY, 'vinculo', 'idinstituicao'),
+			'inscricaos'       => array(self::HAS_MANY, 'inscricao', 'idinstituicaoopcao2'),
+			'inst_municipio'   => array(self::BELONGS_TO, 'municipio', 'inst_municipio_id'),
+			'inst_uf'          => array(self::BELONGS_TO, 'uf', 'inst_uf_id'),
+			'responsavel'      => array(self::BELONGS_TO, 'colaborador', 'inst_coordenador_id'),
+			'vinculos'         => array(self::HAS_MANY, 'vinculo', 'idinstituicao')
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
+	public function attributeLabels() {
 		return array(
-			'idinstituicao' => 'Idinstituicao',
-			'idResponsavel' => 'Id Responsavel',
-			'idgrupoinstituicao' => 'Idgrupoinstituicao',
-			'idbairro' => 'Idbairro',
-			'nome' => 'Nome',
-			'logradouro' => 'Logradouro',
-			'numero_endereco' => 'Numero Endereco',
-			'cep' => 'Cep',
-			'ddd' => 'Ddd',
-			'telefone' => 'Telefone',
-			'fax' => 'Fax',
-			'email' => 'Email',
-			'ativa' => 'Ativa',
-			'tipo' => 'Tipo',
-			'cod_interno' => 'Cod Interno',
+
+			'inst_id_pk'      => '#',
+			'inst_codigo'     => 'Código',
+			'inst_nome'       => 'Nome',
+			'inst_apelido'    => 'Apelido',
+			'inst_salas'      => 'Qtd. Salas',
+			'inst_logradouro' => 'Rua/Av.',
+			'inst_numero'     => 'Número',
+			'inst_bairro'     => 'Bairro',
+			'inst_cep'        => 'CEP',
+			'inst_maps'       => 'Localização (Google)',
+			'inst_telefone'   => 'Tel. Fixo',
+			'inst_celular'    => 'Cel.',
+			'inst_email'      => 'e-mail'
+
 		);
 	}
 	
-	public function getEndereco()
-	{
-	
-		$endereco = null;
-		$endereco = $this->logradouro;
-		$endereco = $endereco . (isset($endereco) && ($endereco!='') && ($this->numero_endereco!='')?', ':'').$this->numero_endereco;
-		$endereco = $endereco . (isset($endereco) && ($endereco!='') && isset($this->bairro)?', ':'').$this->bairro->nome;
-
-		if (isset($this->bairro) && !isset($this->municipio)) {
-
-			$this->municipio = municipio::model()->findByPk($this->bairro->idmunicipio);
-			$endereco = $endereco . ', ' . $this->municipio->nome;
-
-		}
-
-		if (isset($this->municipio)) {
-
-			$this->uf = uf::model()->findByPk($this->municipio->iduf);
-			$endereco = $endereco . ' - ' . $this->uf->sigla;
-
-		}
-
-		return $endereco;
+	public function getEndereco() {
+		return $this->inst_logradouro . ', ' .
+					(isset($this->numero) ? $this->numero : 's/n') . ', ' .
+					$this->inst_bairro . ', ' .
+					$this->inst_municipio->nome . ' - ' .
+					$this->inst_uf->sigla;
 	}
 
 	public function getEtapasEmQueParticipou($id=null)
@@ -128,13 +101,13 @@ class instituicao extends CActiveRecord {
 	{
 	
 		if($id==null)
-			$id = $this->idinstituicao;
+			$id = $this->inst_id_pk;
 			
-		return $this->model()->findbyPk($id);
+		return $this->model()->findByPk($id);
 	}	
 	
 	public function getNomeSemId() {
-		return substr($this->nome,4);
+		return substr($this->inst_nome,4);
 	}
 	
 }

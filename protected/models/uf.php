@@ -46,7 +46,7 @@ class Uf extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'colaboradors' => array(self::HAS_MANY, 'colaborador', 'iduf_identidade'),
-			'municipios' => array(self::HAS_MANY, 'municipio', 'iduf'),
+			'instituicoes0' => array(self::HAS_MANY, 'instituicao', 'inst_uf_id')
 		);
 	}
 
@@ -56,7 +56,7 @@ class Uf extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'iduf' => 'Iduf',
+			'uf_id_pk' => 'ID',
 			'sigla' => 'Sigla',
 			'descricao' => 'Descricao',
 		);

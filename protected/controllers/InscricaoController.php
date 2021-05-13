@@ -176,7 +176,7 @@ class InscricaoController extends CController
 		$instituicao = $form->instituicao;
 
 		$condition = 'idetapa = :idetapa and idinstituicao = :idinstituicao';
-		$params = array(':idetapa' => $etapa->idetapa, ':idinstituicao' => $instituicao->idinstituicao);
+		$params = array(':idetapa' => $etapa->idetapa, ':idinstituicao' => $instituicao->inst_id_pk);
 
 		$criteria = new CDbCriteria(array('condition' => $condition, 'params' => $params));
 
@@ -232,7 +232,7 @@ class InscricaoController extends CController
 			}
 			
 			// consulta funções disponíveis no processo
-			$models = $this->getFuncoesDisponiveis($form->etapa->idetapa, $form->instituicao->idinstituicao);
+			$models = $this->getFuncoesDisponiveis($form->etapa->idetapa, $form->instituicao->inst_id_pk);
 	
 			if (count($models) > 0) // há vagas
 				// exibe a página de seleção de instituições
@@ -331,7 +331,7 @@ class InscricaoController extends CController
 		$form = $this->getSessionForm();
 		
 		// consulta se há vaga disponíveis no processo, na instituicao e na funcao selecionada
-		$models = $this->getVagasDisponiveis($form->etapa->idetapa, $form->instituicao->idinstituicao, $form->funcao->idFuncao);
+		$models = $this->getVagasDisponiveis($form->etapa->idetapa, $form->instituicao->inst_id_pk, $form->funcao->idFuncao);
 		
 		if (!count($models) > 0) // há vagas
 		{
@@ -347,7 +347,7 @@ class InscricaoController extends CController
 
 				$inscricao = isset($form->inscricao) ? $form->inscricao : new inscricao();
 
-				$inscricao->idinstituicaoopcao1 = $form->instituicao->idinstituicao;
+				$inscricao->idinstituicaoopcao1 = $form->instituicao->inst_id_pk;
 				$inscricao->idconcurso 			= $form->etapa->idconcurso;
 				$inscricao->idColaborador		= $form->colaborador->idColaborador;
 				$inscricao->selecionado			= 'W';
@@ -463,14 +463,14 @@ class InscricaoController extends CController
 		}
 		else
 		{
-			$condicao_usuario_interno = 'idResponsavel = :idresponsavel and ';	// somente escolas administradas pelo usuário
+			$condicao_usuario_interno = 'inst_coordenador_id = :idresponsavel and ';	// somente escolas administradas pelo usuário
 			$params=array('idresponsavel'=>$this->usuarioLogado->idColaborador,'idetapa'=>$form->etapa->idetapa);			
 		}	
 	
 		$data = array(
-					'order'=>' grupoinstituicao.nome, cod_interno desc',
+					'order'=>' inst_codigo',
 					'condition'=>' '.$condicao_usuario_interno.
-								   'idinstituicao in 
+								   'inst_id_pk in 
 										(select idinstituicao from config_concurso cc1
 												where idetapa  = :idetapa 
 												  and vagasofertadasadicional > (select count(*) 
@@ -485,7 +485,7 @@ class InscricaoController extends CController
 
 		$criteria=new CDbCriteria($data);
 
-		return instituicao::model()->with('grupoinstituicao')->findAll($criteria);
+		return instituicao::model()->findAll($criteria);
 	}
 	
 	public function getFuncoesDisponiveis($idetapa, $idinstituicao)

@@ -44,8 +44,8 @@ class Bairro extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idmunicipio0' => array(self::BELONGS_TO, 'municipio', 'idmunicipio'),
-			'instituicaos' => array(self::HAS_MANY, 'instituicao', 'idbairro'),
+			/*'idmunicipio0' => array(self::BELONGS_TO, 'municipio', 'idmunicipio'),
+			'instituicaos' => array(self::HAS_MANY, 'instituicao', 'idbairro'),*/
 		);
 	}
 

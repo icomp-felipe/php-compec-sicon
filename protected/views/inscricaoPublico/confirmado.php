@@ -31,7 +31,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'instituicao'); ?>:</th>
-			<td><?php echo $form->instituicao->nome; ?></td>
+			<td><?php echo $form->instituicao->nomeSemId; ?></td>
 		</tr>
 
 		<tr>
