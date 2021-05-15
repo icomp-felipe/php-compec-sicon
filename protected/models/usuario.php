@@ -55,7 +55,6 @@ class usuario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idgrupo0' => array(self::BELONGS_TO, 'grupo', 'idgrupo'),
 			'colaborador' => array(self::BELONGS_TO, 'colaborador', 'idColaborador'),
 		);
 	}
@@ -67,7 +66,6 @@ class usuario extends CActiveRecord
 	{
 		return array(
 			'idUsuario' => 'Id Usuario',
-			'idgrupo' => 'Idgrupo',
 			'situacao' => 'Situacao',
 			'usuario' => 'Usuario',
 			'nome_usuario' => 'Nome Usuario',
