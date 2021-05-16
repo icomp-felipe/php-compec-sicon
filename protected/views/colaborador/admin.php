@@ -22,7 +22,7 @@
     <tbody>
     <?php foreach($models as $n=>$model): ?>
         <tr class="<?php echo $n%2 ? 'even' : 'odd'; ?>">
-            <td><?php echo CHtml::link  ($model->cpfFormatado, array('show','id'=>$model->idColaborador)); ?></td>
+            <td><?php echo CHtml::encode($model->cpfFormatado     ); ?></td>
             <td><?php echo CHtml::encode($model->nome             ); ?></td>	
             <td><?php echo CHtml::encode($model->municipio->nome  ); ?></td>	
             <td><?php echo CHtml::encode($model->celular          ); ?></td>
