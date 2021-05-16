@@ -49,7 +49,7 @@ class UserIdentity extends CUserIdentity
 	public function IsUsuarioInterno()
 	{
 		$user = Yii::app()->user;
-		return ($user->getName() == "eudo" || $user->getName() == "romulo098" || $user->getName() == "romulo001");
+		return ($user->getName() == "felipe" || $user->getName() == "romulo098" || $user->getName() == "romulo001");
 	
 	}
 }
