@@ -170,7 +170,7 @@
     <div class="simple">
         <?php echo CHtml::activeLabelEx($model,'colab_banco_id'); ?>
         <?php echo CHtml::activeDropDownList($model, 'colab_banco_id', 
-									CHtml::listData(banco::model()->findAll(),'banco_id_pk','banco_nome'),
+									CHtml::listData(banco::model()->findAll(),'banco_id_pk','bancoComCodigo'),
 									array('empty'=>'Selecione')) ?>
     </div>
     

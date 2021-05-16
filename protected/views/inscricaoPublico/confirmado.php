@@ -61,7 +61,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_banco_id'); ?>:</th>
-			<td><?php echo $form->colaborador->banco->banco_nome; ?></td>
+			<td><?php echo $form->colaborador->banco->bancoComCodigo; ?></td>
 		</tr>
 
 		<tr>

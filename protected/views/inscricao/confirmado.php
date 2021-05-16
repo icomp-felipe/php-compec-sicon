@@ -49,7 +49,7 @@
 
 		<tr>
 			<th class="label">Nome do Banco</th>
-			<td><?php echo $form->colaborador->banco->banco_nome; ?></td>
+			<td><?php echo $form->colaborador->banco->bancoComCodigo; ?></td>
 		</tr>
 
 		<tr>

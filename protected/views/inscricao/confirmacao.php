@@ -91,7 +91,7 @@
 		<tr>
 			<th class="label">Nome do Banco:</th>
 			<td><?php echo CHtml::activeDropDownList($form, 'colab_banco_id', 
-									CHtml::listData(banco::model()->findAll(),'banco_id_pk','banco_nome'),
+									CHtml::listData(banco::model()->findAll(),'banco_id_pk','bancoComCodigo'),
 									array('empty'=>'Selecione')) ?></td>
 		</tr>
 

@@ -107,7 +107,7 @@ class instituicao extends CActiveRecord {
 	}	
 	
 	public function getNomeSemId() {
-		return substr($this->inst_nome,4);
+		return $this->inst_nome;
 	}
 	
 }
