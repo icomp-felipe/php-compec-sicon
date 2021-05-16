@@ -47,8 +47,8 @@
         <td><?php echo CHtml::encode($model->pisFormatado); ?></td>
     </tr>
     
-        <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('banco')); ?></th>
-        <td><?php echo CHtml::encode($model->banco); ?>
+        <tr><th class="label"><?php echo CHtml::encode($model->getAttributeLabel('colab_banco_id')); ?></th>
+        <td><?php echo CHtml::encode($model->banco->banco_nome); ?>
     </td>
 
     </tr>

@@ -22,13 +22,12 @@ class colaborador extends CActiveRecord {
 		// class name for the relations automatically generated below.
 		return array(
 			'municipio' => array(self::BELONGS_TO, 'municipio', 'idmunicipio'),
+			'banco' => array(self::BELONGS_TO, 'banco', 'colab_banco_id'),
 			'iduf_identidade0' => array(self::BELONGS_TO, 'uf', 'iduf_identidade'),
 			'idescolaridade0' => array(self::BELONGS_TO, 'escolaridade', 'idescolaridade'),
-			'envio_emails' => array(self::HAS_MANY, 'envioEmail', 'idColaborador'),
 			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idColaborador'),
 			'instituicoesDirigidas' => array(self::HAS_MANY, 'instituicao', 'inst_coordenador_id'),
-			'usuarios' => array(self::HAS_MANY, 'usuario', 'idColaborador'),
-			'vinculos' => array(self::HAS_MANY, 'vinculo', 'idColaborador'),
+			'usuarios' => array(self::HAS_MANY, 'usuario', 'idColaborador')
 		);
 	}
 
@@ -63,15 +62,14 @@ class colaborador extends CActiveRecord {
 			array('email'  ,'length','max' => 60),
 
 			// Informações Bancárias
-			array('banco'        ,'length','max' => 80),
 			array('contacorrente','length','max' => 20),
 			array('agencia'      ,'length','max' => 10),
             
 			// Campos Obrigatórios
-			array('nome, cpf, sexo, pispasep, doc_identidade, orgao_identidade, banco, agencia, contacorrente, tipo_vinculo', 'required'),
+			array('nome, cpf, sexo, pispasep, doc_identidade, orgao_identidade, colab_banco_id, agencia, contacorrente, tipo_vinculo', 'required'),
 			array('cpf','required', 'on'=>'formCPF'),
-			array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
-			array('tipo_cadastro, status_cadastro, tipo_vinculo', 'numerical', 'integerOnly' => true),
+			array('pispasep, doc_identidade, colab_banco_id, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
+			array('tipo_cadastro, status_cadastro, colab_banco_id, tipo_vinculo', 'numerical', 'integerOnly' => true),
 		);
 	}
 
@@ -104,9 +102,9 @@ class colaborador extends CActiveRecord {
 			'email'   => 'e-mail',
 			
 			// Informações Bancárias
-			'banco'         => 'Banco',
-			'agencia'       => 'Agência',
-			'contacorrente' => 'Nº da Conta',
+			'colab_banco_id' => 'Banco',
+			'agencia'        => 'Agência',
+			'contacorrente'  => 'Nº da Conta',
 
 			// Informações Cadastrais
 			'tipo_vinculo'    => 'Tipo Vínculo',

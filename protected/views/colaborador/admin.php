@@ -12,7 +12,7 @@
             <th><?php echo $sort->link('nome'); ?></th>
             <th><?php echo $sort->link('idmunicipio'); ?></th>
             <th><?php echo $sort->link('celular'); ?></th>
-            <th><?php echo $sort->link('banco'); ?></th>
+            <th><?php echo $sort->link('colab_banco_id'); ?></th>
             <th><?php echo $sort->link('contacorrente'); ?></th>
             <th><?php echo $sort->link('agencia'); ?></th>
 	        <th>Operações</th>
@@ -23,12 +23,12 @@
     <?php foreach($models as $n=>$model): ?>
         <tr class="<?php echo $n%2 ? 'even' : 'odd'; ?>">
             <td><?php echo CHtml::link  ($model->cpfFormatado, array('show','id'=>$model->idColaborador)); ?></td>
-            <td><?php echo CHtml::encode($model->nome           ); ?></td>	
-            <td><?php echo CHtml::encode($model->municipio->nome); ?></td>	
-            <td><?php echo CHtml::encode($model->celular        ); ?></td>
-            <td><?php echo CHtml::encode($model->banco          ); ?></td>
-            <td><?php echo CHtml::encode($model->contacorrente  ); ?></td>
-            <td><?php echo CHtml::encode($model->agencia        ); ?></td>
+            <td><?php echo CHtml::encode($model->nome             ); ?></td>	
+            <td><?php echo CHtml::encode($model->municipio->nome  ); ?></td>	
+            <td><?php echo CHtml::encode($model->celular          ); ?></td>
+            <td><?php echo CHtml::encode($model->banco->banco_nome); ?></td>
+            <td><?php echo CHtml::encode($model->contacorrente    ); ?></td>
+            <td><?php echo CHtml::encode($model->agencia          ); ?></td>
             <td>
                 <?php echo CHtml::link('Atualizar', array('update', 'id' => $model->idColaborador)); ?>
                 <?php echo CHtml::linkButton('Excluir', array(

@@ -166,10 +166,12 @@
 
     <h2>Informações Bancárias</h2>
 
-    <!-- Nome do Banco -->
+    <!-- Banco -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'banco'); ?>
-        <?php echo CHtml::activeTextField($model,'banco',array('size'=>50,'maxlength'=>100)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_banco_id'); ?>
+        <?php echo CHtml::activeDropDownList($model, 'colab_banco_id', 
+									CHtml::listData(banco::model()->findAll(),'banco_id_pk','banco_nome'),
+									array('empty'=>'Selecione')) ?>
     </div>
     
     <!-- Número da Agência -->

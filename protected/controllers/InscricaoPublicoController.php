@@ -16,7 +16,7 @@ class InscricaoPublicoController extends CController {
 		$form->etapa = $session["etapa"];
 		$form->instituicao = $session["instituicao"];
 		$form->funcao = $session["funcao"];
-		$form->banco = $form->colaborador->banco;
+		$form->colab_banco_id = $form->colaborador->colab_banco_id;
 		$form->agencia = $form->colaborador->agencia;
 		$form->contacorrente = $form->colaborador->contacorrente;
 		$form->pispasep = $form->colaborador->pispasep;	
@@ -187,7 +187,7 @@ class InscricaoPublicoController extends CController {
 				if($inscricao->save()) {
 			
 					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
-					$colaborador->banco = $_POST['FormInscricaoPublico']['banco'];
+					$colaborador->colab_banco_id = $_POST['FormInscricaoPublico']['colab_banco_id'];
 					$colaborador->agencia = $_POST['FormInscricaoPublico']['agencia'];
 					$colaborador->contacorrente = $_POST['FormInscricaoPublico']['contacorrente'];
 					$colaborador->pispasep = $_POST['FormInscricaoPublico']['pispasep'];
@@ -201,6 +201,7 @@ class InscricaoPublicoController extends CController {
 		
 					if ($colaborador->save()) {
 						$form->colaborador->banco = $colaborador->banco;
+						$form->colaborador->colab_banco_id = $colaborador->colab_banco_id;
 						$form->colaborador->agencia = $colaborador->agencia;
 						$form->colaborador->contacorrente = $colaborador->contacorrente;
 						$form->colaborador->pispasep = $colaborador->pispasep;

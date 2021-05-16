@@ -8,7 +8,7 @@ class FormInscricao extends CFormModel {
 	public $etapa=null;	
 	public $instituicao=null;
 	public $funcao=null;
-	public $banco=null;
+	public $colab_banco_id=null;
 	public $agencia=null;
 	public $contacorrente=null;
 	public $pispasep=null;
@@ -43,7 +43,7 @@ class FormInscricao extends CFormModel {
 			array('cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarColaborador'),
 
 			// Define campos obrigatórios no cenário 'inscricao'
-			array('pispasep, doc_identidade, banco, agencia, contacorrente','required', 'on' => 'inscricao'),
+			array('pispasep, doc_identidade, colab_banco_id, agencia, contacorrente','required', 'on' => 'inscricao'),
 
 			// Validação (externa) dos dígitos do PIS, no cenário 'inscricao'
 			array('pispasep', 'ext.validators.PISValidator', 'message' => 'O PIS informado é inválido!','on' => 'inscricao')
@@ -57,7 +57,7 @@ class FormInscricao extends CFormModel {
 			'cpf'            => 'CPF',
 			'pispasep'       => 'PIS | PASEP | NIS | NIT',
 			'doc_identidade' => 'Nº do RG',
-			'banco'          => 'Nome do Banco',
+			'colab_banco_id' => 'Nome do Banco',
 			'agencia'        => 'Nº da Agência',
 			'contacorrente'  => 'Nº da Conta'
 

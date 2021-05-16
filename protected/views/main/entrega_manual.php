@@ -41,7 +41,7 @@
                 <td style="font-size:smaller" align="center"><?php echo $inscricao->funcao->descricao; ?></td>	
                 <td style="font-size:smaller" align="center"><?php echo $inscricao->tipoinscricaoText; ?></td>
                 <td style="font-size:smaller" align="center"><?php echo $inscricao->colaborador->cpf;?>&nbsp;</td>		
-                <td style="font-size:smaller" align="center"><?php echo $inscricao->colaborador->banco;?>&nbsp;</td>		
+                <td style="font-size:smaller" align="center"><?php echo $inscricao->colaborador->banco->banco_nome;?>&nbsp;</td>		
                 <td style="font-size:smaller" align="center"><?php echo $inscricao->colaborador->agencia; ?>&nbsp;</td>
                 <td style="font-size:smaller" align="center"><?php echo $inscricao->colaborador->contacorrente; ?>&nbsp;</td>
                 <td style="font-size:smaller" align="center"><?php echo CHtml::image("images/circulo.gif", "O");?></td>			

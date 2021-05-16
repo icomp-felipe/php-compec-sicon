@@ -87,10 +87,11 @@ class ColaboradorController extends CController
 		{
 
 			$model->data_atualizacao = date('Y-m-d H:i:s',time());
-
 			$model->attributes=$_POST['colaborador'];
+
 			if($model->save())
 				$this->redirect(array('show','id'=>$model->idColaborador,'update'=>true));
+
 		}
 		$this->render('update',array('model'=>$model));
 	}
