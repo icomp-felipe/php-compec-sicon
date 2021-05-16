@@ -12,7 +12,7 @@
 
         </li>
 
-		<li><b>Instituição</b>: <?php echo $form->instituicao->inst_nome; ?>
+		<li><b>Instituição</b>: <?php echo $form->instituicao->nomeComCodigo; ?>
 
             <?php // Só mostra o botão de trocar caso haja mais de uma instituição disponível ?> 
             <?php if ($form->multiplasInstituicoes): ?>

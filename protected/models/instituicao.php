@@ -106,8 +106,8 @@ class instituicao extends CActiveRecord {
 		return $this->model()->findByPk($id);
 	}	
 	
-	public function getNomeSemId() {
-		return $this->inst_nome;
+	public function getNomeComCodigo() {
+		return sprintf("%03d. %s", $this->inst_codigo, $this->inst_nome);
 	}
 	
 }

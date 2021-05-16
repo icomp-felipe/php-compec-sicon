@@ -24,7 +24,7 @@
 
 		<tr>
 			<th class="label">Instituição:</th>
-    		<td><?php echo $form->instituicao->nomeSemId; ?></td>
+    		<td><?php echo $form->instituicao->inst_nome; ?></td>
 		</tr>
 
 		<tr>

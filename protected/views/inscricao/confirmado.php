@@ -29,7 +29,7 @@
 
 		<tr>
 			<th class="label">Instituição:</th>
-			<td><?php echo $form->instituicao->inst_nome; ?></td>
+			<td><?php echo $form->instituicao->nomeComCodigo; ?></td>
 		</tr>
 
 		<tr>

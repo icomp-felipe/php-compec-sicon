@@ -31,8 +31,8 @@
 		<?php endif;?>
 
 		<ul style="color: green;">
-			<?php foreach($instituicoesDirigidas as $n=>$model): ?>
-				<li><?php echo CHtml::encode($model->inst_nome); ?></li>			
+			<?php foreach($instituicoesDirigidas as $n => $model): ?>
+				<li><?php echo CHtml::encode($model->nomeComCodigo); ?></li>			
 			<?php endforeach; ?>
 		</ul>
 
