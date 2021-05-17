@@ -23,23 +23,26 @@ class UserIdentity extends CUserIdentity
 			'admin'=>'admin',
 		);*/
 		
-		$usuario = usuario::model()->findByAttributes(array('usuario' => $this->username));
+		$usuario = usuario::model()->findByAttributes(array('user_login' => $this->username));
 		
 		if($usuario == null)
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
+
 		else {
-			//$command = Yii::app()->db->createCommand("select password('{$this->password}') as senha");
+			
 			$command = Yii::app()->db->createCommand("select password(:senha) as senha");
 			$command->bindValue(":senha", $this->password);
 			$row = $command->queryRow();
 
-			if($row['senha'] !== $usuario->senha_usuario)
-				$this->errorCode=self::ERROR_PASSWORD_INVALID;
-			else
-			{
-				$this->errorCode=self::ERROR_NONE;
-				$session=Yii::app()->getSession();
+			if($row['senha'] !== $usuario->user_senha)
+				$this->errorCode = self::ERROR_PASSWORD_INVALID;
+			
+			else {
+
+				$this->errorCode = self::ERROR_NONE;
+				$session = Yii::app()->getSession();
 				$session["usuario"] = $usuario;
+
 			}
 		}
 		

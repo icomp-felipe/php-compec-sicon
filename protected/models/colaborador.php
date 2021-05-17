@@ -27,7 +27,7 @@ class colaborador extends CActiveRecord {
 			'idescolaridade0' => array(self::BELONGS_TO, 'escolaridade', 'idescolaridade'),
 			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idColaborador'),
 			'instituicoesDirigidas' => array(self::HAS_MANY, 'instituicao', 'inst_coordenador_id'),
-			'usuarios' => array(self::HAS_MANY, 'usuario', 'idColaborador')
+			'usuarios' => array(self::HAS_MANY, 'usuario', 'user_colab_id')
 		);
 	}
 
@@ -142,8 +142,8 @@ class colaborador extends CActiveRecord {
 
 		// Vincula no objeto 'colaborador' qual usuário o criou/atualizou
 		if (isset($usuario)) {
-			$this->idusuario = $usuario->idUsuario;
-			$this->idColaborador_atualizacao = $usuario->idColaborador;
+			$this->idusuario = $usuario->user_id_pk;
+			$this->idColaborador_atualizacao = $usuario->colaborador->idColaborador;
 		}
 
 		return true;

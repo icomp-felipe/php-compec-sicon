@@ -465,7 +465,7 @@ class InscricaoController extends CController
 		else
 		{
 			$condicao_usuario_interno = 'inst_coordenador_id = :idresponsavel and ';	// somente escolas administradas pelo usuário
-			$params=array('idresponsavel'=>$this->usuarioLogado->idColaborador,'idetapa'=>$form->etapa->idetapa);			
+			$params=array('idresponsavel'=>$this->usuarioLogado->user_colab_id, 'idetapa'=>$form->etapa->idetapa);			
 		}	
 	
 		$data = array(
