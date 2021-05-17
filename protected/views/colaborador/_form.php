@@ -58,9 +58,9 @@
 
     <!-- Escolaridade -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'idescolaridade'); ?>
-        <?php echo CHtml::activeDropDownList($model, 'idescolaridade', 
-									CHtml::listData(escolaridade::model()->findAll(),'idescolaridade','descricao'),
+        <?php echo CHtml::activeLabelEx($model,'colab_escolaridade_id'); ?>
+        <?php echo CHtml::activeDropDownList($model, 'colab_escolaridade_id', 
+									CHtml::listData(escolaridade::model()->findAll(),'esco_id_pk','esco_descricao'),
 									array('empty'=>'Selecione')) ?>
     </div>
 

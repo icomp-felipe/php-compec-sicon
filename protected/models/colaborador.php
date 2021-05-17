@@ -24,7 +24,7 @@ class colaborador extends CActiveRecord {
 			'municipio' => array(self::BELONGS_TO, 'municipio', 'idmunicipio'),
 			'banco' => array(self::BELONGS_TO, 'banco', 'colab_banco_id'),
 			'iduf_identidade0' => array(self::BELONGS_TO, 'uf', 'iduf_identidade'),
-			'idescolaridade0' => array(self::BELONGS_TO, 'escolaridade', 'idescolaridade'),
+			'escolaridade' => array(self::BELONGS_TO, 'escolaridade', 'colab_escolaridade_id'),
 			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idColaborador'),
 			'instituicoesDirigidas' => array(self::HAS_MANY, 'instituicao', 'inst_coordenador_id'),
 			'usuarios' => array(self::HAS_MANY, 'usuario', 'user_colab_id'),
@@ -80,15 +80,15 @@ class colaborador extends CActiveRecord {
 		return array(
 
 			// Identificação
-			'idColaborador'    => 'Nº da Ficha',
-			'nome'             => 'Nome',
-			'cpf'              => 'CPF' ,
-			'data_nascimento'  => 'Data de Nascimento',
-			'sexo'             => 'Sexo',
-			'idescolaridade'   => 'Escolaridade',
-			'pispasep'         => 'PIS/PASEP',
-			'doc_identidade'   => 'Nº do RG',
-			'orgao_identidade' => 'Órgão',
+			'idColaborador'         => 'Nº da Ficha',
+			'nome'                  => 'Nome',
+			'cpf'                   => 'CPF' ,
+			'data_nascimento'       => 'Data de Nascimento',
+			'sexo'                  => 'Sexo',
+			'colab_escolaridade_id' => 'Escolaridade',
+			'pispasep'              => 'PIS/PASEP',
+			'doc_identidade'        => 'Nº do RG',
+			'orgao_identidade'      => 'Órgão',
 
 			// Endereço
 			'logradouro'      => 'Rua/Av',	

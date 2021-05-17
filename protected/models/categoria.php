@@ -1,6 +1,6 @@
 <?php
 
-/** Modelagem das instituições bancárias.
+/** Modelagem das categorias de colaborador.
  *  Criada em: 17/05/2021
  *  @author Felipe André - felipeandresouza@hotmail.com
  */

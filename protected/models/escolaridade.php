@@ -1,65 +1,50 @@
 <?php
 
-class Escolaridade extends CActiveRecord
-{
-	/**
-	 * The followings are the available columns in table 'escolaridade':
-	 * @var integer $idescolaridade
-	 * @var string $descricao
-	 * @var integer $nivel
-	 */
-
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return CActiveRecord the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
+/** Modelagem dos níveis de escolaridade do colaborador.
+ *  Criada em: 17/05/2021
+ *  @author Felipe André - felipeandresouza@hotmail.com
+ */
+class escolaridade extends CActiveRecord {
+	
+	/** @return CActiveRecord the static model of the specified AR class. */
+	public static function model($className=__CLASS__) {
 		return parent::model($className);
 	}
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
+	/** @return string the associated database table name */
+	public function tableName()	{
 		return 'escolaridade';
 	}
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
+	/** @return array validation rules for model attributes. */
+	public function rules()	{
 		return array(
-			array('descricao','length','max'=>40),
-			array('nivel', 'required'),
-			array('nivel', 'numerical', 'integerOnly'=>true),
+
+			array('esco_descricao','length','max' => 40),
+			array('esco_nivel'    ,'required'),
+			array('esco_nivel'    ,'numerical', 'integerOnly' => true)
+
 		);
 	}
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
+	/** @return array relational rules. */
+	public function relations()	{
+		
 		return array(
-			'colaboradors' => array(self::HAS_MANY, 'colaborador', 'idescolaridade'),
-			'funcaos' => array(self::HAS_MANY, 'funcao', 'idEscolaridade'),
+
+			'colaboradores' => array(self::HAS_MANY, 'colaborador', 'colab_escolaridade_id')
+
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
+	/** @return array customized attribute labels (name => label) */
+	public function attributeLabels() {
 		return array(
-			'idescolaridade' => 'Idescolaridade',
-			'descricao' => 'Descricao',
-			'nivel' => 'Nivel',
+
+			'esco_id_pk'     => 'ID',
+			'esco_descricao' => 'Descrição',
+			'esco_nivel'     => 'Nivel'
+
 		);
 	}
 }
