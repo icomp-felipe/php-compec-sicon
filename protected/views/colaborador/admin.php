@@ -22,13 +22,13 @@
     <tbody>
     <?php foreach($models as $n=>$model): ?>
         <tr class="<?php echo $n%2 ? 'even' : 'odd'; ?>">
-            <td><?php echo CHtml::encode($model->cpfFormatado     ); ?></td>
-            <td><?php echo CHtml::encode($model->nome             ); ?></td>	
-            <td><?php echo CHtml::encode($model->municipio->nome  ); ?></td>	
-            <td><?php echo CHtml::encode($model->celular          ); ?></td>
-            <td><?php echo CHtml::encode($model->banco->banco_nome); ?></td>
-            <td><?php echo CHtml::encode($model->contacorrente    ); ?></td>
-            <td><?php echo CHtml::encode($model->agencia          ); ?></td>
+            <td><?php echo CHtml::encode($model->cpfFormatado        ); ?></td>
+            <td><?php echo CHtml::encode($model->nome                ); ?></td>
+            <td><?php echo CHtml::encode($model->municipio->muni_nome); ?></td>
+            <td><?php echo CHtml::encode($model->celular             ); ?></td>
+            <td><?php echo CHtml::encode($model->banco->banco_nome   ); ?></td>
+            <td><?php echo CHtml::encode($model->contacorrente       ); ?></td>
+            <td><?php echo CHtml::encode($model->agencia             ); ?></td>
             <td>
                 <?php echo CHtml::link('Atualizar', array('update', 'id' => $model->idColaborador)); ?>
                 <?php echo CHtml::linkButton('Excluir', array(

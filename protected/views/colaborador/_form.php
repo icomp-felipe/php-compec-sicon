@@ -115,7 +115,7 @@
     <div class="simple">
         <?php echo CHtml::activeLabelEx($model,'idmunicipio'); ?>
         <?php echo CHtml::activeDropDownList($model, 'idmunicipio', 
-									CHtml::listData(municipio::model()->findAll(),'idmunicipio','nome'),
+									CHtml::listData(municipio::model()->findAll(),'muni_id_pk','muni_nome'),
 									array('empty'=>'Selecione')) ?>
     </div>
 

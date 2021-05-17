@@ -78,7 +78,7 @@ class instituicao extends CActiveRecord {
 		return $this->inst_logradouro . ', ' .
 					(isset($this->numero) ? $this->numero : 's/n') . ', ' .
 					$this->inst_bairro . ', ' .
-					$this->inst_municipio->nome . ' - ' .
+					$this->inst_municipio->muni_nome . ' - ' .
 					$this->inst_uf->uf_sigla;
 	}
 

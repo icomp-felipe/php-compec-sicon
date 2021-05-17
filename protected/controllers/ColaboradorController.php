@@ -142,7 +142,7 @@ class ColaboradorController extends CController
 		$usuario = $session["usuario"];
 
 		$condition = 'idusuario = :idusuario';
-		$params = array(':idusuario'=>$usuario->idUsuario);
+		$params = array(':idusuario' => $usuario->user_id_pk);
 
 		$criteria=new CDbCriteria(array('condition'=>$condition, 'params'=>$params));
 		
