@@ -20,8 +20,8 @@ class uf extends CActiveRecord {
 	public function rules()	{
 		return array(
 
-			array('uf_sigla'    ,'length','max' =>  2),
-			array('uf_descricao','length','max' => 20)
+			array('uf_sigla','length','max' =>  2),
+			array('uf_nome' ,'length','max' => 20)
 
 		);
 	}
@@ -40,9 +40,9 @@ class uf extends CActiveRecord {
 	public function attributeLabels() {
 		return array(
 
-			'uf_id_pk'     => 'ID',
-			'uf_sigla'     => 'Sigla',
-			'uf_descricao' => 'Descrição'
+			'uf_id_pk' => 'ID',
+			'uf_sigla' => 'Sigla',
+			'uf_nome'  => 'Nome'
 
 		);
 	}
