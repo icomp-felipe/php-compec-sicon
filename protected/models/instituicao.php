@@ -79,7 +79,7 @@ class instituicao extends CActiveRecord {
 					(isset($this->numero) ? $this->numero : 's/n') . ', ' .
 					$this->inst_bairro . ', ' .
 					$this->inst_municipio->nome . ' - ' .
-					$this->inst_uf->sigla;
+					$this->inst_uf->uf_sigla;
 	}
 
 	public function getEtapasEmQueParticipou($id=null)
