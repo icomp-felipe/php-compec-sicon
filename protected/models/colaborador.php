@@ -27,7 +27,8 @@ class colaborador extends CActiveRecord {
 			'idescolaridade0' => array(self::BELONGS_TO, 'escolaridade', 'idescolaridade'),
 			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idColaborador'),
 			'instituicoesDirigidas' => array(self::HAS_MANY, 'instituicao', 'inst_coordenador_id'),
-			'usuarios' => array(self::HAS_MANY, 'usuario', 'user_colab_id')
+			'usuarios' => array(self::HAS_MANY, 'usuario', 'user_colab_id'),
+			'categoria' => array(self::BELONGS_TO, 'categoria', 'colab_categoria_id')
 		);
 	}
 
@@ -66,10 +67,10 @@ class colaborador extends CActiveRecord {
 			array('agencia'      ,'length','max' => 10),
             
 			// Campos Obrigatórios
-			array('nome, cpf, sexo, pispasep, doc_identidade, orgao_identidade, colab_banco_id, agencia, contacorrente, tipo_vinculo', 'required'),
+			array('nome, cpf, sexo, pispasep, doc_identidade, orgao_identidade, colab_banco_id, agencia, contacorrente, colab_categoria_id', 'required'),
 			array('cpf','required', 'on'=>'formCPF'),
 			array('pispasep, doc_identidade, colab_banco_id, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
-			array('tipo_cadastro, status_cadastro, colab_banco_id, tipo_vinculo', 'numerical', 'integerOnly' => true),
+			array('tipo_cadastro, status_cadastro, colab_banco_id, colab_categoria_id', 'numerical', 'integerOnly' => true),
 		);
 	}
 
@@ -107,9 +108,9 @@ class colaborador extends CActiveRecord {
 			'contacorrente'  => 'Nº da Conta',
 
 			// Informações Cadastrais
-			'tipo_vinculo'    => 'Tipo Vínculo',
-			'status_cadastro' => 'Status Cadastro',
-			'observacoes'     => 'Observações'
+			'colab_categoria_id' => 'Categoria',
+			'status_cadastro'    => 'Status Cadastro',
+			'observacoes'        => 'Observações'
 			
 		);
 	}

@@ -190,10 +190,10 @@
 
     <!-- Tipo de Vínculo com a UFAM -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'tipo_vinculo'); ?>
-        <?php echo CHtml::activeDropDownList($model, 'tipo_vinculo', 
-									CHtml::listData(tipovinculo::model()->findAll(),'idtipovinculo','nome'),
-									array('empty'=>'Selecione')) ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_categoria_id'); ?>
+        <?php echo CHtml::activeDropDownList($model, 'colab_categoria_id', 
+									CHtml::listData(categoria::model()->findAll(),'categ_id_pk','categ_nome'),
+									array('empty' => 'Selecione')) ?>
     </div>
 
     <!-- Status do Cadastro -->
