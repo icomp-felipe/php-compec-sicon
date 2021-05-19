@@ -15,6 +15,7 @@ class FormInscricaoPublico extends CFormModel {
 	public $doc_identidade=null;
 	public $celular=null;
 	public $email=null;
+	public $ciente=false;
 	
 	public $errorCode = 0;
 
@@ -42,7 +43,10 @@ class FormInscricaoPublico extends CFormModel {
 			array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarConcurso'),
 
 			// Define campos obrigatórios no cenário 'inscricaoPublico'
-			array('celular, email, pispasep, doc_identidade, colab_banco_id, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
+			array('celular, email, pispasep, doc_identidade, colab_banco_id, agencia, contacorrente, ciente','required', 'on'=>'inscricaoPublico'),
+
+			// Validação (interna) de ciência de procedimentos, no cenário 'inscricaoPublico'
+			array('ciente', 'validarCiencia', 'on' => 'inscricaoPublico'),
 
 			// Validação (externa) dos dígitos do PIS, no cenário 'inscricaoPublico'
 			array('pispasep', 'ext.validators.PISValidator','message'=>'O PIS informado é inválido!','on'=>'inscricaoPublico')
@@ -92,6 +96,18 @@ class FormInscricaoPublico extends CFormModel {
 			}
 
 		}
+	}
+
+	/** Verifica se o checkbox de ciência foi marcado. */
+	public function validarCiencia($attribute, $params) {
+		
+		if(!$this->hasErrors()) {
+
+			if ($this->ciente == false)
+				$this->addError('ciente', 'Por favor, confirme ciência dos dados e procedimentos de biossegurança');
+
+		}
+
 	}
 
 	/** Busca o cadastro do colaborador identificado por 'cpf' e verifica se este existe e está ativo. */

@@ -95,8 +95,17 @@
 
 	<br>
 
+	<p><?php echo CHtml::activeCheckBox($form, 'ciente'); ?> Declaro que meus dados estão corretos e, ainda, que:
+		<ul>
+			<li>Não pertenço ao grupo de risco;</li>
+			<li>Se pertenço, estou vacinado com as duas doses contra a SARS-CoV-2 (COVID-19).</li>
+		</ul>
+	</p>
+
+	<br>
+
 	<div class="action">
-		<?php echo CHtml::submitButton('Inscrever',array('submit'=>array('confirmar'))); ?>
+		<?php echo CHtml::submitButton('Inscrever',array('submit' => array('confirmar', 'true'))); ?>
 	</div>
 
 	<?php echo CHtml::endForm(); ?>
