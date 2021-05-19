@@ -3,7 +3,10 @@
 <?php if (Yii::app()->user->isGuest):?>
 
 	<h1>Bem-vindo(a)!</h1>
-	<h3>Neste site você poderá se inscrever nos concursos em aberto.</h3>
+	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
+	<h2>Consulte abaixo o edital de chamada:</h2>
+
+	<a href="/inscricao/arquivo/pse/2020/chamada-publica-pse2020.pdf">Chamada Pública - PSE 2020</a>
 	
 <?php // Homepage de usuário logado ?>
 
@@ -20,23 +23,36 @@
 	<p></p>
 
 	<h3>Neste site você pode identificar os concursos abertos e inscrever colaboradores nas funções disponibilizadas.
-	    Basta usar os links na barra do menu superior.<br><br>
+	    Basta usar os links na barra do menu superior.</h3>
 	
 	<?php if (isset($instituicoesDirigidas)): ?>
 
 		<?php if (count($instituicoesDirigidas) == 1): ?>
-			Abaixo está a instituição sob sua responsabilidade:
+			
+			<h2>Consulte abaixo o edital de chamada:</h2>
+
+			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
+				<a href="/inscricao/arquivo/pse/2020/nota-gestores-capital-pse2020.pdf">Nota aos Coordenadores (Manaus) - PSE 2020</a>
+			<?php else: ?>
+				<a href="/inscricao/arquivo/pse/2020/nota-gestores-interior-pse2020.pdf">Nota aos Coordenadores (Interior) - PSE 2020</a>
+			<?php endif; ?>
+
+			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>
+
 		<?php else: ?>
-			Você pode gerenciar informações das seguintes instituições:
+
+			<h2>Você pode gerenciar informações das seguintes instituições:</h2>
+
 		<?php endif;?>
 
-		<ul style="color: green;">
-			<?php foreach($instituicoesDirigidas as $n => $model): ?>
-				<li><?php echo CHtml::encode($model->nomeComCodigo); ?></li>			
-			<?php endforeach; ?>
-		</ul>
+		<h3>
+			<ul style="color: green;">
+				<?php foreach($instituicoesDirigidas as $n => $model): ?>
+					<li><?php echo CHtml::encode($model->nomeComCodigo); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		</h3>
 
 	<?php endif; ?>
 
-	</h3>
 <?php endif;?>
