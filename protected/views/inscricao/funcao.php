@@ -4,7 +4,7 @@
 
 	<ul>
 
-		<li><b>Concurso</b>: <?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)); ?>
+		<li><b>Concurso</b>: <?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->concurso->conc_data_realizacao)); ?>
 
             <?php // Só mostra o botão de trocar caso haja mais de um concurso disponível ?>
             <?php if ($form->multiplosConcursos): ?>

@@ -24,18 +24,8 @@
                 </td>
 
                 <td align="center">
-                    <?php foreach($model->etapas as $e=>$etapa): ?>	
-                        <?php if($etapa->status_etapa != 2): //a realizar (0) | em andamento (1) | finalizada (2)?>
-                            <div>
-                                <?php echo CHtml::link(CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$etapa->data_realizacao)),
-                                        array('selecionarConcursoEtapa','idetapa'=>$etapa->idetapa)); ?>			
-                            </div>			
-                        <?php else: ?>
-                            <div>
-                                <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$etapa->data_realizacao)); ?>			
-                            </div>
-                        <?php endif;?>
-                    <?php endforeach; ?>
+                    <?php echo CHtml::link(CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy', $model->conc_data_realizacao)),
+                                            array('selecionarConcursoEtapa','idconcurso' => $model->idconcurso)); ?>
                 </td>
 
             </tr>

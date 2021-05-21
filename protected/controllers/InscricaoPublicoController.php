@@ -13,7 +13,6 @@ class InscricaoPublicoController extends CController {
 		$form->cpf = $session["cpf"];
 		$form->colaborador = $session["colaborador"];
 		$form->concurso = $session["concurso"];
-		$form->etapa = $session["etapa"];
 		$form->instituicao = $session["instituicao"];
 		$form->funcao = $session["funcao"];
 		$form->colab_banco_id = $form->colaborador->colab_banco_id;
@@ -33,7 +32,6 @@ class InscricaoPublicoController extends CController {
 		$session["cpf"] = $form->cpf;
 		$session["colaborador"] = $form->colaborador;
 		$session["concurso"] = $form->concurso;
-		$session["etapa"] = $form->etapa;
 		$session["instituicao"] = $form->instituicao;
 		$session["funcao"] = $form->funcao;
 
@@ -87,10 +85,10 @@ class InscricaoPublicoController extends CController {
 			return;	
 		}
 		
-		if(isset($_GET['idetapa']))
+		if(isset($_GET['idconcurso']))
 		{
-			$form->etapa = $this->loadEtapa($_GET['idetapa']);
-			$form->concurso = $form->etapa->concurso;			
+			
+			$form->concurso = $this->loadConcurso($_GET['idconcurso']);		
 
 			if($form->validate("selecionarConcurso"))
 			{						
@@ -118,14 +116,14 @@ class InscricaoPublicoController extends CController {
 		//recupera dados da sessão e os dados postados
 		$form = $this->getSessionForm();
 		
-		if(!isset($form,$form->concurso,$form->etapa,$form->colaborador))
+		if(!isset($form,$form->concurso,$form->colaborador))
 		{
 			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
 			return;	
 		}
 		
 		// consulta instituições disponíveis no processo
-		$models = $this->getInstituicoesDisponiveis($form->etapa->idetapa);	
+		$models = $this->getInstituicoesDisponiveis($form->concurso->idconcurso);	
 
 		if (count($models) > 0) // há vagas
 			// exibe a página de seleção de instituições
@@ -175,14 +173,13 @@ class InscricaoPublicoController extends CController {
 				$inscricao = new inscricao();
 
 				$inscricao->idinstituicaoopcao1 = $form->instituicao->inst_id_pk;
-				$inscricao->idconcurso 			= $form->etapa->idconcurso;
+				$inscricao->idconcurso 			= $form->concurso->idconcurso;
 				$inscricao->idColaborador		= $form->colaborador->idColaborador;
 				$inscricao->selecionado			= 'W';
 				$inscricao->tipoinscricao		= 1;
 				$inscricao->candidatociente		= 'W';
 				$inscricao->idFuncao			= 1;
 				$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
-				$inscricao->idetapa 			= $form->etapa->idetapa;			
 		
 				if($inscricao->save()) {
 			
@@ -238,10 +235,10 @@ class InscricaoPublicoController extends CController {
 	}		
 	
 	
-	public function loadetapa($id=null)
+	public function loadConcurso($id=null)
 	{
 		if($id!==null || isset($_GET['id']))
-			return etapa::model()->findbyPk($id!==null ? $id : $_GET['id']);
+			return concurso::model()->findbyPk($id!==null ? $id : $_GET['id']);
 
 		return null;
 	}
@@ -281,22 +278,22 @@ class InscricaoPublicoController extends CController {
 		return concurso::model()->findAll($criteria);
 	}
 	
-	public function getInstituicoesDisponiveis($idetapa)
+	public function getInstituicoesDisponiveis($idconcurso)
 	{
 		$data = array(
-					'order'=>'substr(instituicao.inst_nome,5)',
+					'order'=>'inst_nome',
 					'condition'=>' inst_id_pk in 
 										(select idinstituicao from config_concurso cc1
-												where idetapa  = :idetapa 
+												where mapa_concurso_id  = :idconcurso 
 												  and idfuncao = 1 /*fiscal*/
 												  and vagasofertadasnormal > (select count(*) 
 												  								from inscricao i1
-																			   where cc1.idetapa  = i1.idetapa
+																			   where cc1.mapa_concurso_id  = i1.idconcurso
 																				 and cc1.idfuncao = i1.idfuncao
 																				 and cc1.idinstituicao =
 																				     i1.idinstituicaoopcao1
 																				 and tipoinscricao = 1 /*internet*/))',
-					'params'=>array('idetapa' => $idetapa),
+					'params'=>array('idconcurso' => $idconcurso),
 				 );
 
 		$criteria=new CDbCriteria($data);

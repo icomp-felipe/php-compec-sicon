@@ -21,7 +21,7 @@ class inscritos extends CActiveRecord {
 		return array(
 			'idinscricao' => array(self::BELONGS_TO, 'inscricao', 'idinscricao'),
 			'idinstituicao' => array(self::BELONGS_TO, 'instituicao', 'idinstituicao'),
-			'idetapa' => array(self::BELONGS_TO, 'etapa', 'idetapa'),
+			'concurso' => array(self::BELONGS_TO, 'concurso', 'idconcurso'),
             'idColaborador' => array(self::BELONGS_TO, 'colaborador', 'idColaborador')
 		);
 	}
@@ -30,7 +30,7 @@ class inscritos extends CActiveRecord {
 	public function rules()	{
 
 		return array(
-			array('idColaborador, idinscricao, idinstituicao, idetapa', 'numerical', 'integerOnly' => true)
+			array('idColaborador, idinscricao, idinstituicao, idconcurso', 'numerical', 'integerOnly' => true)
 		);
 	}
 

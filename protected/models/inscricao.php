@@ -55,7 +55,6 @@ class inscricao extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'etapas' => array(self::MANY_MANY, 'etapa', 'etapa_faltas(idinscricao, idetapa)'),
 			'colaborador' => array(self::BELONGS_TO, 'colaborador', 'idColaborador'),
 			'concurso' => array(self::BELONGS_TO, 'concurso', 'idconcurso'),
 			'idinstituicaoopcao10' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaoopcao1'),
@@ -86,16 +85,16 @@ class inscricao extends CActiveRecord
 	}
 	
 	
-	public static function verificarDuplicidadeInscricao($idcolaborador, $idetapa)
+	public static function verificarDuplicidadeInscricao($idcolaborador, $idconcurso)
 	{	
-		$inscricao = inscricao::model()->findByAttributes(array('idColaborador' => $idcolaborador,'idetapa'=>$idetapa));
+		$inscricao = inscricao::model()->findByAttributes(array('idColaborador' => $idcolaborador,'idconcurso'=>$idconcurso));
 		
 		return $inscricao;
 	}	
 	
-	public static function load($idcolaborador, $idetapa)
+	public static function load($idcolaborador, $idconcurso)
 	{	
-		$inscricao = inscricao::model()->findByAttributes(array('idColaborador' => $idcolaborador,'idetapa'=>$idetapa));
+		$inscricao = inscricao::model()->findByAttributes(array('idColaborador' => $idcolaborador,'idconcurso'=>$idconcurso));
 		
 		return $inscricao;
 	}		
@@ -109,10 +108,10 @@ class inscricao extends CActiveRecord
 		return $options[$this->tipoinscricao];
 	}
 
-	public static function getInscricoes($etapa, $instituicao) {
+	public static function getInscricoes($concurso, $instituicao) {
 
 		return inscricao::model()->findAllByAttributes(
-			array('idFuncao' => array(1,2,3,5), 'tipoinscricao' => 2, 'idetapa' => $etapa->idetapa, 'idinstituicaoopcao1' => $instituicao->idinstituicao));
+			array('idFuncao' => array(1,2,3,5), 'tipoinscricao' => 2, 'idconcurso' => $concurso->idconcurso, 'idinstituicaoopcao1' => $instituicao->idinstituicao));
 
 	}
 

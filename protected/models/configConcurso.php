@@ -54,7 +54,7 @@ class configConcurso extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'idinstituicao0' => array(self::BELONGS_TO, 'instituicao', 'idinstituicao'),
-			'etapa' => array(self::BELONGS_TO, 'etapa', 'idetapa'),
+			'concurso' => array(self::BELONGS_TO, 'concurso', 'mapa_concurso_id'),
 			'idFuncao0' => array(self::BELONGS_TO, 'funcao', 'idFuncao'),
 		);
 	}
@@ -66,7 +66,7 @@ class configConcurso extends CActiveRecord
 	{
 		return array(
 			'idFuncao' => 'Id Funcao',
-			'idetapa' => 'Idetapa',
+			'mapa_concurso_id' => 'Concurso',
 			'idinstituicao' => 'Idinstituicao',
 			'vagasofertadasnormal' => 'Vagasofertadasnormal',
 			'vagasocupadasnormal' => 'Vagasocupadasnormal',

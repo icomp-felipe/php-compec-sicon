@@ -58,9 +58,9 @@ class concurso extends CActiveRecord
 			'instituicaorealizadora' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaorealizadora'),
 			'descricao_emails' => array(self::HAS_MANY, 'descricaoEmail', 'idconcurso'),
 			'especificamanuals' => array(self::HAS_MANY, 'especificamanual', 'idconcurso'),
-			'etapas' => array(self::HAS_MANY, 'etapa', 'idconcurso'),
 			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idconcurso'),
 			'vinculopreferencials' => array(self::HAS_MANY, 'vinculopreferencial', 'idconcurso'),
+			'mapas' => array(self::HAS_MANY, 'config_concurso', 'mapa_concurso_id')
 		);
 	}
 

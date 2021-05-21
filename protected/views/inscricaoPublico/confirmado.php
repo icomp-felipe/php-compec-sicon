@@ -13,7 +13,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº de Inscrição:</th>
-			<td><?php echo inscricao::load($form->colaborador->idColaborador, $form->etapa->idetapa)->idinscricao; ?></td>
+			<td><?php echo inscricao::load($form->colaborador->idColaborador, $form->concurso->idconcurso)->idinscricao; ?></td>
 		</tr>
 
 		<tr>
@@ -28,7 +28,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'concurso'); ?>:</th>
-			<td><?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->etapa->data_realizacao)); ?></td>
+			<td><?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->concurso->conc_data_realizacao)); ?></td>
 		</tr>
 
 		<tr>

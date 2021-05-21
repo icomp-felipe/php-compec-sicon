@@ -16,7 +16,6 @@ class InscricaoController extends CController
 		$form->cpf = $session["cpf_inst"];
 		$form->colaborador = $session["colaborador_inst"];
 		$form->concurso = $session["concurso_inst"];
-		$form->etapa = $session["etapa_inst"];
 		$form->instituicao = $session["instituicao_inst"];
 		$form->funcao = $session["funcao_inst"];
 		$form->inscricao = $session["inscricao_inst"];
@@ -44,7 +43,6 @@ class InscricaoController extends CController
 		$session["cpf_inst"] = $form->cpf;
 		$session["colaborador_inst"] = $form->colaborador;
 		$session["concurso_inst"] = $form->concurso;
-		$session["etapa_inst"] = $form->etapa;
 		$session["instituicao_inst"] = $form->instituicao;
 		$session["funcao_inst"] = $form->funcao;
 		$session["inscricao_inst"] = $form->inscricao;
@@ -85,22 +83,27 @@ class InscricaoController extends CController
 	
 		$form = new FormInscricao();
 
-		if (isset($_GET['idetapa']))
+
+		if (isset($_GET['idconcurso']))
 		{
 			$form->multiplosConcursos = true;
-			$form->etapa = $this->loadEtapa($_GET['idetapa']);
-			$form->concurso = $form->etapa->concurso;	
+			//$form->etapa = $this->loadEtapa($_GET['idetapa']);
+			//$form->concurso = $form->etapa->concurso;
+
+			$form->concurso = $this->loadConcurso($_GET['idconcurso']);
+
 			$this->setSessionForm($form);
 			$this->actionSelecionarInstituicao();						
 		}
 		else
 		{
+			
 			$models = $this->getConcursosEmAndamento();
+
 			if(count($models)) {
 
 				if (count($models) == 1) {
 
-					$form->etapa    = $models[0]->etapas[0];
 					$form->concurso = $models[0];
 
 					$this->setSessionForm($form);
@@ -133,7 +136,7 @@ class InscricaoController extends CController
 		}
 		else
 		{
-			if(!isset($form,$form->concurso,$form->etapa))
+			if(!isset($form,$form->concurso))
 			{
 				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
 				return;	
@@ -172,11 +175,11 @@ class InscricaoController extends CController
 
 		$form = $this->getSessionForm();
 
-		$etapa = $form->etapa;
+		$concurso = $form->concurso;
 		$instituicao = $form->instituicao;
 
-		$condition = 'idetapa = :idetapa and idinstituicao = :idinstituicao';
-		$params = array(':idetapa' => $etapa->idetapa, ':idinstituicao' => $instituicao->inst_id_pk);
+		$condition = 'idconcurso = :idconcurso and idinstituicao = :idinstituicao';
+		$params = array(':idconcurso' => $concurso->idconcurso, ':idinstituicao' => $instituicao->inst_id_pk);
 
 		$criteria = new CDbCriteria(array('condition' => $condition, 'params' => $params));
 
@@ -219,7 +222,7 @@ class InscricaoController extends CController
 		}
 		else
 		{		
-			if(!isset($form,$form->concurso,$form->etapa, $form->instituicao))
+			if(!isset($form,$form->concurso,$form->instituicao))
 			{
 				$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
 				return;	
@@ -232,7 +235,7 @@ class InscricaoController extends CController
 			}
 			
 			// consulta funções disponíveis no processo
-			$models = $this->getFuncoesDisponiveis($form->etapa->idetapa, $form->instituicao->inst_id_pk);
+			$models = $this->getFuncoesDisponiveis($form->concurso->idconcurso, $form->instituicao->inst_id_pk);
 	
 			if (count($models) > 0) // há vagas
 				// exibe a página de seleção de instituições
@@ -252,7 +255,7 @@ class InscricaoController extends CController
 	
 		$form = $this->getSessionForm();
 	
-		if(!isset($form,$form->concurso,$form->etapa, $form->instituicao))
+		if(!isset($form,$form->concurso, $form->instituicao))
 		{
 			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
 				return;	
@@ -313,7 +316,7 @@ class InscricaoController extends CController
 	
 		$form = $this->getSessionForm();	
 
-		if(!isset($form,$form->concurso,$form->etapa, $form->instituicao,$form->colaborador))
+		if(!isset($form,$form->concurso, $form->instituicao,$form->colaborador))
 		{
 			$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição de colaboradores, por favor reinicie o processo!'));
 				return;	
@@ -331,7 +334,7 @@ class InscricaoController extends CController
 		$form = $this->getSessionForm();
 		
 		// consulta se há vaga disponíveis no processo, na instituicao e na funcao selecionada
-		$models = $this->getVagasDisponiveis($form->etapa->idetapa, $form->instituicao->inst_id_pk, $form->funcao->idFuncao);
+		$models = $this->getVagasDisponiveis($form->concurso->idconcurso, $form->instituicao->inst_id_pk, $form->funcao->idFuncao);
 		
 		if (!count($models) > 0) // há vagas
 		{
@@ -348,14 +351,13 @@ class InscricaoController extends CController
 				$inscricao = isset($form->inscricao) ? $form->inscricao : new inscricao();
 
 				$inscricao->idinstituicaoopcao1 = $form->instituicao->inst_id_pk;
-				$inscricao->idconcurso 			= $form->etapa->idconcurso;
+				$inscricao->idconcurso 			= $form->concurso->idconcurso;
 				$inscricao->idColaborador		= $form->colaborador->idColaborador;
 				$inscricao->selecionado			= 'W';
 				$inscricao->tipoinscricao		= 2;
 				$inscricao->candidatociente		= 'W';
 				$inscricao->idFuncao			= $form->funcao->idFuncao;
 				$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
-				$inscricao->idetapa 			= $form->etapa->idetapa;
 
 				if($inscricao->save()) {
 				
@@ -406,13 +408,15 @@ class InscricaoController extends CController
 	}		
 	
 	
-	public function loadetapa($id=null)
+	public function loadConcurso($id=null)
 	{
 		if($id!==null || isset($_GET['id']))
-			return etapa::model()->findbyPk($id!==null ? $id : $_GET['id']);
+			return concurso::model()->findbyPk($id!==null ? $id : $_GET['id']);
 
 		return null;
 	}
+
+	
 	public function loadinstituicao($id=null)
 	{
 		if($id!==null || isset($_GET['id']))
@@ -460,12 +464,12 @@ class InscricaoController extends CController
 		if(UserIdentity::isUsuarioInterno() && $form->concurso->emteste==1) //se for usuário interno da comvest e o concurso estiver em teste
 		{
 			$condicao_usuario_interno = '';	// pode inscrever em qualquer escola
-			$params=array('idetapa'=>$form->etapa->idetapa);	
+			$params=array('idconcurso'=>$form->concurso->idconcurso);	
 		}
 		else
 		{
 			$condicao_usuario_interno = 'inst_coordenador_id = :idresponsavel and ';	// somente escolas administradas pelo usuário
-			$params=array('idresponsavel'=>$this->usuarioLogado->user_colab_id, 'idetapa'=>$form->etapa->idetapa);			
+			$params=array('idresponsavel'=>$this->usuarioLogado->user_colab_id, 'idconcurso'=>$form->concurso->idconcurso);			
 		}	
 	
 		$data = array(
@@ -473,10 +477,10 @@ class InscricaoController extends CController
 					'condition'=>' '.$condicao_usuario_interno.
 								   'inst_id_pk in 
 										(select idinstituicao from config_concurso cc1
-												where idetapa  = :idetapa 
+												where mapa_concurso_id  = :idconcurso 
 												  and vagasofertadasadicional > (select count(*) 
 												  								from inscricao i1
-																			   where cc1.idetapa  = i1.idetapa
+																			   where cc1.mapa_concurso_id  = i1.idconcurso
 																				 and cc1.idfuncao = i1.idfuncao
 																				 and cc1.idinstituicao =
 																				     i1.idinstituicaoopcao1
@@ -489,23 +493,22 @@ class InscricaoController extends CController
 		return instituicao::model()->findAll($criteria);
 	}
 	
-	public function getFuncoesDisponiveis($idetapa, $idinstituicao)
+	public function getFuncoesDisponiveis($mapa_concurso_id, $idinstituicao)
 	{
 		$data = array(
 					'order'=>'nome',					
 					'condition'=>' idfuncao in (1,2,3,5) and idfuncao in (select idfuncao 
 													from config_concurso cc1 
-													where idetapa = :idetapa
+													where mapa_concurso_id = :mapa_concurso_id
 													  and idinstituicao = :idinstituicao
 													  and vagasofertadasadicional > 
 													  			(select count(*) 
 												  						from inscricao i1
-																		where cc1.idetapa  = i1.idetapa
+																		where cc1.mapa_concurso_id  = i1.idconcurso
 																		  and cc1.idfuncao = i1.idfuncao
 																		  and cc1.idinstituicao = i1.idinstituicaoopcao1
-																		  and cc1.idinstituicao = i1.idinstituicaoopcao1
 																		  and tipoinscricao = 2 /*instituic.*/))',
-					'params'=>array('idetapa'=>$idetapa,'idinstituicao'=>$idinstituicao),					
+					'params'=>array('mapa_concurso_id'=>$mapa_concurso_id,'idinstituicao'=>$idinstituicao),					
 				 );
 
 		$criteria=new CDbCriteria($data);
@@ -513,24 +516,23 @@ class InscricaoController extends CController
 		return funcao::model()->findAll($criteria);
 	}
 	
-	public function getVagasDisponiveis($idetapa, $idinstituicao, $idfuncao)
+	public function getVagasDisponiveis($mapa_concurso_id, $idinstituicao, $idfuncao)
 	{
 		$data = array(
 					'order'=>'nome',					
 					'condition'=>' idfuncao in (select idfuncao 
 													from config_concurso cc1 
-													where idetapa = :idetapa
+													where mapa_concurso_id = :mapa_concurso_id
 													  and idinstituicao = :idinstituicao
 													  and idfuncao = :idfuncao
 													  and vagasofertadasadicional > 
 													  			(select count(*) 
 												  						from inscricao i1
-																		where cc1.idetapa  = i1.idetapa
+																		where cc1.mapa_concurso_id  = i1.idconcurso
 																		  and cc1.idfuncao = i1.idfuncao
 																		  and cc1.idinstituicao = i1.idinstituicaoopcao1
-																		  and cc1.idinstituicao = i1.idinstituicaoopcao1
 																		  and tipoinscricao = 2 /*instituic.*/))',
-					'params'=>array('idetapa'=>$idetapa,'idinstituicao'=>$idinstituicao,'idfuncao'=>$idfuncao),					
+					'params'=>array('mapa_concurso_id'=>$mapa_concurso_id,'idinstituicao'=>$idinstituicao,'idfuncao'=>$idfuncao),					
 				 );
 
 		$criteria=new CDbCriteria($data);

@@ -5,7 +5,6 @@ class FormInscricaoPublico extends CFormModel {
 	public $cpf;
 	public $colaborador=null;
 	public $concurso=null;
-	public $etapa=null;	
 	public $instituicao=null;
 	public $funcao=null;
 	public $colab_banco_id=null;
@@ -136,7 +135,7 @@ class FormInscricaoPublico extends CFormModel {
 		if(!$this->hasErrors()) {
 			
 			// Recupera a inscrição do colaborador no concurso selecionado
-			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->idColaborador, $this->etapa->idetapa);
+			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->idColaborador, $this->concurso->idconcurso);
 			
 			// Se existe inscrição, um erro é gerado
 			if ($inscricao != null)
