@@ -54,4 +54,27 @@ class inscritos extends CActiveRecord {
 		return (strlen($this->cpf) == 11) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($this->cpf)) : $this->cpf;
 	}
 
+	// Retorna o nome do colaborador com apenas a primeira letra maiúscula
+	public function getNomeProprio() {
+
+		if ($this->nome == null)
+			return null;
+		
+		$string = mb_strtolower(trim(preg_replace("/\s+/", " ", $this->nome)));
+		$palavras = explode(" ", $string);
+
+		$t = count($palavras);
+
+		for ($i=0; $i < $t; $i++) {
+
+            $retorno[$i] = ucfirst($palavras[$i]);
+
+            if ($retorno[$i] == "Dos" || $retorno[$i] == "De" || $retorno[$i] == "Do" || $retorno[$i] == "Da" || $retorno[$i] == "E" || $retorno[$i] == "Das"):
+                $retorno[$i] = mb_strtolower($retorno[$i]);
+            endif;
+
+        }
+        return implode(" ", $retorno);
+	}
+
 }

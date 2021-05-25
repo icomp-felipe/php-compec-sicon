@@ -18,7 +18,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'nome'); ?>:</th>
-			<td><?php echo $form->colaborador->nome; ?></td>
+			<td><?php echo $form->colaborador->nomeProprio; ?></td>
 		</tr>
 
 		<tr>

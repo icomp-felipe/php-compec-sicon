@@ -30,7 +30,7 @@
 			<?php else: ?>
 				<b>Colaborador:</b> 
 			<?php endif; ?>
-			<?php echo $form->colaborador->nome.' ['.CHtml::link('Trocar',array('selecionarColaborador')).']'; ?>
+			<?php echo $form->colaborador->nomeProprio.' ['.CHtml::link('Trocar',array('selecionarColaborador')).']'; ?>
 
 		</li>
 

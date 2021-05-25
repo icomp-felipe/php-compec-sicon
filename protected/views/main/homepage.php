@@ -14,10 +14,10 @@
 
 	<?php if ($colaborador->sexo == 'F'): ?>
 		<center><h1>Seja bem vinda ao site de Inscrição de Colaboradores!</h1></center>
-		<h2>Gestora: <?php echo CHtml::encode($colaborador->nome); ?></h2>
+		<h2>Gestora: <?php echo CHtml::encode($colaborador->nomeProprio); ?></h2>
 	<?php else: ?>
 		<center><h1>Seja bem vindo ao site de Inscrição de Colaboradores!</h1></center>
-		<h2>Gestor: <?php echo CHtml::encode($colaborador->nome); ?></h2>
+		<h2>Gestor: <?php echo CHtml::encode($colaborador->nomeProprio); ?></h2>
 	<?php endif;?>
 
 	<p></p>

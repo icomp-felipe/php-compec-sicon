@@ -43,7 +43,7 @@ class banco extends CActiveRecord {
 
 	/** @return O nome do banco + seu respectivo código. */
 	public function getBancoComCodigo() {
-		return $this->banco_nome . ' (' . $this->banco_codigo . ')';
+		return sprintf("%s (%03d)", $this->banco_nome, $this->banco_codigo);
 	}
 
 }

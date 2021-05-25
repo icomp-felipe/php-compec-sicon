@@ -8,7 +8,7 @@
             <?php else: ?>
                 Colaborador:
             <?php endif; ?>
-            <?php echo $form->colaborador->nome .' ['. CHtml::link('Trocar',array('/inscricaoPublico')).']'; ?>
+            <?php echo $form->colaborador->nomeProprio .' ['. CHtml::link('Trocar',array('/inscricaoPublico')).']'; ?>
         </li>
     </ul>
 </h3>
@@ -29,7 +29,7 @@
             <?php foreach($models as $n=>$model): ?>
                 <tr class="<?php echo $n % 2 ? 'even' : 'odd';?>">
 
-                    <td><?php echo CHtml::encode($model->descricao); ?>
+                    <td><?php echo CHtml::link($model->descricao, array('selecionarConcurso','idconcurso' => $model->idconcurso)); ?>
                         <font color="#FF0066"><?php echo ($model->emteste == 1 ? ' (Restrito)' : ''); ?></font></td>
                     </td>
 
@@ -39,8 +39,7 @@
                     </td>
 
                     <td align="center">
-                        <?php echo CHtml::link(CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy', $model->conc_data_realizacao)),
-                                                array('selecionarConcurso','idconcurso' => $model->idconcurso)); ?>
+                        <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy', $model->conc_data_realizacao)); ?>
                     </td>
 
                 </tr>

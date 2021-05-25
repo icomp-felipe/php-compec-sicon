@@ -9,7 +9,7 @@
 			<?php else: ?>
 				Colaborador:
 			<?php endif; ?>
-			<?php echo $form->colaborador->nome .' ['. CHtml::link('Trocar',array('inscricaoPublico/autentica')).']'; ?>
+			<?php echo $form->colaborador->nomeProprio .' ['. CHtml::link('Trocar',array('inscricaoPublico/autentica')).']'; ?>
 		</li>
 
 		<li><?php echo $form->concurso->descricao .' - Realização: '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->concurso->conc_data_realizacao)).' ['.CHtml::link('Trocar]',array('selecionarConcurso')); ?></li>

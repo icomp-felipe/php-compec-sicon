@@ -14,7 +14,7 @@
 
 		<tr>
 			<th class="label">Nome:</th>
-			<td><?php echo $form->colaborador->nome; ?></td>
+			<td><?php echo $form->colaborador->nomeProprio; ?></td>
 		</tr>
 
 		<tr>

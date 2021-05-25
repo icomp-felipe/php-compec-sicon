@@ -49,14 +49,14 @@
 
                 <td style="text-align: center;"><?php echo $i++; ?></td>
                 <td style="text-align: center;"><?php echo CHtml::link  ($inscricao->cpfFormatado, array('colaborador/update','id' => $inscricao->idColaborador)); ?></td>
-                <td><?php echo CHtml::encode($inscricao->nome); ?></td>
+                <td><?php echo CHtml::encode($inscricao->nomeProprio); ?></td>
                 <td style="text-align: center;"><?php echo CHtml::encode($inscricao->funcao); ?></td>
                 <td style="text-align: center;">
                     <?php echo CHtml::link('Trocar Função', array('selecionarFuncao', 'idinscricao' => $inscricao->idinscricao)); ?><br>
                     <?php echo CHtml::linkButton('Cancelar Inscrição', array(
                                 'submit'  => '',
                                 'params'  => array('command' => 'delete', 'id' => $inscricao->idinscricao),
-                                'confirm' => "Confirma o cancelamento da inscrição do colaborador: '{$inscricao->nome}'?")); ?>
+                                'confirm' => "Confirma o cancelamento da inscrição do colaborador: '{$inscricao->nomeProprio}'?")); ?>
                 </td>
             </tr>
         <?php endforeach; ?>
