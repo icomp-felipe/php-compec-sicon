@@ -57,7 +57,7 @@ class inscricao extends CActiveRecord
 		return array(
 			'colaborador' => array(self::BELONGS_TO, 'colaborador', 'idColaborador'),
 			'concurso' => array(self::BELONGS_TO, 'concurso', 'idconcurso'),
-			'idinstituicaoopcao10' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaoopcao1'),
+			'instituicao' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaoopcao1'),
 			'idinstituicaoopcao20' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaoopcao2'),
 			'funcao' => array(self::BELONGS_TO, 'funcao', 'idFuncao'),
 			'selecaos' => array(self::HAS_MANY, 'selecao', 'idinscricao'),
