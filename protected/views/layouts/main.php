@@ -7,6 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="images/icon/apple-touch-icon.png" >
+	<link rel="apple-touch-icon" href="images/icon/apple-touch-icon-57x57.png" sizes="57x57" >
+	<link rel="icon" href="images/icon/favicon-200x200.png" type="image/png" sizes="200x200" >
 
 	<style type="text/css">
 		<!--
