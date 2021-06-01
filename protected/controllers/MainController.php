@@ -53,9 +53,12 @@ class MainController extends CController {
 			$colaborador = $usuario->colaborador;
 			$instituicoesDirigidas = $usuario->colaborador->instituicoesDirigidas;
 		}
+
+		// Inscriçômetro
+		$inscricometro = inscricometro::model()->find();
 		
 		// Renderizando o index
-		$this->render('homepage', array('instituicoesDirigidas' => $instituicoesDirigidas, 'colaborador' => $colaborador));
+		$this->render('homepage', array('instituicoesDirigidas' => $instituicoesDirigidas, 'colaborador' => $colaborador, 'inscricometro' => $inscricometro));
 	}
 	
 	/** Comportamento do menu de entrga de manual. */
