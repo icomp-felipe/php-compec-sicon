@@ -9,7 +9,7 @@
 	<a href="/inscricao/arquivo/pse/2020/chamada-publica-pse2020.pdf">Chamada Pública - PSE 2020</a>
 
 	<h1>Inscriçômetro:
-		<?php if ($inscricometro->inscricometro == 0): ?>
+		<?php if ($inscricometro->inscricometro <= 0): ?>
 			<span style="color: red">Todas as vagas para aplicador de prova completadas!</span>
 		<?php else: ?>
 			<span style="color: green"><?php echo $inscricometro->inscricometro; ?></span>
