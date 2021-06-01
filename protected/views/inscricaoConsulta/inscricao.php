@@ -1,7 +1,7 @@
 <h2>Confirmação de Inscrição</h2>
 
     <?php if ($inscricao->concurso->idconcurso == 58): ?>
-        <a href="/sicon-legacy/inscricao/arquivo/pse/2020/chamada-publica-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
+        <a href="/inscricao/arquivo/pse/2020/manual-aplicador-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
     <?php endif; ?>
 
 <h2></h2>

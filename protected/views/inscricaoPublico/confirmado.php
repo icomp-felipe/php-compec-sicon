@@ -1,6 +1,6 @@
 <h2>Parabéns! Sua inscrição foi confirmada!</h2>
 
-<a href="/sicon-legacy/inscricao/arquivo/pse/2020/chamada-publica-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
+<a href="/inscricao/arquivo/pse/2020/manual-aplicador-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
 
 <h2></h2>
 
