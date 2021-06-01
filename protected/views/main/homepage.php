@@ -12,9 +12,9 @@
 		<?php if ($inscricometro->inscricometro <= 0): ?>
 			<span style="color: red">Todas as vagas para aplicador de prova completadas!</span>
 		<?php else: ?>
-			<span style="color: green"><?php echo $inscricometro->inscricometro; ?></span>
+			<span style="color: green"><?php echo $inscricometro->inscricometro; ?> vagas restantes</span>
 		<?php endif; ?>
-		vagas restantes</h1>
+	</h1>
 	
 <?php // Homepage de usuário logado ?>
 
