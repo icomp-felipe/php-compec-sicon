@@ -1,6 +1,11 @@
 <h2>Parabéns! Sua inscrição foi confirmada!</h2>
 
-<a href="/inscricao/arquivo/pse/2020/manual-aplicador-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
+<h3>
+	Por favor, faça o download do manual do aplicador no link abaixo.<br>
+	Obs.: não é necessário imprimir este manual, no dia do concurso o disponibilizaremos no formato impresso.
+</h3>
+
+<a href="/inscricao/arquivo/pstec/2021/manual-aplicador-pstec2021.pdf">Manual de Instruções do Aplicador (Concurso Público 2021)</a>
 
 <h2></h2>
 

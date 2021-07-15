@@ -6,7 +6,7 @@
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 	<h2>Consulte abaixo o edital de chamada:</h2>
 
-	<a href="/inscricao/arquivo/pse/2020/chamada-publica-pse2020.pdf">Chamada Pública - PSE 2020</a>
+	<a href="/inscricao/arquivo/pstec/2021/chamada-publica-pstec2021.pdf">Chamada Pública - Concurso Público UFAM 2021</a>
 
 	<h1>Inscriçômetro:
 		<?php if ($inscricometro->inscricometro <= 0): ?>
@@ -40,9 +40,9 @@
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
 			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
-				<a href="/inscricao/arquivo/pse/2020/nota-gestores-capital-pse2020.pdf">Nota aos Coordenadores (Manaus) - PSE 2020</a>
+				<a href="/inscricao/arquivo/pstec/2021/nota-gestores-capital-pstec2021.pdf">Nota aos Coordenadores (Manaus) - PSTEC 2021</a>
 			<?php else: ?>
-				<a href="/inscricao/arquivo/pse/2020/nota-gestores-interior-pse2020.pdf">Nota aos Coordenadores (Interior) - PSE 2020</a>
+				<a href="/inscricao/arquivo/pstec/2021/nota-gestores-interior-pstec2021.pdf">Nota aos Coordenadores (Interior) - PSTEC 2021</a>
 			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>

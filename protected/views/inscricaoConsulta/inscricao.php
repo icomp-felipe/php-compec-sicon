@@ -2,7 +2,9 @@
 
     <?php if ($inscricao->concurso->idconcurso == 58): ?>
         <a href="/inscricao/arquivo/pse/2020/manual-aplicador-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
-    <?php endif; ?>
+    <?php elseif ($inscricao->concurso->idconcurso == 59): ?>
+		<a href="/inscricao/arquivo/pstec/2021/manual-aplicador-pstec2021.pdf">Manual de Instruções do Aplicador (Concurso Público 2021)</a>
+	<?php endif; ?>
 
 <h2></h2>
 

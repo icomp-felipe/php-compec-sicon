@@ -58,17 +58,17 @@
 		</thead>
 
 		<tr>
-			<th class="label">Nome:</th>
+			<th class="label" style="text-align: right;">Nome:</th>
 			<td><?php echo $form->colaborador->nome; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">CPF:</th>
+			<th class="label" style="text-align: right;">CPF:</th>
 			<td><?php echo $form->colaborador->cpfFormatado; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">PIS | PASEP | NIS | NIT:</th>
+			<th class="label" style="text-align: right;">PIS | PASEP | NIS | NIT:</th>
 			<td>
 				<?php $this->widget('CMaskedTextField',array(
 					'model'=>$form,
@@ -84,24 +84,35 @@
 		</tr>
 
 		<tr>
-			<th class="label">Nº do RG:</th>
+			<th class="label" style="text-align: right;">Nº do RG:</th>
 			<td><?php echo CHtml::activeTextField($form,'doc_identidade',array('size'=>15,'maxlength'=>15)); ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Nome do Banco:</th>
+			<th class="label" style="text-align: right;">Banco:</th>
 			<td><?php echo CHtml::activeDropDownList($form, 'colab_banco_id', 
 									CHtml::listData(banco::model()->findAll(),'banco_id_pk','bancoComCodigo'),
 									array('empty'=>'Selecione')) ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Nº da Agência (s/ dígito):</th>
-			<td><?php echo CHtml::activeTextField($form,'agencia',array('size'=>15,'maxlength'=>15)); ?></td>
+			<th class="label" style="text-align: right;">Nº da Agência (s/ dígito):</th>
+			<td>
+				<?php $this->widget('CMaskedTextField',array(
+						'model'=>$form,
+						'attribute'=>'agencia',
+						'mask'=>'9999',
+						'placeholder'=>'_',
+						'htmlOptions'=>array(
+							'size'=>4,
+							'maxlength'=>4
+						)
+					)); ?>
+			</td>
 		</tr>
 
 		<tr>
-			<th class="label">Nº da Conta (com dígito):</th>
+			<th class="label" style="text-align: right;">Nº da Conta (com dígito):</th>
 			<td><?php echo CHtml::activeTextField($form,'contacorrente',array('size'=>15,'maxlength'=>15)); ?></td>
 		</tr>
 

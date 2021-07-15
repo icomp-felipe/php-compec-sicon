@@ -56,7 +56,7 @@ class FormInscricao extends CFormModel {
 			'cpf'            => 'CPF',
 			'pispasep'       => 'PIS | PASEP | NIS | NIT',
 			'doc_identidade' => 'Nº do RG',
-			'colab_banco_id' => 'Nome do Banco',
+			'colab_banco_id' => 'Banco',
 			'agencia'        => 'Nº da Agência',
 			'contacorrente'  => 'Nº da Conta'
 

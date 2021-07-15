@@ -64,7 +64,7 @@ class FormInscricaoPublico extends CFormModel {
 			'email'          => 'e-mail',
 			'pispasep'       => 'PIS | PASEP | NIS | NIT',
 			'doc_identidade' => 'Nº do RG',
-			'colab_banco_id' => 'Nome do Banco',
+			'colab_banco_id' => 'Banco',
 			'agencia'        => 'Nº da Agência (s/ dígito)',
 			'contacorrente'  => 'Nº da Conta (com dígito)'
 

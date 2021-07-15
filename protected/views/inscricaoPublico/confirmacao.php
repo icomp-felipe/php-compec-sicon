@@ -75,7 +75,7 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;">Nome do Banco:</th>
+			<th class="label" style="text-align: right;">Banco:</th>
     		<td><?php echo CHtml::activeDropDownList($form, 'colab_banco_id', 
 									CHtml::listData(banco::model()->findAll(),'banco_id_pk','bancoComCodigo'),
 									array('empty'=>'Selecione')) ?></td>
@@ -83,7 +83,18 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº da Agência (s/ dígito):</th>
-			<td><?php echo CHtml::activeTextField($form,'agencia',array('size'=>15,'maxlength'=>15)); ?></td>
+			<td>
+				<?php $this->widget('CMaskedTextField',array(
+						'model'=>$form,
+						'attribute'=>'agencia',
+						'mask'=>'9999',
+						'placeholder'=>'_',
+						'htmlOptions'=>array(
+							'size'=>4,
+							'maxlength'=>4
+						)
+					)); ?>
+			</td>
 		</tr>
 
 		<tr>

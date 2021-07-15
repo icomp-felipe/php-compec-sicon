@@ -177,7 +177,16 @@
     <!-- Número da Agência -->
     <div class="simple">
         <?php echo CHtml::activeLabelEx($model,'agencia'); ?>
-        <?php echo CHtml::activeTextField($model,'agencia',array('size'=>10,'maxlength'=>10)); ?>
+        <?php $this->widget('CMaskedTextField',array(
+            'model'=>$model,
+            'attribute'=>'agencia',
+            'mask'=>'9999',
+            'placeholder'=>'_',
+            'htmlOptions'=>array(
+                'size'=>20,
+                'maxlength'=>20,
+            )
+        )); ?>
     </div>
 
     <!-- Número da Conta -->

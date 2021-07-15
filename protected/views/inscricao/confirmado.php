@@ -8,56 +8,56 @@
 	<table class="dataGrid">
 
 		<tr>
-			<th class="label">Nº de Inscrição:</th>
+			<th class="label" style="text-align: right;">Nº de Inscrição:</th>
 			<td><?php echo inscricao::load($form->colaborador->idColaborador, $form->concurso->idconcurso)->idinscricao; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Nome:</th>
+			<th class="label" style="text-align: right;">Nome:</th>
 			<td><?php echo $form->colaborador->nomeProprio; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">CPF:</th>
+			<th class="label" style="text-align: right;">CPF:</th>
 			<td><?php echo $form->colaborador->cpfFormatado; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Concurso:</th>
+			<th class="label" style="text-align: right;">Concurso:</th>
 			<td><?php echo $form->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->concurso->conc_data_realizacao)); ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Instituição:</th>
+			<th class="label" style="text-align: right;">Instituição:</th>
 			<td><?php echo $form->instituicao->nomeComCodigo; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Função:</th>
+			<th class="label" style="text-align: right;">Função:</th>
 			<td><?php echo $form->funcao->nome; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">PIS | PASEP | NIS | NIT:</th>
+			<th class="label" style="text-align: right;">PIS | PASEP | NIS | NIT:</th>
     		<td><?php echo $form->colaborador->pisFormatado; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Nº do RG:</th>
+			<th class="label" style="text-align: right;">Nº do RG:</th>
     		<td><?php echo $form->colaborador->doc_identidade; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Nome do Banco</th>
+			<th class="label" style="text-align: right;">Banco</th>
 			<td><?php echo $form->colaborador->banco->bancoComCodigo; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label">Nº da Agência (s/ dígito):</th>
+			<th class="label" style="text-align: right;">Nº da Agência (s/ dígito):</th>
 			<td><?php echo $form->colaborador->agencia; ?></td>
 		</tr>
 		<tr>
-			<th class="label">Nº da Conta (com dígito):</th>
+			<th class="label" style="text-align: right;">Nº da Conta (com dígito):</th>
 			<td><?php echo $form->colaborador->contacorrente; ?></td>
 		</tr>
 	</table>
