@@ -43,7 +43,7 @@ class FormInscricaoConsulta extends CFormModel {
 	        $cpf = preg_replace( '/[^0-9]/is', '', $this->cpf);
 		
 		    // Recuperando o colaborador da base de dados
-		    $this->colaborador = colaborador::model()->findByAttributes(array('cpf' => $cpf));
+		    $this->colaborador = colaborador::model()->findByAttributes(array('colab_cpf' => $cpf));
 
 			// Verifica se o colaborador possui cadastro
 		    if ($this->colaborador == null)
@@ -60,7 +60,7 @@ class FormInscricaoConsulta extends CFormModel {
 		if (!$this->hasErrors()) {
 			
 			// Recupera a quantidade de inscrições de um colaborador
-			$inscricoes = inscricao::model()->count('idcolaborador = :idcolaborador', array(':idcolaborador' => $this->colaborador->idColaborador));
+			$inscricoes = inscricao::model()->count('idcolaborador = :idcolaborador', array(':idcolaborador' => $this->colaborador->colab_id_pk));
 			
 			// Se não existe inscrição, um erro é gerado
 			if ($inscricoes == 0)

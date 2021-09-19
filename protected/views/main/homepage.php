@@ -20,7 +20,7 @@
 
 <?php else: ?>
 
-	<?php if ($colaborador->sexo == 'F'): ?>
+	<?php if ($colaborador->colab_sexo == 'F'): ?>
 		<center><h1>Seja bem vinda ao site de Inscrição de Colaboradores!</h1></center>
 		<h2>Gestora: <?php echo CHtml::encode($colaborador->nomeProprio); ?></h2>
 	<?php else: ?>

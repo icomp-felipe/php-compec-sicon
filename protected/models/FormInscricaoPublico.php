@@ -10,6 +10,7 @@ class FormInscricaoPublico extends CFormModel {
 	public $colab_banco_id=null;
 	public $agencia=null;
 	public $contacorrente=null;
+	public $colab_conta_dv=null;
 	public $pispasep=null;
 	public $doc_identidade=null;
 	public $celular=null;
@@ -116,14 +117,14 @@ class FormInscricaoPublico extends CFormModel {
 	    $cpf = preg_replace( '/[^0-9]/is', '', $cpf);
 		
 		// Recuperando o colaborador da base de dados
-		$colaborador = colaborador::model()->findByAttributes(array('cpf' => $cpf));
+		$colaborador = colaborador::model()->findByAttributes(array('colab_cpf' => $cpf));
 		
 		// Verifica se o colaborador possui cadastro
 		if ($colaborador == null)
 			$this->errorCode=self::ERRO_COLAB_SEM_CADASTRO;
 		
 		// Verifica se o colaborador está ativo
-		elseif ($colaborador->status_cadastro != 1)
+		elseif ($colaborador->colab_status != 1)
 			$this->errorCode=self::ERRO_COLAB_BLOQUEADO;
 		
 		return $colaborador;
@@ -135,7 +136,7 @@ class FormInscricaoPublico extends CFormModel {
 		if(!$this->hasErrors()) {
 			
 			// Recupera a inscrição do colaborador no concurso selecionado
-			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->idColaborador, $this->concurso->idconcurso);
+			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->colab_id_pk, $this->concurso->idconcurso);
 			
 			// Se existe inscrição, um erro é gerado
 			if ($inscricao != null)

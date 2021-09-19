@@ -60,7 +60,7 @@ class InscricaoConsultaController extends CController {
 		
 		if(isset($_GET['id'])) {
 
-            $inscricao = $this->loadInscricao($form->colaborador->idColaborador, $_GET['id']);
+            $inscricao = $this->loadInscricao($form->colaborador->colab_id_pk, $_GET['id']);
 
             if (!isset($inscricao))
                 $this->render('erro', array('form' => $form, 'mensagem' => 'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));
@@ -84,7 +84,7 @@ class InscricaoConsultaController extends CController {
 	
 		$data = array(
 			    'order'     => 'idconcurso desc',
-			    'condition' => 'idconcurso in (select distinct(idconcurso) from inscricao where idColaborador = ' . $colaborador->idColaborador . ')'
+			    'condition' => 'idconcurso in (select distinct(idconcurso) from inscricao where idColaborador = ' . $colaborador->colab_id_pk . ')'
 			);
 
 

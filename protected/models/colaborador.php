@@ -1,7 +1,7 @@
 <?php
 
 /** Modelagem do colaborador.
- *  Atualizada em: 08/05/2021
+ *  Atualizada em: 13/09/2021
  *  @author Felipe André <felipeandresouza@hotmail.com>
  */
 class colaborador extends CActiveRecord {
@@ -21,9 +21,8 @@ class colaborador extends CActiveRecord {
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'municipio' => array(self::BELONGS_TO, 'municipio', 'idmunicipio'),
+			'municipio' => array(self::BELONGS_TO, 'municipio', 'colab_municipio_id'),
 			'banco' => array(self::BELONGS_TO, 'banco', 'colab_banco_id'),
-			'iduf_identidade0' => array(self::BELONGS_TO, 'uf', 'iduf_identidade'),
 			'escolaridade' => array(self::BELONGS_TO, 'escolaridade', 'colab_escolaridade_id'),
 			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idColaborador'),
 			'instituicoesDirigidas' => array(self::HAS_MANY, 'instituicao', 'inst_coordenador_id'),
@@ -38,39 +37,40 @@ class colaborador extends CActiveRecord {
 		return array(
 
 			// Identificação
-			array('nome','length','max'=>60),
-			array('cpf', 'ext.validators.CPFValidator','message'=>'O número de CPF informado é inválido!'),
-			array('pispasep', 'ext.validators.PISValidator','message'=>'O número de PIS | PASEP | NIS | NIT informado é inválido!'),
-			array('cpf', 'unique',"allowEmpty"=>false, 'attributeName'=>'cpf','className'=>'colaborador', 'message'=>'O {attribute} "{value}" já foi cadastrado.','on'=>'create'),
-			array('data_nascimento', 'type', 'type'=>'date',
+			array('colab_nome','length','max'=>60),
+			array('colab_cpf', 'ext.validators.CPFValidator','message'=>'O número de CPF informado é inválido!'),
+			array('colab_pis', 'ext.validators.PISValidator','message'=>'O número de PIS | PASEP | NIS | NIT informado é inválido!'),
+			array('colab_cpf', 'unique',"allowEmpty"=>false, 'attributeName'=>'colab_cpf','className'=>'colaborador', 'message'=>'O {attribute} "{value}" já foi cadastrado.','on'=>'create'),
+			array('colab_nascimento', 'type', 'type'=>'date',
                 'dateFormat'=>Yii::app()->locale->dateFormat,
                 'message' => '{attribute} inválida'
             ),
-			array('sexo'            ,'length','max' => 1 ),
-			array('pispasep'        ,'length','max' => 18),
-			array('doc_identidade'  ,'length','max' => 20),
-			array('orgao_identidade','length','max' => 10),
+			array('colab_sexo'    ,'length','max' =>  1),
+			array('colab_pis'     ,'length','max' => 18),
+			array('colab_rg'      ,'length','max' => 20),
+			array('colab_rg_orgao','length','max' => 15),
 			
 			// Endereço
-			array('logradouro'      ,'length','max' => 50),
-			array('numero_endereco' ,'length','max' => 5 ),
-			array('bairro'          ,'length','max' => 80),
-			array('cep'             ,'length','max' => 9 ),
-			array('complemento'     ,'length','max' => 80),
+			array('colab_logradouro'       ,'length','max' => 100),
+			array('colab_logradouro_numero','length','max' =>  10),
+			array('colab_bairro'           ,'length','max' =>  80),
+			array('colab_cep'              ,'length','max' =>   8),
+			array('colab_complemento'      ,'length','max' =>  75),
 
 			// Contatos
-			array('celular','length','max' => 15),
-			array('email'  ,'length','max' => 60),
+			array('colab_celular_1','length','max' => 11),
+			array('colab_email'    ,'length','max' => 60),
 
 			// Informações Bancárias
-			array('contacorrente','length','max' => 20),
-			array('agencia'      ,'length','max' => 10),
+			array('colab_agencia' ,'length','max' =>  4),
+			array('colab_conta'   ,'length','max' => 20),
+			array('colab_conta_dv','length','max' =>  1),
             
 			// Campos Obrigatórios
-			array('nome, cpf, sexo, pispasep, doc_identidade, orgao_identidade, colab_banco_id, agencia, contacorrente, colab_categoria_id', 'required'),
-			array('cpf','required', 'on'=>'formCPF'),
-			array('pispasep, doc_identidade, colab_banco_id, agencia, contacorrente','required', 'on'=>'inscricaoPublico'),
-			array('tipo_cadastro, status_cadastro, colab_banco_id, colab_categoria_id', 'numerical', 'integerOnly' => true),
+			array('colab_nome, colab_cpf, colab_sexo, colab_pis, colab_rg, colab_rg_orgao, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, colab_categoria_id', 'required'),
+			array('colab_cpf','required', 'on'=>'formCPF'),
+			array('colab_pis, colab_rg, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on'=>'inscricaoPublico'),
+			array('colab_status, colab_banco_id, colab_categoria_id', 'numerical', 'integerOnly' => true)
 		);
 	}
 
@@ -80,37 +80,38 @@ class colaborador extends CActiveRecord {
 		return array(
 
 			// Identificação
-			'idColaborador'         => 'Nº da Ficha',
-			'nome'                  => 'Nome',
-			'cpf'                   => 'CPF' ,
-			'data_nascimento'       => 'Data de Nascimento',
-			'sexo'                  => 'Sexo',
+			'colab_id_pk'           => 'Nº da Ficha',
+			'colab_nome'            => 'Nome',
+			'colab_cpf'             => 'CPF' ,
+			'colab_nascimento'      => 'Data de Nascimento',
+			'colab_sexo'            => 'Sexo',
 			'colab_escolaridade_id' => 'Escolaridade',
-			'pispasep'              => 'PIS/PASEP',
-			'doc_identidade'        => 'Nº do RG',
-			'orgao_identidade'      => 'Órgão',
+			'colab_pis'             => 'PIS/PASEP',
+			'colab_rg'              => 'Nº do RG',
+			'colab_rg_orgao'        => 'Órgão',
 
 			// Endereço
-			'logradouro'      => 'Rua/Av',	
-			'numero_endereco' => 'Número',
-			'bairro'          => 'Bairro',
-			'idmunicipio'     => 'Município',
-			'cep'             => 'CEP',
-			'complemento'     => 'Complemento',
+			'colab_logradouro'        => 'Rua/Av',	
+			'colab_logradouro_numero' => 'Número',
+			'colab_bairro'            => 'Bairro',
+			'colab_municipio_id'      => 'Município',
+			'colab_cep'               => 'CEP',
+			'colab_complemento'       => 'Complemento',
 
 			// Contatos
-			'celular' => 'Celular',
-			'email'   => 'e-mail',
+			'colab_celular_1' => 'Celular',
+			'colab_email'     => 'e-mail',
 			
 			// Informações Bancárias
 			'colab_banco_id' => 'Banco',
-			'agencia'        => 'Agência',
-			'contacorrente'  => 'Nº da Conta',
+			'colab_agencia'  => 'Agência',
+			'colab_conta'    => 'Nº da Conta',
+			'colab_conta_dv' => 'DV da Conta',
 
 			// Informações Cadastrais
 			'colab_categoria_id' => 'Categoria',
-			'status_cadastro'    => 'Status Cadastro',
-			'observacoes'        => 'Observações'
+			'colab_status'       => 'Status Cadastro',
+			'colab_obs'          => 'Observações'
 			
 		);
 	}
@@ -118,7 +119,7 @@ class colaborador extends CActiveRecord {
 	/** Prepara alguns campos antes de serem validados. */
 	protected function beforeValidate(){
 
-		$this->cpf = preg_replace( '/[^0-9]/is', '', $this->cpf);
+		$this->colab_cpf = preg_replace( '/[^0-9]/is', '', $this->colab_cpf);
 
 		return true;
 	}
@@ -133,19 +134,20 @@ class colaborador extends CActiveRecord {
 		$session=Yii::app()->getSession();	
 		$usuario = $session["usuario"];
 		
-		// Preparando algumas strings
-		$this->cep      = preg_replace( '/[^0-9]/is', '', $this->cep);
-		$this->cpf      = preg_replace( '/[^0-9]/is', '', $this->cpf);
-		$this->pispasep = preg_replace( '/[^0-9]/is', '', $this->pispasep);
+		// Extraindo apenas números dessas Strings
+		$this->colab_cep = preg_replace( '/[^0-9]/is', '', $this->colab_cep);
+		$this->colab_cpf = preg_replace( '/[^0-9]/is', '', $this->colab_cpf);
+		$this->colab_pis = preg_replace( '/[^0-9]/is', '', $this->colab_pis);
+		$this->colab_fixo = preg_replace( '/[^0-9]/is', '', $this->colab_fixo);
+		$this->colab_celular_1 = preg_replace( '/[^0-9]/is', '', $this->colab_celular_1);
+		$this->colab_celular_2 = preg_replace( '/[^0-9]/is', '', $this->colab_celular_2);
 
 		// Cadastro externo
 		$this->tipo_cadastro = 1;
 
 		// Vincula no objeto 'colaborador' qual usuário o criou/atualizou
-		if (isset($usuario)) {
-			$this->idusuario = $usuario->user_id_pk;
-			$this->idColaborador_atualizacao = $usuario->colaborador->idColaborador;
-		}
+		if (isset($usuario))
+			$this->colab_update_id = $usuario->colaborador->colab_id_pk;
 
 		return true;
 	}
@@ -172,7 +174,7 @@ class colaborador extends CActiveRecord {
 	public function getStatusText() {
 
 		$options = $this->statusOptions;
-		return isset($options[$this->status_cadastro]) ? $options[$this->status_cadastro] : "desconhecido ({$this->status_cadastro})";
+		return isset($options[$this->colab_status]) ? $options[$this->colab_status] : "desconhecido ({$this->colab_status})";
 
 	}
 
@@ -194,7 +196,7 @@ class colaborador extends CActiveRecord {
 	public function getSexoText() {
 
 		$options = $this->sexoOptions;
-		return isset($options[$this->sexo]) ? $options[$this->sexo] : "desconhecido ({$this->sexo})";
+		return isset($options[$this->colab_sexo]) ? $options[$this->colab_sexo] : "desconhecido ({$this->colab_sexo})";
 
 	}
 	
@@ -204,21 +206,21 @@ class colaborador extends CActiveRecord {
 
 	// Retorna o PIS com a sua devida máscara (apenas se o PIS tiver exatamente 11 dígitos)
 	public function getPisFormatado() {
-		return (strlen($this->pispasep) == 11) ? vsprintf("%s%s%s.%s%s%s%s%s.%s%s-%s", str_split($this->pispasep)) : $this->pispasep;
+		return (strlen($this->colab_pis) == 11) ? vsprintf("%s%s%s.%s%s%s%s%s.%s%s-%s", str_split($this->colab_pis)) : $this->colab_pis;
 	}
 	
 	// Retorna o CPF com a sua devida máscara (apenas se o CPF tiver exatamente 11 dígitos)
 	public function getCpfFormatado() {
-		return (strlen($this->cpf) == 11) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($this->cpf)) : $this->cpf;
+		return (strlen($this->colab_cpf) == 11) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($this->colab_cpf)) : $this->colab_cpf;
 	}
 
 	// Retorna o nome do colaborador com apenas a primeira letra maiúscula
 	public function getNomeProprio() {
 
-		if ($this->nome == null)
+		if ($this->colab_nome == null)
 			return null;
 		
-		$string = mb_strtolower(trim(preg_replace("/\s+/", " ", $this->nome)));
+		$string = mb_strtolower(trim(preg_replace("/\s+/", " ", $this->colab_nome)));
 		$palavras = explode(" ", $string);
 
 		$t = count($palavras);

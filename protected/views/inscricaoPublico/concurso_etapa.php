@@ -3,7 +3,7 @@
 <h3 class="actionBar">
     <ul>
         <li>
-            <?php if($form->colaborador->sexo == 'F'): ?>
+            <?php if($form->colaborador->colab_sexo == 'F'): ?>
                 Colaboradora:
             <?php else: ?>
                 Colaborador:
