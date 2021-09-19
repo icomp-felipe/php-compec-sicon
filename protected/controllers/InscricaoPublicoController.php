@@ -10,31 +10,33 @@ class InscricaoPublicoController extends CController {
 
 		$form = new FormInscricaoPublico();
 
-		$form->cpf = $session["cpf"];
 		$form->colaborador = $session["colaborador"];
-		$form->concurso = $session["concurso"];
+		$form->concurso    = $session["concurso"   ];
 		$form->instituicao = $session["instituicao"];
-		$form->funcao = $session["funcao"];
-		$form->colab_banco_id = $form->colaborador->colab_banco_id;
-		$form->agencia = $form->colaborador->colab_agencia;
-		$form->contacorrente = $form->colaborador->colab_conta;
-		$form->colab_conta_dv = $form->colaborador-> colab_conta_dv;
-		$form->pispasep = $form->colaborador->colab_pis;	
-		$form->doc_identidade = $form->colaborador->colab_rg;
-		$form->email = $form->colaborador->colab_email;
-		$form->celular = $form->colaborador->colab_celular_1;
-				
+		$form->funcao      = $session["funcao"     ];
+
+		$form->colab_cpf       = $session["cpf"];
+		$form->colab_pis       = $form->colaborador->colab_pis;
+		$form->colab_rg        = $form->colaborador->colab_rg;
+		$form->colab_celular_1 = $form->colaborador->colab_celular_1;
+		$form->colab_email     = $form->colaborador->colab_email;
+		$form->colab_banco_id  = $form->colaborador->colab_banco_id;
+		$form->colab_agencia   = $form->colaborador->colab_agencia;
+		$form->colab_conta     = $form->colaborador->colab_conta;
+		$form->colab_conta_dv  = $form->colaborador->colab_conta_dv;
+		
 		return $form;
 	}
 
 	function setSessionForm($form)	{
+
 		$session=Yii::app()->getSession();
 
-		$session["cpf"] = $form->cpf;
+		$session["cpf"        ] = $form->colab_cpf;
 		$session["colaborador"] = $form->colaborador;
-		$session["concurso"] = $form->concurso;
+		$session["concurso"   ] = $form->concurso;
 		$session["instituicao"] = $form->instituicao;
-		$session["funcao"] = $form->funcao;
+		$session["funcao"     ] = $form->funcao;
 
 	}
 	
@@ -99,7 +101,7 @@ class InscricaoPublicoController extends CController {
 			}
 		}		
 
-		if(isset($form->cpf))
+		if(isset($form->colab_cpf))
 		{
 			$models=$this->getConcursosEmAndamento();
 
@@ -185,33 +187,36 @@ class InscricaoPublicoController extends CController {
 				if($inscricao->save()) {
 			
 					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
-					$colaborador->colab_banco_id = $_POST['FormInscricaoPublico']['colab_banco_id'];
-					$colaborador->colab_agencia = $_POST['FormInscricaoPublico']['agencia'];
-					$colaborador->colab_conta = $_POST['FormInscricaoPublico']['contacorrente'];
-					$colaborador->colab_conta_dv = $_POST['FormInscricaoPublico']['colab_conta_dv'];
-					$colaborador->colab_pis = $_POST['FormInscricaoPublico']['pispasep'];
-					$colaborador->doc_identidade = $_POST['FormInscricaoPublico']['doc_identidade'];
-					$colaborador->colab_celular_1 = $_POST['FormInscricaoPublico']['celular'];
-					$colaborador->colab_email = $_POST['FormInscricaoPublico']['email'];
-					$colaborador->colab_update_date = date('Y-m-d H:i:s',time());
+
+					$colaborador->colab_pis       = $_POST['FormInscricaoPublico']['colab_pis'      ];
+					$colaborador->colab_rg        = $_POST['FormInscricaoPublico']['colab_rg'       ];
+					$colaborador->colab_email     = $_POST['FormInscricaoPublico']['colab_email'    ];
+					$colaborador->colab_celular_1 = $_POST['FormInscricaoPublico']['colab_celular_1'];
+					$colaborador->colab_banco_id  = $_POST['FormInscricaoPublico']['colab_banco_id' ];
+					$colaborador->colab_agencia   = $_POST['FormInscricaoPublico']['colab_agencia'  ];
+					$colaborador->colab_conta     = $_POST['FormInscricaoPublico']['colab_conta'    ];
+					$colaborador->colab_conta_dv  = $_POST['FormInscricaoPublico']['colab_conta_dv' ];
 					$colaborador->colab_update_id = $colaborador->colab_id_pk;
 
 					$colaborador->setScenario('inscricaoPublico');
-		
+
 					if ($colaborador->save()) {
+
 						$form->colaborador->banco           = $colaborador->banco;
+
+						$form->colaborador->colab_pis       = $colaborador->colab_pis;
+						$form->colaborador->colab_rg        = $colaborador->colab_rg;
+						$form->colaborador->colab_email     = $colaborador->colab_email;
+						$form->colaborador->colab_celular_1 = $colaborador->colab_celular_1;						
 						$form->colaborador->colab_banco_id  = $colaborador->colab_banco_id;
 						$form->colaborador->colab_agencia   = $colaborador->colab_agencia;
 						$form->colaborador->colab_conta     = $colaborador->colab_conta;
 						$form->colaborador->colab_conta_dv  = $colaborador->colab_conta_dv;
-						$form->colaborador->colab_pis       = $colaborador->colab_pis;
-						$form->colaborador->colab_rg        = $colaborador->colab_rg;
-						$form->colaborador->colab_celular_1 = $colaborador->colab_celular_1;
-						$form->colaborador->colab_email     = $colaborador->colab_email;
+						
 					}
 					else {									
 						$inscricao->delete();
-						$this->render('erro',array('form'=>$form,'mensagem'=>'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+						$this->render('erro', array('form' => $form, 'mensagem' => 'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
 						return;	
 					}
 
@@ -225,7 +230,7 @@ class InscricaoPublicoController extends CController {
 
 		}
 
-		$this->render('confirmacao',array('form'=>$form));
+		$this->render('confirmacao', array('form' => $form));
 	}	
 	
 	public function actionConfirmado()

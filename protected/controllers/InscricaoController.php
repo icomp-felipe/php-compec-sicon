@@ -13,7 +13,7 @@ class InscricaoController extends CController
 	{
 		$form = new FormInscricao();
 		$session=Yii::app()->getSession();
-		$form->cpf = $session["cpf_inst"];
+		$form->colab_cpf = $session["cpf_inst"];
 		$form->colaborador = $session["colaborador_inst"];
 		$form->concurso = $session["concurso_inst"];
 		$form->instituicao = $session["instituicao_inst"];
@@ -25,22 +25,25 @@ class InscricaoController extends CController
 
 		$this->usuarioLogado = $session["usuario"];
 		
-		if (isset($form->colaborador))
-		{		
+		if (isset($form->colaborador)) {
+
+			$form->colab_pis      = $form->colaborador->colab_pis;
+			$form->colab_rg       = $form->colaborador->colab_rg;
 			$form->colab_banco_id = $form->colaborador->colab_banco_id;
-			$form->agencia = $form->colaborador->agencia;
-			$form->contacorrente = $form->colaborador->contacorrente;	
-			$form->pispasep = $form->colaborador->pispasep;
-			$form->doc_identidade = $form->colaborador->doc_identidade;		
+			$form->colab_agencia  = $form->colaborador->colab_agencia;
+			$form->colab_conta    = $form->colaborador->colab_conta;
+			$form->colab_conta_dv = $form->colaborador->colab_conta_dv;
+				
 		}
 		
 		return $form;
 	}
 
-	function setSessionForm($form)
-	{
+	function setSessionForm($form) {
+
 		$session=Yii::app()->getSession();
-		$session["cpf_inst"] = $form->cpf;
+
+		$session["cpf_inst"] = $form->colab_cpf;
 		$session["colaborador_inst"] = $form->colaborador;
 		$session["concurso_inst"] = $form->concurso;
 		$session["instituicao_inst"] = $form->instituicao;
@@ -352,30 +355,32 @@ class InscricaoController extends CController
 
 				$inscricao->idinstituicaoopcao1 = $form->instituicao->inst_id_pk;
 				$inscricao->idconcurso 			= $form->concurso->idconcurso;
-				$inscricao->idColaborador		= $form->colaborador->idColaborador;
+				$inscricao->idColaborador		= $form->colaborador->colab_id_pk;
 				$inscricao->selecionado			= 'W';
 				$inscricao->tipoinscricao		= 2;
 				$inscricao->candidatociente		= 'W';
 				$inscricao->idFuncao			= $form->funcao->idFuncao;
-				$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
 
 				if($inscricao->save()) {
 				
 					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
+
+					$colaborador->colab_pis      = $_POST['FormInscricao']['colab_pis'     ];
+					$colaborador->colab_rg       = $_POST['FormInscricao']['colab_rg'      ];
 					$colaborador->colab_banco_id = $_POST['FormInscricao']['colab_banco_id'];
-					$colaborador->agencia = $_POST['FormInscricao']['agencia'];
-					$colaborador->contacorrente = $_POST['FormInscricao']['contacorrente'];
-					$colaborador->pispasep = $_POST['FormInscricao']['pispasep'];
-					$colaborador->doc_identidade = $_POST['FormInscricao']['doc_identidade'];
-			
+					$colaborador->colab_agencia  = $_POST['FormInscricao']['colab_agencia' ];
+					$colaborador->colab_conta    = $_POST['FormInscricao']['colab_conta'   ];
+					$colaborador->colab_conta_dv = $_POST['FormInscricao']['colab_conta_dv'];
+					
 					if ($colaborador->save(false)) {
 	
-						$form->colaborador->banco = $colaborador->banco;
+						$form->colaborador->colab_pis      = $colaborador->colab_pis;
+						$form->colaborador->colab_rg       = $colaborador->colab_rg;
+						$form->colaborador->banco          = $colaborador->banco;
 						$form->colaborador->colab_banco_id = $colaborador->colab_banco_id;
-						$form->colaborador->agencia = $colaborador->agencia;
-						$form->colaborador->contacorrente = $colaborador->contacorrente;
-						$form->colaborador->pispasep = $colaborador->pispasep;
-						$form->colaborador->doc_identidade = $colaborador->doc_identidade;
+						$form->colaborador->colab_agencia  = $colaborador->colab_agencia;
+						$form->colaborador->colab_conta    = $colaborador->colab_conta;
+						$form->colaborador->colab_conta_dv = $colaborador->colab_conta_dv;
 						
 					}
 					else {									

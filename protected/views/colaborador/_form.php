@@ -9,22 +9,22 @@
 
     <!-- Número da Ficha (id do Colaborador) -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'idColaborador'); ?>
-        <?php echo CHtml::activeTextField($model,'idColaborador',array('size'=>8,'maxlength'=>10, 'disabled'=>'disabled')); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_id_pk'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_id_pk',array('size'=>8,'maxlength'=>10, 'disabled'=>'disabled')); ?>
     </div>
 
     <!-- Nome -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'nome'); ?>
-        <?php echo CHtml::activeTextField($model,'nome',array('size'=>50,'maxlength'=>60)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_nome'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_nome',array('size'=>50,'maxlength'=>60)); ?>
     </div>
 
     <!-- CPF e Data de Nascimento -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'cpf'); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_cpf'); ?>
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$model,
-            'attribute'=>'cpf',
+            'attribute'=>'colab_cpf',
             'mask'=>'999.999.999-99',
             'placeholder'=>'_',
             'htmlOptions'=>array(
@@ -37,7 +37,7 @@
 
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$model,
-            'attribute'=>'data_nascimento',
+            'attribute'=>'colab_nascimento',
             'mask'=>'99/99/9999',
             'placeholder'=>'_',
             'htmlOptions'=>array(
@@ -50,8 +50,8 @@
 
     <!-- Sexo -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'sexo'); ?>
-        <?php echo CHtml::activeDropDownList($model,'sexo',
+        <?php echo CHtml::activeLabelEx($model,'colab_sexo'); ?>
+        <?php echo CHtml::activeDropDownList($model,'colab_sexo',
 												            colaborador::model()->sexoOptions,
 												            array('empty'=>'Selecione')); ?>
     </div>
@@ -66,10 +66,10 @@
 
     <!-- PIS -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'pispasep'); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_pis'); ?>
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$model,
-            'attribute'=>'pispasep',
+            'attribute'=>'colab_pis',
             'mask'=>'999.99999.99-9',
             'placeholder'=>'_',
             'htmlOptions'=>array(
@@ -82,12 +82,12 @@
     <!-- Dados do RG -->
     <div class="simple">
 
-        <?php echo CHtml::activeLabelEx($model,'doc_identidade'); ?>
-        <?php echo CHtml::activeTextField($model,'doc_identidade',array('size'=>20,'maxlength'=>20)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_rg'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_rg',array('size'=>20,'maxlength'=>20)); ?>
 
         Órgão Emissor
 
-        <?php echo CHtml::activeTextField($model,'orgao_identidade',array('size'=>5,'maxlength'=>10)); ?>
+        <?php echo CHtml::activeTextField($model,'colab_rg_orgao',array('size'=>5,'maxlength'=>10)); ?>
 
     </div>
 
@@ -95,36 +95,36 @@
 
     <!-- Logradouro -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'logradouro'); ?>
-        <?php echo CHtml::activeTextField($model,'logradouro',array('size'=>50,'maxlength'=>50)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_logradouro'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_logradouro',array('size'=>50,'maxlength'=>50)); ?>
     </div>
 
     <!-- Número Logradouro -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'numero_endereco'); ?>
-        <?php echo CHtml::activeTextField($model,'numero_endereco',array('size'=>5,'maxlength'=>5)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_logradouro_numero'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_logradouro_numero',array('size'=>5,'maxlength'=>5)); ?>
     </div>
 
     <!-- Bairro -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'bairro'); ?>
-        <?php echo CHtml::activeTextField($model,'bairro',array('size'=>50,'maxlength'=>80)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_bairro'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_bairro',array('size'=>50,'maxlength'=>80)); ?>
     </div>
 
     <!-- Município -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'idmunicipio'); ?>
-        <?php echo CHtml::activeDropDownList($model, 'idmunicipio', 
+        <?php echo CHtml::activeLabelEx($model,'colab_municipio_id'); ?>
+        <?php echo CHtml::activeDropDownList($model, 'colab_municipio_id', 
 									CHtml::listData(municipio::model()->findAll(),'muni_id_pk','muni_nome'),
 									array('empty'=>'Selecione')) ?>
     </div>
 
     <!-- CEP -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'cep'); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_cep'); ?>
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$model,
-            'attribute'=>'cep',
+            'attribute'=>'colab_cep',
             'mask'=>'99999-999',
             'placeholder'=>'_',
             'htmlOptions'=>array(
@@ -136,19 +136,19 @@
 
     <!-- Complemento de Endereço -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'complemento'); ?>
-        <?php echo CHtml::activeTextField($model,'complemento',array('size'=>50,'maxlength'=>50)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_complemento'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_complemento',array('size'=>50,'maxlength'=>50)); ?>
     </div>
 
     <h2>Contatos</h2>
 
     <!-- Celular -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'celular'); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_celular_1'); ?>
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$model,
-            'attribute'=>'celular',
-            'mask'=>'(99) 99999-9999',
+            'attribute'=>'colab_celular_1',
+            'mask'=>'99 99999-9999',
             'placeholder'=>'_',
             'htmlOptions'=>array(
                 'size'=>15,
@@ -160,8 +160,8 @@
 
     <!-- e-mail -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'email'); ?>
-        <?php echo CHtml::activeTextField($model,'email',array('size'=>50,'maxlength'=>60)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_email'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_email',array('size'=>50,'maxlength'=>60)); ?>
     </div>
 
     <h2>Informações Bancárias</h2>
@@ -176,10 +176,10 @@
     
     <!-- Número da Agência -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'agencia'); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_agencia'); ?>
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$model,
-            'attribute'=>'agencia',
+            'attribute'=>'colab_agencia',
             'mask'=>'9999',
             'placeholder'=>'_',
             'htmlOptions'=>array(
@@ -191,8 +191,14 @@
 
     <!-- Número da Conta -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'contacorrente'); ?>
-        <?php echo CHtml::activeTextField($model,'contacorrente',array('size'=>20,'maxlength'=>20)); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_conta'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_conta',array('size'=>20,'maxlength'=>20)); ?>
+    </div>
+
+    <!-- Dígito da Conta -->
+    <div class="simple">
+        <?php echo CHtml::activeLabelEx($model,'colab_conta_dv'); ?>
+        <?php echo CHtml::activeTextField($model,'colab_conta_dv',array('size'=>1,'maxlength'=>1)); ?>
     </div>
 
     <h2>Informações Cadastrais</h2>
@@ -207,16 +213,16 @@
 
     <!-- Status do Cadastro -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'status_cadastro'); ?>
-        <?php echo CHtml::activeDropDownList($model,'status_cadastro',
+        <?php echo CHtml::activeLabelEx($model,'colab_status'); ?>
+        <?php echo CHtml::activeDropDownList($model,'colab_status',
 												            colaborador::model()->statusOptions,
 												            array('empty' => 'Ativado', 'disabled' => 'disabled')); ?>
     </div>
 
     <!-- Observações -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx ($model,'observacoes'); ?>
-        <?php echo CHtml::activeTextArea($model,'observacoes', array('rows' => 8, 'cols' => 55, 'disabled' => 'disabled')); ?>
+        <?php echo CHtml::activeLabelEx ($model,'colab_obs'); ?>
+        <?php echo CHtml::activeTextArea($model,'colab_obs', array('rows' => 8, 'cols' => 55, 'disabled' => 'disabled')); ?>
     </div>
 
     <!-- Fim dos campos de dados -->

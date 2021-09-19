@@ -25,7 +25,7 @@
 		<li>
 
 			<?php // Apenas conveniência, ajusta o pronome de acordo com o sexo do colaborador ?>
-			<?php if($form->colaborador->sexo == 'F'): ?>
+			<?php if($form->colaborador->colab_sexo == 'F'): ?>
 				<b>Colaboradora:</b> 
 			<?php else: ?>
 				<b>Colaborador:</b> 

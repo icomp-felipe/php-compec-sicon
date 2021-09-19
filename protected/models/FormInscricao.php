@@ -2,22 +2,29 @@
 
 class FormInscricao extends CFormModel {
 
-	public $cpf;
-	public $colaborador=null;
-	public $concurso=null;
-	public $instituicao=null;
-	public $funcao=null;
-	public $colab_banco_id=null;
-	public $agencia=null;
-	public $contacorrente=null;
-	public $pispasep=null;
-	public $doc_identidade=null;
-	public $inscricao=null;
-	public $multiplosConcursos=false;
-	public $multiplasInstituicoes=false;
-	
-	public $errorCode = 0;
+	// Objetos
+	public $colaborador = null;
+	public $concurso    = null;
+	public $instituicao = null;
+	public $funcao      = null;
+	public $inscricao   = null;
 
+	// Atributos do Colaborador
+	public $colab_cpf       = null;
+	public $colab_pis       = null;
+	public $colab_rg        = null;
+	public $colab_celular_1 = null;
+	public $colab_email     = null;
+	public $colab_banco_id  = null;
+	public $colab_agencia   = null;
+	public $colab_conta     = null;
+	public $colab_conta_dv  = null;
+
+	// Controle de formulário
+	public $multiplosConcursos    = false;
+	public $multiplasInstituicoes = false;
+	public $errorCode             = 0;
+		
 	// Constantes de validação de colaborador
 	const ERRO_COLAB_SEM_CADASTRO = 1;
 	const ERRO_COLAB_BLOQUEADO    = 2;
@@ -27,25 +34,25 @@ class FormInscricao extends CFormModel {
 		return array(
 
 			// CPF é um campo obrigatório no cenário 'selecionarColaborador'
-			array('cpf', 'required', 'on' => 'selecionarColaborador'),
+			array('colab_cpf', 'required', 'on' => 'selecionarColaborador'),
 
 			// Validação (externa) dos dígitos do CPF no cenário 'selecionarColaborador'
-			array('cpf', 'ext.validators.CPFValidator','message'=>'O CPF informado est&aacute; incorreto!','on' => 'selecionarColaborador'),
+			array('colab_cpf', 'ext.validators.CPFValidator','message' => 'O CPF informado está incorreto!','on' => 'selecionarColaborador'),
 
 			// Validação (interna) do colaborador, no cenário 'selecionarColaborador':
 			// 1. verifica se o mesmo possui cadastro;
 			// 2. verifica se ele está apto a se inscrever (possui status_cadastro = 1)
-			array('cpf', 'validarColaborador', 'on' => 'selecionarColaborador'),
+			array('colab_cpf', 'validarColaborador', 'on' => 'selecionarColaborador'),
 
 			// Validação (interna) do colaborador, no cenário 'selecionarColaborador':
 			// Colaborador já foi inscrito no concurso selecionado?
-			array('cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarColaborador'),
+			array('colab_cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarColaborador'),
 
 			// Define campos obrigatórios no cenário 'inscricao'
-			array('pispasep, doc_identidade, colab_banco_id, agencia, contacorrente','required', 'on' => 'inscricao'),
+			array('colab_pis, colab_rg, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on' => 'inscricao'),
 
 			// Validação (externa) dos dígitos do PIS, no cenário 'inscricao'
-			array('pispasep', 'ext.validators.PISValidator', 'message' => 'O PIS informado é inválido!','on' => 'inscricao')
+			array('colab_pis', 'ext.validators.PISValidator', 'message' => 'O PIS informado é inválido!','on' => 'inscricao')
 
 		);
 	}
@@ -53,12 +60,13 @@ class FormInscricao extends CFormModel {
 	public function attributeLabels() {
 		return array(
 
-			'cpf'            => 'CPF',
-			'pispasep'       => 'PIS | PASEP | NIS | NIT',
-			'doc_identidade' => 'Nº do RG',
+			'colab_cpf'      => 'CPF',
+			'colab_pis'      => 'PIS | PASEP | NIS | NIT',
+			'colab_rg'       => 'Nº do RG',
 			'colab_banco_id' => 'Banco',
-			'agencia'        => 'Nº da Agência',
-			'contacorrente'  => 'Nº da Conta'
+			'colab_agencia'  => 'Nº da Agência',
+			'colab_conta'    => 'Nº da Conta',
+			'colab_conta_dv' => 'Dígito da Conta'
 
 		);
 	}
@@ -71,7 +79,7 @@ class FormInscricao extends CFormModel {
 		if(!$this->hasErrors()) {
 
 			// Recupera o cadastro do colaborador
-			$this->colaborador = $this->validarCadastro($this->cpf);
+			$this->colaborador = $this->validarCadastro($this->colab_cpf);
 
 			// Se o colaborador não possui cadastro, ou não está ativo, o switch é ativado
 			switch($this->errorCode) {
@@ -96,7 +104,7 @@ class FormInscricao extends CFormModel {
 	    $cpf = preg_replace( '/[^0-9]/is', '', $cpf);
 		
 		// Recuperando o colaborador da base de dados
-		$colaborador = colaborador::model()->findByAttributes(array('cpf' => $cpf));
+		$colaborador = colaborador::model()->findByAttributes(array('colab_cpf' => $cpf));
 		
 		// Verifica se o colaborador possui cadastro
 		if ($colaborador == null)
@@ -115,7 +123,7 @@ class FormInscricao extends CFormModel {
 		if (!$this->hasErrors() && $this->colaborador != null)  {
 			
 			// Recupera a inscrição do colaborador no concurso selecionado
-			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->idColaborador, $this->concurso->idconcurso);
+			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->colab_id_pk, $this->concurso->idconcurso);
 			
 			// Se existe inscrição, um erro é gerado
 			if ($inscricao != null)

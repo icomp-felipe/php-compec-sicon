@@ -9,7 +9,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº de Inscrição:</th>
-			<td><?php echo inscricao::load($form->colaborador->idColaborador, $form->concurso->idconcurso)->idinscricao; ?></td>
+			<td><?php echo inscricao::load($form->colaborador->colab_id_pk, $form->concurso->idconcurso)->idinscricao; ?></td>
 		</tr>
 
 		<tr>
@@ -44,7 +44,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº do RG:</th>
-    		<td><?php echo $form->colaborador->doc_identidade; ?></td>
+    		<td><?php echo $form->colaborador->colab_rg; ?></td>
 		</tr>
 
 		<tr>
@@ -54,11 +54,15 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº da Agência (s/ dígito):</th>
-			<td><?php echo $form->colaborador->agencia; ?></td>
+			<td><?php echo $form->colaborador->colab_agencia; ?></td>
 		</tr>
 		<tr>
-			<th class="label" style="text-align: right;">Nº da Conta (com dígito):</th>
-			<td><?php echo $form->colaborador->contacorrente; ?></td>
+			<th class="label" style="text-align: right;">Nº da Conta (sem dígito):</th>
+			<td><?php echo $form->colaborador->colab_conta; ?></td>
+		</tr>
+		<tr>
+			<th class="label" style="text-align: right;">DV da Conta:</th>
+			<td><?php echo $form->colaborador->colab_conta_dv; ?></td>
 		</tr>
 	</table>
 

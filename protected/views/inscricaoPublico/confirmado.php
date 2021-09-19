@@ -18,7 +18,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº de Inscrição:</th>
-			<td><?php echo inscricao::load($form->colaborador->idColaborador, $form->concurso->idconcurso)->idinscricao; ?></td>
+			<td><?php echo inscricao::load($form->colaborador->colab_id_pk, $form->concurso->idconcurso)->idinscricao; ?></td>
 		</tr>
 
 		<tr>
@@ -27,8 +27,8 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'cpf'); ?>:</th>
-			<td><?php echo $form->cpf; ?></td>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_cpf'); ?>:</th>
+			<td><?php echo $form->colab_cpf; ?></td>
 		</tr>
 
 		<tr>
@@ -47,23 +47,23 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'celular'); ?>:</th>
-    		<td><?php echo $form->celular; ?></td>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_celular_1'); ?>:</th>
+    		<td><?php echo $form->colaborador->celularFormatado; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'email'); ?>:</th>
-    		<td><?php echo $form->email; ?></td>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_email'); ?>:</th>
+    		<td><?php echo $form->colab_email; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'pispasep'); ?>:</th>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_pis'); ?>:</th>
     		<td><?php echo $form->colaborador->pisFormatado; ?></td>
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'doc_identidade'); ?>:</th>
-    		<td><?php echo $form->colaborador->doc_identidade; ?></td>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_rg'); ?>:</th>
+    		<td><?php echo $form->colaborador->colab_rg; ?></td>
 		</tr>
 
 		<tr>
@@ -72,12 +72,16 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'agencia'); ?>:</th>
-			<td><?php echo $form->colaborador->agencia; ?></td>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_agencia'); ?>:</th>
+			<td><?php echo $form->colaborador->colab_agencia; ?></td>
 		</tr>
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'contacorrente'); ?>:</th>
-			<td><?php echo $form->colaborador->contacorrente; ?></td>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_conta'); ?>:</th>
+			<td><?php echo $form->colaborador->colab_conta; ?></td>
+		</tr>
+		<tr>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_conta_dv'); ?>:</th>
+			<td><?php echo $form->colaborador->colab_conta_dv; ?></td>
 		</tr>
 	</table>
 

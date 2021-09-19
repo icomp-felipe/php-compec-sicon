@@ -54,11 +54,11 @@ class colaborador extends CActiveRecord {
 			array('colab_logradouro'       ,'length','max' => 100),
 			array('colab_logradouro_numero','length','max' =>  10),
 			array('colab_bairro'           ,'length','max' =>  80),
-			array('colab_cep'              ,'length','max' =>   8),
+			array('colab_cep'              ,'length','max' =>   9),
 			array('colab_complemento'      ,'length','max' =>  75),
 
 			// Contatos
-			array('colab_celular_1','length','max' => 11),
+			array('colab_celular_1','length','max' => 18),
 			array('colab_email'    ,'length','max' => 60),
 
 			// Informações Bancárias
@@ -131,19 +131,16 @@ class colaborador extends CActiveRecord {
 			return false;
 
 		// Recuperando dados da sessão
-		$session=Yii::app()->getSession();	
+		$session = Yii::app()->getSession();	
 		$usuario = $session["usuario"];
 		
 		// Extraindo apenas números dessas Strings
-		$this->colab_cep = preg_replace( '/[^0-9]/is', '', $this->colab_cep);
-		$this->colab_cpf = preg_replace( '/[^0-9]/is', '', $this->colab_cpf);
-		$this->colab_pis = preg_replace( '/[^0-9]/is', '', $this->colab_pis);
-		$this->colab_fixo = preg_replace( '/[^0-9]/is', '', $this->colab_fixo);
+		$this->colab_cep       = preg_replace( '/[^0-9]/is', '', $this->colab_cep      );
+		$this->colab_cpf       = preg_replace( '/[^0-9]/is', '', $this->colab_cpf      );
+		$this->colab_pis       = preg_replace( '/[^0-9]/is', '', $this->colab_pis      );
+		$this->colab_fixo      = preg_replace( '/[^0-9]/is', '', $this->colab_fixo     );
 		$this->colab_celular_1 = preg_replace( '/[^0-9]/is', '', $this->colab_celular_1);
 		$this->colab_celular_2 = preg_replace( '/[^0-9]/is', '', $this->colab_celular_2);
-
-		// Cadastro externo
-		$this->tipo_cadastro = 1;
 
 		// Vincula no objeto 'colaborador' qual usuário o criou/atualizou
 		if (isset($usuario))
@@ -212,6 +209,10 @@ class colaborador extends CActiveRecord {
 	// Retorna o CPF com a sua devida máscara (apenas se o CPF tiver exatamente 11 dígitos)
 	public function getCpfFormatado() {
 		return (strlen($this->colab_cpf) == 11) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($this->colab_cpf)) : $this->colab_cpf;
+	}
+
+	public function getCelularFormatado() {
+		return (strlen($this->colab_celular_1) == 11) ? vsprintf("(%s%s) %s%s%s%s%s-%s%s%s%s", str_split($this->colab_celular_1)) : $this->colab_celular_1;
 	}
 
 	// Retorna o nome do colaborador com apenas a primeira letra maiúscula

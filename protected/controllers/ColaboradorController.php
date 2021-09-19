@@ -61,17 +61,18 @@ class ColaboradorController extends CController
 	 */
 	public function actionCreate()
 	{
-		$model=new colaborador;
+		$model = new colaborador;
 		
 		if(isset($_POST['colaborador']))
 		{
-			$model->status_cadastro = 1;
-			$model->data_cadastro   = date('Y-m-d H:i:s',time());
+			$model->colab_status = 1;
+			$model->attributes   = $_POST['colaborador'];
 
-			$model->attributes=$_POST['colaborador'];
 			$model->setScenario('create');
+
 			if($model->save())
-				$this->redirect(array('show','id'=>$model->idColaborador,'update'=>false));
+				$this->redirect(array('show', 'id' => $model->colab_id_pk, 'update' => false));
+
 		}
 		$this->render('create',array('model'=>$model));
 	}
@@ -82,18 +83,17 @@ class ColaboradorController extends CController
 	 */
 	public function actionUpdate()
 	{
-		$model=$this->loadcolaborador();
-		if(isset($_POST['colaborador']))
-		{
+		$model = $this->loadcolaborador();
 
-			$model->data_atualizacao = date('Y-m-d H:i:s',time());
-			$model->attributes=$_POST['colaborador'];
+		if(isset($_POST['colaborador'])) {
+
+			$model->attributes = $_POST['colaborador'];
 
 			if($model->save())
-				$this->redirect(array('show','id'=>$model->idColaborador,'update'=>true));
+				$this->redirect(array('show', 'id' => $model->colab_id_pk, 'update' => true));
 
 		}
-		$this->render('update',array('model'=>$model));
+		$this->render('update', array('model' => $model));
 	}
 
 	/**

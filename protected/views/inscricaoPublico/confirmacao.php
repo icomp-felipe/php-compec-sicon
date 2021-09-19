@@ -14,7 +14,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">CPF:</th>
-    		<td><?php echo $form->cpf; ?></td>
+    		<td><?php echo $form->colab_cpf; ?></td>
 		</tr>
 
 		<tr>
@@ -35,14 +35,14 @@
 		<tr>
 			<th class="label" style="text-align: right;">Celular (WhatsApp):</th>
     		<td>
-				<?php $this->widget('CMaskedTextField',array(
-						'model'=>$form,
-						'attribute'=>'celular',
-						'mask'=>'(99) 99999-9999',
-						'placeholder'=>'_',
-						'htmlOptions'=>array(
-							'size'=>15,
-							'maxlength'=>20,
+				<?php $this->widget('CMaskedTextField', array(
+						'model'       => $form,
+						'attribute'   => 'colab_celular_1',
+						'mask'        => '99 99999-9999',
+						'placeholder' => '_',
+						'htmlOptions' => array(
+							'size'      => 11,
+							'maxlength' => 11
 						)
 					)); ?>
 			</td>
@@ -50,20 +50,20 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">e-mail:</th>
-    		<td><?php echo CHtml::activeTextField($form,'email',array('size'=>44,'maxlength'=>45)); ?></td>
+    		<td><?php echo CHtml::activeTextField($form, 'colab_email', array('size' => 44, 'maxlength' => 60)); ?></td>
 		</tr>
 
 		<tr>
 			<th class="label" style="text-align: right;">PIS | PASEP | NIS | NIT:</th>
     		<td>
-				<?php $this->widget('CMaskedTextField',array(
-					'model'=>$form,
-					'attribute'=>'pispasep',
-					'mask'=>'999.99999.99-9',
-					'placeholder'=>'_',
-					'htmlOptions'=>array(
-						'size'=>15,
-						'maxlength'=>20,
+				<?php $this->widget('CMaskedTextField', array(
+					'model'       => $form,
+					'attribute'   => 'colab_pis',
+					'mask'        => '999.99999.99-9',
+					'placeholder' => '_',
+					'htmlOptions' => array(
+						'size'      => 11,
+						'maxlength' => 11,
 					)
         		)); ?>
 			</td>
@@ -71,7 +71,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº do RG:</th>
-    		<td><?php echo CHtml::activeTextField($form,'doc_identidade',array('size'=>15,'maxlength'=>15)); ?></td>
+    		<td><?php echo CHtml::activeTextField($form,'colab_rg',array('size' => 20, 'maxlength' => 20)); ?></td>
 		</tr>
 
 		<tr>
@@ -85,21 +85,26 @@
 			<th class="label" style="text-align: right;">Nº da Agência (s/ dígito):</th>
 			<td>
 				<?php $this->widget('CMaskedTextField',array(
-						'model'=>$form,
-						'attribute'=>'agencia',
-						'mask'=>'9999',
-						'placeholder'=>'_',
-						'htmlOptions'=>array(
-							'size'=>4,
-							'maxlength'=>4
+						'model'       => $form,
+						'attribute'   => 'colab_agencia',
+						'mask'        => '9999',
+						'placeholder' => '_',
+						'htmlOptions' => array(
+							'size'      => 4,
+							'maxlength' => 4
 						)
 					)); ?>
 			</td>
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;">Nº da Conta (com dígito):</th>
-			<td><?php echo CHtml::activeTextField($form,'contacorrente',array('size'=>15,'maxlength'=>15)); ?></td>
+			<th class="label" style="text-align: right;">Nº da Conta (sem dígito):</th>
+			<td><?php echo CHtml::activeTextField($form, 'colab_conta', array('size' => 19, 'maxlength' => 19)); ?></td>
+		</tr>
+
+		<tr>
+			<th class="label" style="text-align: right;">Dígito da Conta:</th>
+			<td><?php echo CHtml::activeTextField($form, 'colab_conta_dv', array('size' => 1, 'maxlength' => 1)); ?></td>
 		</tr>
 
 	</table>

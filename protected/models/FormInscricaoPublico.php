@@ -2,21 +2,25 @@
 
 class FormInscricaoPublico extends CFormModel {
 
-	public $cpf;
-	public $colaborador=null;
-	public $concurso=null;
-	public $instituicao=null;
-	public $funcao=null;
-	public $colab_banco_id=null;
-	public $agencia=null;
-	public $contacorrente=null;
-	public $colab_conta_dv=null;
-	public $pispasep=null;
-	public $doc_identidade=null;
-	public $celular=null;
-	public $email=null;
-	public $ciente=false;
+	// Objetos
+	public $colaborador = null;
+	public $concurso    = null;
+	public $instituicao = null;
+	public $funcao      = null;
+
+	// Atributos do Colaborador
+	public $colab_cpf       = null;
+	public $colab_pis       = null;
+	public $colab_rg        = null;
+	public $colab_celular_1 = null;
+	public $colab_email     = null;
+	public $colab_banco_id  = null;
+	public $colab_agencia   = null;
+	public $colab_conta     = null;
+	public $colab_conta_dv  = null;
 	
+	// Controle de formulário
+	public $ciente    = false;
 	public $errorCode = 0;
 
 	// Constantes de validação de colaborador
@@ -28,28 +32,28 @@ class FormInscricaoPublico extends CFormModel {
 		return array(
 
 			// CPF é um campo obrigatório no cenário 'cpf'
-			array('cpf', 'required','on'=>'cpf'),
+			array('colab_cpf', 'required','on' => 'cpf'),
 
 			// Validação (externa) dos dígitos do CPF, no cenário 'cpf'
-			array('cpf', 'ext.validators.CPFValidator','message'=>'O CPF informado é inválido!','on'=>'cpf'),
+			array('colab_cpf', 'ext.validators.CPFValidator','message' => 'O CPF informado é inválido!', 'on' => 'cpf'),
 
 			// Validação (interna) do colaborador, no cenário 'cpf':
 			// 1. verifica se o mesmo possui cadastro;
 			// 2. verifica se ele está apto a se inscrever (possui status_cadastro = 1)
-			array('cpf', 'validarColaborador','on'=>'cpf'),
+			array('colab_cpf', 'validarColaborador', 'on' => 'cpf'),
 
 			// Validação (interna) do colaborador, no cenário 'selecionarConcurso':
 			// Colaborador já foi inscrito no concurso selecionado?
-			array('cpf', 'verificarDuplicidadeInscricao','on'=>'selecionarConcurso'),
+			array('colab_cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarConcurso'),
 
 			// Define campos obrigatórios no cenário 'inscricaoPublico'
-			array('celular, email, pispasep, doc_identidade, colab_banco_id, agencia, contacorrente, ciente','required', 'on'=>'inscricaoPublico'),
+			array('colab_pis, colab_rg, colab_celular_1, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, ciente', 'required', 'on' => 'inscricaoPublico'),
 
 			// Validação (interna) de ciência de procedimentos, no cenário 'inscricaoPublico'
 			array('ciente', 'validarCiencia', 'on' => 'inscricaoPublico'),
 
 			// Validação (externa) dos dígitos do PIS, no cenário 'inscricaoPublico'
-			array('pispasep', 'ext.validators.PISValidator','message'=>'O PIS informado é inválido!','on'=>'inscricaoPublico')
+			array('colab_pis', 'ext.validators.PISValidator', 'message'=>'O PIS informado é inválido!', 'on' => 'inscricaoPublico')
 
 		);
 	}
@@ -57,17 +61,19 @@ class FormInscricaoPublico extends CFormModel {
 	public function attributeLabels() {
 		return array(
 
-			'cpf'            => 'CPF',
-			'celular'        => 'Celular (WhatsApp)',
-			'concurso'       => 'Concurso',
-			'instituicao'    => 'Instituição',
-			'funcao'         => 'Função',
-			'email'          => 'e-mail',
-			'pispasep'       => 'PIS | PASEP | NIS | NIT',
-			'doc_identidade' => 'Nº do RG',
+			'concurso'        => 'Concurso',
+			'instituicao'     => 'Instituição',
+			'funcao'          => 'Função',
+
+			'colab_cpf'       => 'CPF',
+			'colab_pis'       => 'PIS | PASEP | NIS | NIT',
+			'colab_rg'        => 'Nº do RG',
+			'colab_celular_1' => 'Celular (WhatsApp)',
+			'colab_email'     => 'e-mail',
 			'colab_banco_id' => 'Banco',
-			'agencia'        => 'Nº da Agência (s/ dígito)',
-			'contacorrente'  => 'Nº da Conta (com dígito)'
+			'colab_agencia'  => 'Nº da Agência (s/ dígito)',
+			'colab_conta'    => 'Nº da Conta (s/ dígito)',
+			'colab_conta_dv' => 'Dígito da conta'
 
 		);
 	}
@@ -80,7 +86,7 @@ class FormInscricaoPublico extends CFormModel {
 		if(!$this->hasErrors()) {
 
 			// Recupera o cadastro do colaborador
-			$this->colaborador = $this->validarCadastro($this->cpf);
+			$this->colaborador = $this->validarCadastro($this->colab_cpf);
 
 			// Se o colaborador não possui cadastro, ou não está ativo, o switch é ativado
 			switch($this->errorCode) {
@@ -111,13 +117,13 @@ class FormInscricaoPublico extends CFormModel {
 	}
 
 	/** Busca o cadastro do colaborador identificado por 'cpf' e verifica se este existe e está ativo. */
-	public function validarCadastro($cpf) {
+	public function validarCadastro($colab_cpf) {
 
 		// Extrai apenas os dígitos do CPF
-	    $cpf = preg_replace( '/[^0-9]/is', '', $cpf);
+	    $colab_cpf = preg_replace( '/[^0-9]/is', '', $colab_cpf);
 		
 		// Recuperando o colaborador da base de dados
-		$colaborador = colaborador::model()->findByAttributes(array('colab_cpf' => $cpf));
+		$colaborador = colaborador::model()->findByAttributes(array('colab_cpf' => $colab_cpf));
 		
 		// Verifica se o colaborador possui cadastro
 		if ($colaborador == null)

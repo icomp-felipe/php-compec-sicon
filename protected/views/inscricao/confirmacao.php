@@ -24,7 +24,7 @@
 		<li><b>
 				
 			<?php // Apenas conveniência, ajusta o pronome de acordo com o sexo do colaborador ?>
-			<?php if($form->colaborador->sexo == 'F'): ?>
+			<?php if($form->colaborador->colab_sexo == 'F'): ?>
 				Colaboradora:
 			<?php else: ?>
 				Colaborador:
@@ -48,7 +48,7 @@
 		<thead>
 			<tr>
 				<th colspan="2">
-					<?php if($form->colaborador->sexo == 'F'): ?>
+					<?php if($form->colaborador->colab_sexo == 'F'): ?>
 						Dados da Colaboradora
 					<?php else: ?>
 						Dados do Colaborador
@@ -59,7 +59,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nome:</th>
-			<td><?php echo $form->colaborador->nome; ?></td>
+			<td><?php echo $form->colaborador->nomeProprio; ?></td>
 		</tr>
 
 		<tr>
@@ -72,7 +72,7 @@
 			<td>
 				<?php $this->widget('CMaskedTextField',array(
 					'model'=>$form,
-					'attribute'=>'pispasep',
+					'attribute'=>'colab_pis',
 					'mask'=>'999.99999.99-9',
 					'placeholder'=>'_',
 					'htmlOptions'=>array(
@@ -85,7 +85,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº do RG:</th>
-			<td><?php echo CHtml::activeTextField($form,'doc_identidade',array('size'=>15,'maxlength'=>15)); ?></td>
+			<td><?php echo CHtml::activeTextField($form,'colab_rg',array('size'=>15,'maxlength'=>15)); ?></td>
 		</tr>
 
 		<tr>
@@ -100,7 +100,7 @@
 			<td>
 				<?php $this->widget('CMaskedTextField',array(
 						'model'=>$form,
-						'attribute'=>'agencia',
+						'attribute'=>'colab_agencia',
 						'mask'=>'9999',
 						'placeholder'=>'_',
 						'htmlOptions'=>array(
@@ -112,8 +112,13 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;">Nº da Conta (com dígito):</th>
-			<td><?php echo CHtml::activeTextField($form,'contacorrente',array('size'=>15,'maxlength'=>15)); ?></td>
+			<th class="label" style="text-align: right;">Nº da Conta (sem dígito):</th>
+			<td><?php echo CHtml::activeTextField($form,'colab_conta',array('size'=>15,'maxlength'=>15)); ?></td>
+		</tr>
+
+		<tr>
+			<th class="label" style="text-align: right;">DV da Conta:</th>
+			<td><?php echo CHtml::activeTextField($form,'colab_conta_dv',array('size'=>1,'maxlength'=>1)); ?></td>
 		</tr>
 
 	</table>
