@@ -142,6 +142,9 @@ class colaborador extends CActiveRecord {
 		$this->colab_celular_1 = preg_replace( '/[^0-9]/is', '', $this->colab_celular_1);
 		$this->colab_celular_2 = preg_replace( '/[^0-9]/is', '', $this->colab_celular_2);
 
+		// Remove zeros do início da conta
+		$this->colab_conta = ltrim($this->colab_conta, "0");
+
 		// Vincula no objeto 'colaborador' qual usuário o criou/atualizou
 		if (isset($usuario))
 			$this->colab_update_id = $usuario->colaborador->colab_id_pk;
