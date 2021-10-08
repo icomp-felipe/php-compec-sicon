@@ -1,5 +1,8 @@
 <h2>Confirme os dados de sua solicitação de inscrição</h2>
 
+<h3>* Primeiramente leia com atenção o tutorial de preenchimento de contas abaixo, grande parte dos problemas de pagamento surgem do preenchimento errado destes dados!
+<br>* <a href="/inscricao/arquivo/tutorial-contas-compec.pdf" target="_blank" rel="noopener noreferrer">Tutorial de Preenchimento de Contas (PDF)</a></h3>
+
 <div class="yiiForm">
 
 	<?php echo CHtml::beginForm(); ?>
@@ -9,7 +12,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nome:</th>
-    		<td><?php echo $form->colaborador->nomeProprio; ?></td>
+    		<td><?php echo CHtml::activeTextField($form,'colab_nome',array('size' => 44, 'maxlength' => 60)); ?></td>
 		</tr>
 
 		<tr>

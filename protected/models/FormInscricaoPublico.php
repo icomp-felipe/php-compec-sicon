@@ -9,6 +9,7 @@ class FormInscricaoPublico extends CFormModel {
 	public $funcao      = null;
 
 	// Atributos do Colaborador
+	public $colab_nome      = null;
 	public $colab_cpf       = null;
 	public $colab_pis       = null;
 	public $colab_rg        = null;
@@ -47,7 +48,7 @@ class FormInscricaoPublico extends CFormModel {
 			array('colab_cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarConcurso'),
 
 			// Define campos obrigatórios no cenário 'inscricaoPublico'
-			array('colab_pis, colab_rg, colab_celular_1, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, ciente', 'required', 'on' => 'inscricaoPublico'),
+			array('colab_nome, colab_pis, colab_rg, colab_celular_1, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, ciente', 'required', 'on' => 'inscricaoPublico'),
 
 			// Validação (interna) de ciência de procedimentos, no cenário 'inscricaoPublico'
 			array('ciente', 'validarCiencia', 'on' => 'inscricaoPublico'),
@@ -65,15 +66,16 @@ class FormInscricaoPublico extends CFormModel {
 			'instituicao'     => 'Instituição',
 			'funcao'          => 'Função',
 
+			'colab_nome'      => 'Nome',
 			'colab_cpf'       => 'CPF',
 			'colab_pis'       => 'PIS | PASEP | NIS | NIT',
 			'colab_rg'        => 'Nº do RG',
 			'colab_celular_1' => 'Celular (WhatsApp)',
 			'colab_email'     => 'e-mail',
-			'colab_banco_id' => 'Banco',
-			'colab_agencia'  => 'Nº da Agência (s/ dígito)',
-			'colab_conta'    => 'Nº da Conta (s/ dígito)',
-			'colab_conta_dv' => 'Dígito da conta'
+			'colab_banco_id'  => 'Banco',
+			'colab_agencia'   => 'Nº da Agência (s/ dígito)',
+			'colab_conta'     => 'Nº da Conta (s/ dígito)',
+			'colab_conta_dv'  => 'Dígito da conta'
 
 		);
 	}
@@ -110,7 +112,7 @@ class FormInscricaoPublico extends CFormModel {
 		if(!$this->hasErrors()) {
 
 			if ($this->ciente == false)
-				$this->addError('ciente', 'Por favor, confirme ciência dos dados e procedimentos de biossegurança');
+				$this->addError('ciente', 'Por favor, confirme ciência dos dados pessoais, bancários e procedimentos de biossegurança');
 
 		}
 

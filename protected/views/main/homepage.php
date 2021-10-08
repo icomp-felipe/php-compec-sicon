@@ -6,15 +6,15 @@
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 	<h2>Consulte abaixo o edital de chamada:</h2>
 
-	<a href="/inscricao/arquivo/pstec/2021/chamada-publica-pstec2021.pdf">Chamada Pública - Concurso Público UFAM 2021</a>
+	<a href="/inscricao/arquivo/psc/2021-e3/chamada-publica-psc2021-e3.pdf" target="_blank" rel="noopener noreferrer">Chamada Pública - Processo Seletivo Contínuo - PSC 2021 - Etapa 3</a>
 
-	<h1>Inscriçômetro:
+	<!-- <h1>Inscriçômetro:
 		<?php if ($inscricometro->inscricometro <= 0): ?>
-			<span style="color: red">Todas as vagas para aplicador de prova completadas!</span>
+			<span style="color: red">Todas as vagas públicas para aplicador de prova foram completadas!</span>
 		<?php else: ?>
-			<span style="color: green"><?php echo $inscricometro->inscricometro; ?> vagas restantes</span>
+			<span style="color: green"><?php echo $inscricometro->inscricometro; ?> vagas públicas restantes</span>
 		<?php endif; ?>
-	</h1>
+	</h1> -->
 	
 <?php // Homepage de usuário logado ?>
 
@@ -40,9 +40,9 @@
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
 			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
-				<a href="/inscricao/arquivo/pstec/2021/nota-gestores-capital-pstec2021.pdf">Nota aos Coordenadores (Manaus) - PSTEC 2021</a>
+				<a href="/inscricao/arquivo/psc/2021-e3/nota-gestores-capital-psc2021-e3.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2021 - Etapa 3</a>
 			<?php else: ?>
-				<a href="/inscricao/arquivo/pstec/2021/nota-gestores-interior-pstec2021.pdf">Nota aos Coordenadores (Interior) - PSTEC 2021</a>
+				<a href="/inscricao/arquivo/psc/2021-e3/nota-gestores-interior-psc2021-e3.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2021 - Etapa 3</a>
 			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>
