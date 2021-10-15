@@ -8,6 +8,12 @@
 
 	<a href="/inscricao/arquivo/psc/2021-e3/chamada-publica-psc2021-e3.pdf" target="_blank" rel="noopener noreferrer">Chamada Pública - Processo Seletivo Contínuo - PSC 2021 - Etapa 3</a>
 
+	<h2>
+		<span style="color: red">* Todas as vagas públicas para aplicador de prova foram completadas!
+			<br>* Última inscrição em: 15/10/2021 às 00:45:30
+		</span>
+	</h2>
+
 	<!-- <h1>Inscriçômetro:
 		<?php if ($inscricometro->inscricometro <= 0): ?>
 			<span style="color: red">Todas as vagas públicas para aplicador de prova foram completadas!</span>
