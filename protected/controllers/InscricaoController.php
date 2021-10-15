@@ -279,8 +279,8 @@ class InscricaoController extends CController
 			}
 		}
 		
-		if (isset($_GET['cpf']))
-			$form->cpf = $_GET['cpf'];
+		if (isset($_GET['colab_cpf']))
+			$form->colab_cpf = $_GET['colab_cpf'];
 			
 		$this->setSessionForm($form);	
 		
@@ -360,6 +360,7 @@ class InscricaoController extends CController
 				$inscricao->tipoinscricao		= 2;
 				$inscricao->candidatociente		= 'W';
 				$inscricao->idFuncao			= $form->funcao->idFuncao;
+				$inscricao->dt_hr               = date('Y-m-d H:i:s',time());
 
 				if($inscricao->save()) {
 				

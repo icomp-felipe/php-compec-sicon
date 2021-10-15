@@ -111,7 +111,7 @@ class FormInscricao extends CFormModel {
 			$this->errorCode=self::ERRO_COLAB_SEM_CADASTRO;
 		
 		// Verifica se o colaborador está ativo
-		elseif ($colaborador->status_cadastro != 1)
+		elseif ($colaborador->colab_status != 1)
 			$this->errorCode=self::ERRO_COLAB_BLOQUEADO;
 		
 		return $colaborador;
