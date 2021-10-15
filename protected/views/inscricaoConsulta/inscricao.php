@@ -4,6 +4,8 @@
         <a href="/inscricao/arquivo/pse/2020/manual-aplicador-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
     <?php elseif ($inscricao->concurso->idconcurso == 59): ?>
 		<a href="/inscricao/arquivo/pstec/2021/manual-aplicador-pstec2021.pdf">Manual de Instruções do Aplicador (Concurso Público 2021)</a>
+	<?php elseif ($inscricao->concurso->idconcurso == 60): ?>
+		<a href="/inscricao/arquivo/psc/2021-e3/manual-aplicador-psc2021-e3.pdf">Manual de Instruções do Aplicador (PSC 2021 - Etapa 3)</a>
 	<?php endif; ?>
 
 <h2></h2>
