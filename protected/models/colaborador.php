@@ -145,6 +145,10 @@ class colaborador extends CActiveRecord {
 		// Remove zeros do início da conta
 		$this->colab_conta = ltrim($this->colab_conta, "0");
 
+		// Preenche os campos de data
+		$this->colab_create_date = date('Y-m-d H:i:s',time());
+		$this->colab_update_date = date('Y-m-d H:i:s',time());
+
 		// Vincula no objeto 'colaborador' qual usuário o criou/atualizou
 		if (isset($usuario))
 			$this->colab_update_id = $usuario->colaborador->colab_id_pk;
