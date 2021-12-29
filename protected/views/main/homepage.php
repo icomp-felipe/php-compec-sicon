@@ -6,13 +6,7 @@
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 	<h2>Consulte abaixo o edital de chamada:</h2>
 
-	<a href="/inscricao/arquivo/psc/2021-e3/chamada-publica-psc2021-e3.pdf" target="_blank" rel="noopener noreferrer">Chamada Pública - Processo Seletivo Contínuo - PSC 2021 - Etapa 3</a>
-
-	<h2>
-		<span style="color: red">* Todas as vagas públicas para aplicador de prova foram completadas!
-			<br>* Última inscrição em: 15/10/2021 às 00:45:30
-		</span>
-	</h2>
+	<a href="/inscricao/arquivo/psc/2021-e12/chamada-publica-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Chamada Pública - Processo Seletivo Contínuo - PSC 2021 - Etapas 1 e 2</a>
 
 	<!-- <h1>Inscriçômetro:
 		<?php if ($inscricometro->inscricometro <= 0): ?>
@@ -46,9 +40,9 @@
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
 			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
-				<a href="/inscricao/arquivo/psc/2021-e3/nota-gestores-capital-psc2021-e3.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2021 - Etapa 3</a>
+				<a href="/inscricao/arquivo/psc/2021-e12/nota-gestores-capital-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2021 - Etapas 1 e 2</a>
 			<?php else: ?>
-				<a href="/inscricao/arquivo/psc/2021-e3/nota-gestores-interior-psc2021-e3.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2021 - Etapa 3</a>
+				<a href="/inscricao/arquivo/psc/2021-e12/nota-gestores-interior-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2021 - Etapas 1 e 2</a>
 			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>

@@ -5,7 +5,7 @@
 	Obs.: não é necessário imprimir este manual, no dia do concurso o disponibilizaremos no formato impresso.
 </h3>
 
-<a href="/inscricao/arquivo/psc/2021-e3/manual-aplicador-psc2021-e3.pdf">Manual de Instruções do Aplicador (PSC 2021 - Etapa 3)</a>
+<a href="/inscricao/arquivo/psc/2021-e12/manual-aplicador-psc2021-e12.pdf">Manual de Instruções do Aplicador (PSC 2021 - Etapas 1 e 2)</a>
 
 <h2></h2>
 
