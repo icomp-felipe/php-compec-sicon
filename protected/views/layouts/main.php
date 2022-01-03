@@ -58,7 +58,7 @@
 		'items'=>array(
 			array('label' => 'Início'                              , 'url' => array('/main/index')),
 			array('label' => 'Site da COMPEC'                      , 'url' => 'https://www.compec.ufam.edu.br'),
-			//array('label' => 'Inscrição (Público)'                 , 'url' => array('/inscricaoPublico'       ), 'visible' => Yii::app()->user->isGuest),
+			array('label' => 'Inscrição (Público)'                 , 'url' => array('/inscricaoPublico'       ), 'visible' => Yii::app()->user->isGuest),
 			array('label' => 'Inscrição (Público - Consulta)'      , 'url' => array('/inscricaoConsulta'      ), 'visible' => Yii::app()->user->isGuest),
 			array('label' => 'Inscrição (Público - Restrito)'      , 'url' => array('/inscricaoPublico'       ), 'visible' => UserIdentity::isUsuarioInterno()),			
 			array('label' => 'Inscrição (Institucional)'           , 'url' => array('/inscricao'              ), 'visible' => !Yii::app()->user->isGuest && !UserIdentity::isUsuarioInterno()),
