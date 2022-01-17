@@ -7,14 +7,14 @@
 	<h2>Consulte abaixo o edital de chamada:</h2>
 
 	<a href="/inscricao/arquivo/psc/2021-e12/chamada-publica-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Chamada Pública - Processo Seletivo Contínuo - PSC 2021 - Etapas 1 e 2</a>
-
-	<!-- <h1>Inscriçômetro:
+	
+	<h1>Inscriçômetro:
 		<?php if ($inscricometro->inscricometro <= 0): ?>
 			<span style="color: red">Todas as vagas públicas para aplicador de prova foram completadas!</span>
 		<?php else: ?>
 			<span style="color: green"><?php echo $inscricometro->inscricometro; ?> vagas públicas restantes</span>
 		<?php endif; ?>
-	</h1> -->
+	</h1>
 	
 <?php // Homepage de usuário logado ?>
 
