@@ -503,7 +503,7 @@ class InscricaoController extends CController
 	{
 		$data = array(
 					'order'=>'nome',					
-					'condition'=>' idfuncao in (1, 2, 3, 5, 7, 19, 30, 34, 43) and idfuncao in (select idfuncao 
+					'condition'=>' idfuncao in (select idfuncao 
 													from config_concurso cc1 
 													where mapa_concurso_id = :mapa_concurso_id
 													  and idinstituicao = :idinstituicao
