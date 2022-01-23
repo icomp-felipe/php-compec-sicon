@@ -29,13 +29,13 @@
             <?php foreach($models as $n=>$model): ?>
                 <tr class="<?php echo $n % 2 ? 'even' : 'odd';?>">
 
-                    <td><?php echo CHtml::link($model->descricao, array('selecionarConcurso','idconcurso' => $model->idconcurso)); ?>
-                        <font color="#FF0066"><?php echo ($model->emteste == 1 ? ' (Restrito)' : ''); ?></font></td>
+                    <td>
+                        <?php echo CHtml::link($model->conc_nome, array('selecionarConcurso','idconcurso' => $model->conc_id_pk)); ?>
                     </td>
 
                     <td align="center">
-                        <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$model->datainicioinscricao)); ?> - 
-                        <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$model->datafiminscricao)); ?>
+                        <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy HH:mm',$model->conc_data_publico_inicio)); ?> - 
+                        <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy HH:mm',$model->conc_data_publico_fim)); ?>
                     </td>
 
                     <td align="center">

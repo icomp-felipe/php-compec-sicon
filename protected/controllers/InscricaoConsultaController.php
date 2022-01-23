@@ -83,8 +83,8 @@ class InscricaoConsultaController extends CController {
     public function getConcursosColaborador($colaborador) {
 	
 		$data = array(
-			    'order'     => 'idconcurso desc',
-			    'condition' => 'idconcurso in (select distinct(idconcurso) from inscricao where idColaborador = ' . $colaborador->colab_id_pk . ')'
+			    'order'     => 'conc_id_pk desc',
+			    'condition' => 'conc_id_pk in (select distinct(idconcurso) from inscricao where idColaborador = ' . $colaborador->colab_id_pk . ')'
 			);
 
 

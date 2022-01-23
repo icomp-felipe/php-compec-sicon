@@ -123,7 +123,7 @@ class FormInscricao extends CFormModel {
 		if (!$this->hasErrors() && $this->colaborador != null)  {
 			
 			// Recupera a inscrição do colaborador no concurso selecionado
-			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->colab_id_pk, $this->concurso->idconcurso);
+			$inscricao = inscricao::verificarDuplicidadeInscricao($this->colaborador->colab_id_pk, $this->concurso->conc_id_pk);
 			
 			// Se existe inscrição, um erro é gerado
 			if ($inscricao != null)

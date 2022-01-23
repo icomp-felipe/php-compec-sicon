@@ -182,7 +182,7 @@ class InscricaoController extends CController
 		$instituicao = $form->instituicao;
 
 		$condition = 'idconcurso = :idconcurso and idinstituicao = :idinstituicao';
-		$params = array(':idconcurso' => $concurso->idconcurso, ':idinstituicao' => $instituicao->inst_id_pk);
+		$params = array(':idconcurso' => $concurso->conc_id_pk, ':idinstituicao' => $instituicao->inst_id_pk);
 
 		$criteria = new CDbCriteria(array('condition' => $condition, 'params' => $params));
 
@@ -238,7 +238,7 @@ class InscricaoController extends CController
 			}
 			
 			// consulta funções disponíveis no processo
-			$models = $this->getFuncoesDisponiveis($form->concurso->idconcurso, $form->instituicao->inst_id_pk);
+			$models = $this->getFuncoesDisponiveis($form->concurso->conc_id_pk, $form->instituicao->inst_id_pk);
 	
 			if (count($models) > 0) // há vagas
 				// exibe a página de seleção de instituições
@@ -337,7 +337,7 @@ class InscricaoController extends CController
 		$form = $this->getSessionForm();
 		
 		// consulta se há vaga disponíveis no processo, na instituicao e na funcao selecionada
-		$models = $this->getVagasDisponiveis($form->concurso->idconcurso, $form->instituicao->inst_id_pk, $form->funcao->idFuncao);
+		$models = $this->getVagasDisponiveis($form->concurso->conc_id_pk, $form->instituicao->inst_id_pk, $form->funcao->idFuncao);
 		
 		if (!count($models) > 0) // há vagas
 		{
@@ -354,7 +354,7 @@ class InscricaoController extends CController
 				$inscricao = isset($form->inscricao) ? $form->inscricao : new inscricao();
 
 				$inscricao->idinstituicaoopcao1 = $form->instituicao->inst_id_pk;
-				$inscricao->idconcurso 			= $form->concurso->idconcurso;
+				$inscricao->idconcurso 			= $form->concurso->conc_id_pk;
 				$inscricao->idColaborador		= $form->colaborador->colab_id_pk;
 				$inscricao->selecionado			= 'W';
 				$inscricao->tipoinscricao		= 2;
@@ -443,20 +443,14 @@ class InscricaoController extends CController
 		return colaborador::model()->findbyPk($id!==null ? $id : $_GET['id']);
 	}
 		
-	public function getConcursosEmAndamento($id=null)
-	{
-	
-		$condicao_usuario_interno='';
-		if(UserIdentity::isUsuarioInterno())
-			$condicao_usuario_interno = ' || emteste = 1';
-	
+	public function getConcursosEmAndamento($id=null) {
 	
 		$data = array(
-				'order'=>'idconcurso desc',
-				'condition'=>'datainicioinscricao <= curdate() and datafiminscricao >= curdate() '.$condicao_usuario_interno,
-					  );
+			'order' => 'conc_id_pk desc',
+			'condition'=>'conc_data_interno_inicio <= now() and conc_data_interno_fim >= now() '
+		);
 
-			$criteria=new CDbCriteria($data);
+		$criteria=new CDbCriteria($data);
 
 		return concurso::model()->findAll($criteria);
 	}
@@ -467,15 +461,15 @@ class InscricaoController extends CController
 		$condicao_usuario_interno= '';
 		$params=array();
 		
-		if(UserIdentity::isUsuarioInterno() && $form->concurso->emteste==1) //se for usuário interno da comvest e o concurso estiver em teste
+		if(UserIdentity::isUsuarioInterno()) //se for usuário interno da COMPEC
 		{
 			$condicao_usuario_interno = '';	// pode inscrever em qualquer escola
-			$params=array('idconcurso'=>$form->concurso->idconcurso);	
+			$params=array('idconcurso'=>$form->concurso->conc_id_pk);	
 		}
 		else
 		{
 			$condicao_usuario_interno = 'inst_coordenador_id = :idresponsavel and ';	// somente escolas administradas pelo usuário
-			$params=array('idresponsavel'=>$this->usuarioLogado->user_colab_id, 'idconcurso'=>$form->concurso->idconcurso);			
+			$params=array('idresponsavel'=>$this->usuarioLogado->user_colab_id, 'idconcurso'=>$form->concurso->conc_id_pk);			
 		}	
 	
 		$data = array(

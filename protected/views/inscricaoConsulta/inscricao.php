@@ -1,12 +1,12 @@
 <h2>Confirmação de Inscrição</h2>
 
-    <?php if ($inscricao->concurso->idconcurso == 58): ?>
+    <?php if ($inscricao->concurso->conc_id_pk == 58): ?>
         <a href="/inscricao/arquivo/pse/2020/manual-aplicador-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
-    <?php elseif ($inscricao->concurso->idconcurso == 59): ?>
+    <?php elseif ($inscricao->concurso->conc_id_pk == 59): ?>
 		<a href="/inscricao/arquivo/pstec/2021/manual-aplicador-pstec2021.pdf">Manual de Instruções do Aplicador (Concurso Público 2021)</a>
-	<?php elseif ($inscricao->concurso->idconcurso == 60): ?>
+	<?php elseif ($inscricao->concurso->conc_id_pk == 60): ?>
 		<a href="/inscricao/arquivo/psc/2021-e3/manual-aplicador-psc2021-e3.pdf">Manual de Instruções do Aplicador (PSC 2021 - Etapa 3)</a>
-	<?php elseif ($inscricao->concurso->idconcurso == 62): ?>
+	<?php elseif ($inscricao->concurso->conc_id_pk == 62): ?>
 		<a href="/inscricao/arquivo/psc/2021-e12/manual-aplicador-psc2021-e12.pdf">Manual de Instruções do Aplicador (PSC 2021 - Etapas 1 e 2)</a>
 	<?php endif; ?>
 
@@ -40,7 +40,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Concurso:</th>
-			<td><?php echo $inscricao->concurso->descricao .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$inscricao->concurso->conc_data_realizacao)); ?></td>
+			<td><?php echo $inscricao->concurso->conc_nome .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$inscricao->concurso->conc_data_realizacao)); ?></td>
 		</tr>
 
         <tr>

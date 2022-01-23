@@ -127,7 +127,7 @@ class InscricaoPublicoController extends CController {
 		}
 		
 		// consulta instituições disponíveis no processo
-		$models = $this->getInstituicoesDisponiveis($form->concurso->idconcurso);	
+		$models = $this->getInstituicoesDisponiveis($form->concurso->conc_id_pk);	
 
 		if (count($models) > 0) // há vagas
 			// exibe a página de seleção de instituições
@@ -177,7 +177,7 @@ class InscricaoPublicoController extends CController {
 				$inscricao = new inscricao();
 
 				$inscricao->idinstituicaoopcao1 = $form->instituicao->inst_id_pk;
-				$inscricao->idconcurso 			= $form->concurso->idconcurso;
+				$inscricao->idconcurso 			= $form->concurso->conc_id_pk;
 				$inscricao->idColaborador		= $form->colaborador->colab_id_pk;
 				$inscricao->selecionado			= 'W';
 				$inscricao->tipoinscricao		= 1;
@@ -264,27 +264,15 @@ class InscricaoPublicoController extends CController {
 	public function loadcolaborador($id)
 	{
 		return colaborador::model()->findbyPk($id!==null ? $id : $_GET['id']);
-	}	
-	
-	function getCondicaoUsuarioInterno()
-	{
-		$condicao_usuario_interno='';
-		if(UserIdentity::isUsuarioInterno())
-			$condicao_usuario_interno = ' || emteste = 1';
-		return $condicao_usuario_interno;
 	}
 	
-	public function getConcursosEmAndamento($id=null)
-	{
-	
-	
-			$data = array(
-					'order'=>'idconcurso desc',
-					'condition'=>'datainicioinscricao <= curdate() and datafiminscricao >= curdate() '. $this->getCondicaoUsuarioInterno(),
-					);
+	public function getConcursosEmAndamento($id=null) {
+		$data = array(
+			'order' => 'conc_id_pk desc',
+			'condition' => 'conc_data_publico_inicio <= now() and conc_data_publico_fim >= now()'
+		);
 
-
-		$criteria=new CDbCriteria($data);
+		$criteria = new CDbCriteria($data);
 
 		return concurso::model()->findAll($criteria);
 	}
