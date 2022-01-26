@@ -38,6 +38,9 @@ class FormInscricaoPublico extends CFormModel {
 			// Validação (externa) dos dígitos do CPF, no cenário 'cpf'
 			array('colab_cpf', 'ext.validators.CPFValidator','message' => 'O CPF informado é inválido!', 'on' => 'cpf'),
 
+			// Validação (externa) do endereço de e-mail, no cenário 'inscricaoPublico'
+			array('colab_email', 'ext.validators.EmailValidator','message' => 'O e-mail informado é inválido!', 'on' => 'inscricaoPublico'),
+
 			// Validação (interna) do colaborador, no cenário 'cpf':
 			// 1. verifica se o mesmo possui cadastro;
 			// 2. verifica se ele está apto a se inscrever (possui status_cadastro = 1)
