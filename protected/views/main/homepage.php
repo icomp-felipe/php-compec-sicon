@@ -2,19 +2,21 @@
 
 <?php if (Yii::app()->user->isGuest):?>
 
-	<h1>Bem-vindo(a)!</h1>
-	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
-	<h2>Consulte abaixo o edital de chamada:</h2>
+	<h1 style="color: red">Atenção!</h1>
+	<h2>Informamos que o PSC 2021 - Etapas 1 e 2, que seria realizado no dia 30/01/2022, foi SUSPENSO pela reitoria da UFAM, devido ao aumento de casos de COVID no Estado do Amazonas.</h2>
+	<h2>Confira abaixo, na íntegra, a portaria de suspensão:</h2>
 
-	<a href="/inscricao/arquivo/psc/2021-e12/chamada-publica-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Chamada Pública - Processo Seletivo Contínuo - PSC 2021 - Etapas 1 e 2</a>
+	<h2><a href="/inscricao/arquivo/psc/2021-e12/portaria-suspensao-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Portaria de Suspensão - Processo Seletivo Contínuo - PSC 2021 - Etapas 1 e 2</a></h2>
 	
-	<h1>Inscriçômetro:
+	<!-- <h1>Inscriçômetro:
 		<?php if ($inscricometro->inscricometro <= 0): ?>
 			<span style="color: red">Todas as vagas públicas para aplicador de prova foram completadas!</span>
 		<?php else: ?>
 			<span style="color: green"><?php echo $inscricometro->inscricometro; ?> vagas públicas restantes</span>
 		<?php endif; ?>
-	</h1>
+	</h1> -->
+
+	<h2>Informamos também que todos os inscritos para aplicador de prova permanecerão inscritos até a publicação de um novo edital com a nova data e novos procedimentos.</h2>
 	
 <?php // Homepage de usuário logado ?>
 
