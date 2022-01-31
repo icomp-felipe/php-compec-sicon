@@ -6,10 +6,10 @@
     <?php echo CHtml::errorSummary($form,'Atenção!'); ?>
 
     <div class="simple">
-        <?php echo CHtml::activeLabel($form,'cpf'); ?>
+        <?php echo CHtml::activeLabel($form, 'colab_cpf'); ?>
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$form,
-            'attribute'=>'cpf',
+            'attribute'=>'colab_cpf',
             'mask'=>'999.999.999-99',
             'placeholder'=>'_',
             'htmlOptions'=>array(
