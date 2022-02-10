@@ -2,11 +2,11 @@
 
 <?php if (Yii::app()->user->isGuest):?>
 
-	<h1 style="color: red">Atenção!</h1>
-	<h2>Informamos que o PSC 2021 - Etapas 1 e 2, que seria realizado no dia 30/01/2022, foi SUSPENSO pela reitoria da UFAM, devido ao aumento de casos de COVID no Estado do Amazonas.</h2>
-	<h2>Confira abaixo, na íntegra, a portaria de suspensão:</h2>
+	<h1 style="color: green">Bem-vindo(a)!</h1>
+	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
+	<h2>Consulte abaixo o novo edital de confirmação de inscrição e chamada:</h2>
 
-	<h2><a href="/inscricao/arquivo/psc/2021-e12/portaria-suspensao-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Portaria de Suspensão - Processo Seletivo Contínuo - PSC 2021 - Etapas 1 e 2</a></h2>
+	<h2><a href="/inscricao/arquivo/psc/2021-e12/chamada-publica-confirmacao-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">PSC 2021 - Etapas 1 e 2 - Nota Pública de Confirmação e Inscrição</a></h2>
 	
 	<!-- <h1>Inscriçômetro:
 		<?php if ($inscricometro->inscricometro <= 0): ?>

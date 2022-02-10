@@ -43,7 +43,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'funcao'); ?>:</th>
-    		<td>Aplicador (Sala ou Volante)</td>
+    		<td><?php echo $form->inscricao->funcao->descricao; ?></td>
 		</tr>
 
 		<tr>

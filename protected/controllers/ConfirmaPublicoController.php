@@ -87,8 +87,8 @@ class ConfirmaPublicoController extends CController {
 		// Se existe inscrição...
 		if (isset($form->inscricao)) {
 			
-			// ...e ela já foi confirmada, a tela de 'confirmado' é exibida.
-			if ($form->inscricao->candidatociente == 'S')
+			// ...e ela já foi confirmada ou não é inscrição pública de aplicador, a tela de 'confirmado' é exibida.
+			if (($form->inscricao->candidatociente == 'S') || ($form->inscricao->idFuncao != 1) || ($form->inscricao->tipoinscricao != 1))
 				$this->render('confirmado', array('form' => $form));
 			
 			// Caso contrário, é renderizada a página de atualização/confirmação de dados e ciência.
