@@ -16,8 +16,6 @@
 		<?php endif; ?>
 	</h1> -->
 
-	<h2>Informamos também que todos os inscritos para aplicador de prova permanecerão inscritos até a publicação de um novo edital com a nova data e novos procedimentos.</h2>
-	
 <?php // Homepage de usuário logado ?>
 
 <?php else: ?>
