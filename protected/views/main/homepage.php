@@ -6,7 +6,7 @@
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 	<h2>Consulte abaixo o novo edital de confirmação de inscrição e chamada:</h2>
 
-	<h2><a href="/inscricao/arquivo/psc/2021-e12/chamada-publica-confirmacao-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">PSC 2021 - Etapas 1 e 2 - Nota Pública de Confirmação e Inscrição</a></h2>
+	<h2><a href="/inscricao/arquivo/pstec/2022/chamada-publica-pstec2022.pdf" target="_blank" rel="noopener noreferrer">PSTEC 2022 - Nota Pública de Inscrição</a></h2>
 	
 	<!-- <h1>Inscriçômetro:
 		<?php if ($inscricometro->inscricometro <= 0): ?>
@@ -40,9 +40,9 @@
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
 			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
-				<a href="/inscricao/arquivo/psc/2021-e12/nota-gestores-capital-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2021 - Etapas 1 e 2</a>
+				<a href="/inscricao/arquivo/pstec/2022/nota-gestores-capital-pstec2022.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSTEC 2022</a>
 			<?php else: ?>
-				<a href="/inscricao/arquivo/psc/2021-e12/nota-gestores-interior-psc2021-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2021 - Etapas 1 e 2</a>
+				<a href="/inscricao/arquivo/pstec/2022/nota-gestores-interior-pstec2022.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSTEC 2022</a>
 			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>
