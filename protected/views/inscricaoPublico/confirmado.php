@@ -5,7 +5,7 @@
 	Obs.: não é necessário imprimir este manual, no dia do concurso o disponibilizaremos no formato impresso.
 </h3>
 
-<a href="/inscricao/arquivo/pstec/2022/manual-aplicador-pstec2022.pdf">Manual de Instruções do Aplicador (Concurso Público 2021)</a>
+<a href="/inscricao/arquivo/psc/2022-e3/manual-aplicador-psc2022-e3.pdf">Manual de Instruções do Aplicador (PSC 2022 - Etapa 3)</a>
 
 <h2></h2>
 
