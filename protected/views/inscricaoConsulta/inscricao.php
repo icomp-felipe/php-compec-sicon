@@ -12,6 +12,8 @@
 		<a href="/inscricao/arquivo/pstec/2022/manual-aplicador-pstec2022.pdf">Manual de Instruções do Aplicador (Concurso Público 2022)</a>
 	<?php elseif ($inscricao->concurso->conc_id_pk == 65): ?>
 		<a href="/inscricao/arquivo/psc/2022-e3/manual-aplicador-psc2022-e3.pdf">Manual de Instruções do Aplicador (PSC 2022 - Etapa 3)</a>
+	<?php elseif ($inscricao->concurso->conc_id_pk == 69): ?>
+		<a href="/inscricao/arquivo/psc/2022-e12/manual-aplicador-psc2022-e12.pdf">Manual de Instruções do Aplicador (PSC 2022 - Etapas 1 e 2)</a>
 	<?php endif; ?>
 
 <h2></h2>
