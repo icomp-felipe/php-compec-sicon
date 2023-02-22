@@ -47,6 +47,11 @@
 		</tr>
 
 		<tr>
+			<th class="label" style="text-align: right;">Data de Nascimento:</th>
+			<td><?php echo date_format(date_create($form->colaborador->colab_nascimento), "d/m/Y"); ?></td>
+		</tr>
+
+		<tr>
 			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_celular_1'); ?>:</th>
     		<td><?php echo $form->colaborador->celularFormatado; ?></td>
 		</tr>

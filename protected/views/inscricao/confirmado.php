@@ -23,6 +23,11 @@
 		</tr>
 
 		<tr>
+			<th class="label" style="text-align: right;">Data de Nascimento:</th>
+			<td><?php echo date_format(date_create($form->colaborador->colab_nascimento), "d/m/Y"); ?></td>
+		</tr>
+
+		<tr>
 			<th class="label" style="text-align: right;">Concurso:</th>
 			<td><?php echo $form->concurso->conc_nome .' - <b>Realização:</b> '. CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$form->concurso->conc_data_realizacao)); ?></td>
 		</tr>

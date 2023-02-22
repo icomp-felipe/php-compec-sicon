@@ -10,15 +10,16 @@ class FormInscricao extends CFormModel {
 	public $inscricao   = null;
 
 	// Atributos do Colaborador
-	public $colab_cpf       = null;
-	public $colab_pis       = null;
-	public $colab_rg        = null;
-	public $colab_celular_1 = null;
-	public $colab_email     = null;
-	public $colab_banco_id  = null;
-	public $colab_agencia   = null;
-	public $colab_conta     = null;
-	public $colab_conta_dv  = null;
+	public $colab_cpf        = null;
+	public $colab_nascimento = null;
+	public $colab_pis        = null;
+	public $colab_rg         = null;
+	public $colab_celular_1  = null;
+	public $colab_email      = null;
+	public $colab_banco_id   = null;
+	public $colab_agencia    = null;
+	public $colab_conta      = null;
+	public $colab_conta_dv   = null;
 
 	// Controle de formulário
 	public $multiplosConcursos    = false;
@@ -49,7 +50,7 @@ class FormInscricao extends CFormModel {
 			array('colab_cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarColaborador'),
 
 			// Define campos obrigatórios no cenário 'inscricao'
-			array('colab_pis, colab_rg, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on' => 'inscricao'),
+			array('colab_pis, colab_nascimento, colab_rg, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on' => 'inscricao'),
 
 			// Validação (externa) dos dígitos do PIS, no cenário 'inscricao'
 			array('colab_pis', 'ext.validators.PISValidator', 'message' => 'O PIS informado é inválido!','on' => 'inscricao')
@@ -60,13 +61,14 @@ class FormInscricao extends CFormModel {
 	public function attributeLabels() {
 		return array(
 
-			'colab_cpf'      => 'CPF',
-			'colab_pis'      => 'PIS | PASEP | NIS | NIT',
-			'colab_rg'       => 'Nº do RG',
-			'colab_banco_id' => 'Banco',
-			'colab_agencia'  => 'Nº da Agência',
-			'colab_conta'    => 'Nº da Conta',
-			'colab_conta_dv' => 'Dígito da Conta'
+			'colab_cpf'        => 'CPF',
+			'colab_pis'        => 'PIS | PASEP | NIS | NIT',
+			'colab_nascimento' => 'Data de Nascimento',
+			'colab_rg'         => 'Nº do RG',
+			'colab_banco_id'   => 'Banco',
+			'colab_agencia'    => 'Nº da Agência',
+			'colab_conta'      => 'Nº da Conta',
+			'colab_conta_dv'   => 'Dígito da Conta'
 
 		);
 	}

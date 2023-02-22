@@ -27,12 +27,13 @@ class InscricaoController extends CController
 		
 		if (isset($form->colaborador)) {
 
-			$form->colab_pis      = $form->colaborador->colab_pis;
-			$form->colab_rg       = $form->colaborador->colab_rg;
-			$form->colab_banco_id = $form->colaborador->colab_banco_id;
-			$form->colab_agencia  = $form->colaborador->colab_agencia;
-			$form->colab_conta    = $form->colaborador->colab_conta;
-			$form->colab_conta_dv = $form->colaborador->colab_conta_dv;
+			$form->colab_pis        = $form->colaborador->colab_pis;
+			$form->colab_rg         = $form->colaborador->colab_rg;
+			$form->colab_nascimento = $form->colaborador->colab_nascimento;
+			$form->colab_banco_id   = $form->colaborador->colab_banco_id;
+			$form->colab_agencia    = $form->colaborador->colab_agencia;
+			$form->colab_conta      = $form->colaborador->colab_conta;
+			$form->colab_conta_dv   = $form->colaborador->colab_conta_dv;
 				
 		}
 		
@@ -366,22 +367,24 @@ class InscricaoController extends CController
 				
 					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
 
-					$colaborador->colab_pis      = $_POST['FormInscricao']['colab_pis'     ];
-					$colaborador->colab_rg       = $_POST['FormInscricao']['colab_rg'      ];
-					$colaborador->colab_banco_id = $_POST['FormInscricao']['colab_banco_id'];
-					$colaborador->colab_agencia  = $_POST['FormInscricao']['colab_agencia' ];
-					$colaborador->colab_conta    = $_POST['FormInscricao']['colab_conta'   ];
-					$colaborador->colab_conta_dv = $_POST['FormInscricao']['colab_conta_dv'];
+					$colaborador->colab_pis        = $_POST['FormInscricao']['colab_pis'     ];
+					$colaborador->colab_rg         = $_POST['FormInscricao']['colab_rg'      ];
+					$colaborador->colab_banco_id   = $_POST['FormInscricao']['colab_banco_id'];
+					$colaborador->colab_nascimento = $_POST['FormInscricao']['colab_nascimento'];
+					$colaborador->colab_agencia    = $_POST['FormInscricao']['colab_agencia' ];
+					$colaborador->colab_conta      = $_POST['FormInscricao']['colab_conta'   ];
+					$colaborador->colab_conta_dv   = $_POST['FormInscricao']['colab_conta_dv'];
 					
 					if ($colaborador->save(false)) {
 	
-						$form->colaborador->colab_pis      = $colaborador->colab_pis;
-						$form->colaborador->colab_rg       = $colaborador->colab_rg;
-						$form->colaborador->banco          = $colaborador->banco;
-						$form->colaborador->colab_banco_id = $colaborador->colab_banco_id;
-						$form->colaborador->colab_agencia  = $colaborador->colab_agencia;
-						$form->colaborador->colab_conta    = $colaborador->colab_conta;
-						$form->colaborador->colab_conta_dv = $colaborador->colab_conta_dv;
+						$form->colaborador->colab_pis        = $colaborador->colab_pis;
+						$form->colaborador->colab_rg         = $colaborador->colab_rg;
+						$form->colaborador->colab_nascimento = $colaborador->colab_nascimento;
+						$form->colaborador->banco            = $colaborador->banco;
+						$form->colaborador->colab_banco_id   = $colaborador->colab_banco_id;
+						$form->colaborador->colab_agencia    = $colaborador->colab_agencia;
+						$form->colaborador->colab_conta      = $colaborador->colab_conta;
+						$form->colaborador->colab_conta_dv   = $colaborador->colab_conta_dv;
 						
 					}
 					else {									

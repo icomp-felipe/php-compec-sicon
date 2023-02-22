@@ -36,6 +36,22 @@
 		</tr>
 
 		<tr>
+			<th class="label" style="text-align: right;">Data de Nascimento:</th>
+			<td>
+				<?php $this->widget('CMaskedTextField',array(
+					'model'=>$form,
+					'attribute'=>'colab_nascimento',
+					'mask'=>'99/99/9999',
+					'placeholder'=>'_',
+					'htmlOptions'=>array(
+						'size'=>8,
+						'maxlength'=>8
+					)
+				)); ?>
+			</td>
+		</tr>
+
+		<tr>
 			<th class="label" style="text-align: right;">Celular (WhatsApp):</th>
     		<td>
 				<?php $this->widget('CMaskedTextField', array(
@@ -114,12 +130,7 @@
 
 	<br>
 
-	<p><?php echo CHtml::activeCheckBox($form, 'ciente'); ?> Declaro que meus dados estão corretos e, ainda, que:
-		<ul>
-			<li>Não pertenço ao grupo de risco;</li>
-			<li>Se pertenço, estou vacinado com as duas doses contra a SARS-CoV-2 (COVID-19).</li>
-		</ul>
-	</p>
+	<p><?php echo CHtml::activeCheckBox($form, 'ciente'); ?> Declaro que meus dados estão corretos!</p>
 
 	<br>
 

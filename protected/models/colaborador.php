@@ -1,7 +1,7 @@
 <?php
 
 /** Modelagem do colaborador.
- *  Atualizada em: 13/09/2021
+ *  Atualizada em: 21/02/2023
  *  @author Felipe André <felipeandresouza@hotmail.com>
  */
 class colaborador extends CActiveRecord {
@@ -66,9 +66,9 @@ class colaborador extends CActiveRecord {
 			array('colab_conta_dv','length','max' =>  1),
             
 			// Campos Obrigatórios
-			array('colab_nome, colab_cpf, colab_sexo, colab_pis, colab_rg, colab_rg_orgao, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, colab_categoria_id', 'required'),
+			array('colab_nome, colab_cpf, colab_nascimento, colab_sexo, colab_pis, colab_rg, colab_rg_orgao, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, colab_categoria_id', 'required'),
 			array('colab_cpf','required', 'on'=>'formCPF'),
-			array('colab_pis, colab_rg, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on'=>'inscricaoPublico'),
+			array('colab_pis, colab_rg, colab_email, colab_nascimento, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on'=>'inscricaoPublico'),
 			array('colab_status, colab_banco_id, colab_categoria_id', 'numerical', 'integerOnly' => true)
 		);
 	}

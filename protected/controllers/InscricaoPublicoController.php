@@ -15,16 +15,17 @@ class InscricaoPublicoController extends CController {
 		$form->instituicao = $session["instituicao"];
 		$form->funcao      = $session["funcao"     ];
 
-		$form->colab_nome      = $form->colaborador->nomeProprio;
-		$form->colab_cpf       = $session["cpf"];
-		$form->colab_pis       = $form->colaborador->colab_pis;
-		$form->colab_rg        = $form->colaborador->colab_rg;
-		$form->colab_celular_1 = $form->colaborador->colab_celular_1;
-		$form->colab_email     = $form->colaborador->colab_email;
-		$form->colab_banco_id  = $form->colaborador->colab_banco_id;
-		$form->colab_agencia   = $form->colaborador->colab_agencia;
-		$form->colab_conta     = $form->colaborador->colab_conta;
-		$form->colab_conta_dv  = $form->colaborador->colab_conta_dv;
+		$form->colab_nome       = $form->colaborador->nomeProprio;
+		$form->colab_cpf        = $session["cpf"];
+		$form->colab_pis        = $form->colaborador->colab_pis;
+		$form->colab_rg         = $form->colaborador->colab_rg;
+		$form->colab_nascimento = $form->colaborador->colab_nascimento;
+		$form->colab_celular_1  = $form->colaborador->colab_celular_1;
+		$form->colab_email      = $form->colaborador->colab_email;
+		$form->colab_banco_id   = $form->colaborador->colab_banco_id;
+		$form->colab_agencia    = $form->colaborador->colab_agencia;
+		$form->colab_conta      = $form->colaborador->colab_conta;
+		$form->colab_conta_dv   = $form->colaborador->colab_conta_dv;
 		
 		return $form;
 	}
@@ -189,16 +190,17 @@ class InscricaoPublicoController extends CController {
 			
 					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
 
-					$colaborador->colab_nome      = $_POST['FormInscricaoPublico']['colab_nome'     ];
-					$colaborador->colab_pis       = $_POST['FormInscricaoPublico']['colab_pis'      ];
-					$colaborador->colab_rg        = $_POST['FormInscricaoPublico']['colab_rg'       ];
-					$colaborador->colab_email     = $_POST['FormInscricaoPublico']['colab_email'    ];
-					$colaborador->colab_celular_1 = $_POST['FormInscricaoPublico']['colab_celular_1'];
-					$colaborador->colab_banco_id  = $_POST['FormInscricaoPublico']['colab_banco_id' ];
-					$colaborador->colab_agencia   = $_POST['FormInscricaoPublico']['colab_agencia'  ];
-					$colaborador->colab_conta     = $_POST['FormInscricaoPublico']['colab_conta'    ];
-					$colaborador->colab_conta_dv  = $_POST['FormInscricaoPublico']['colab_conta_dv' ];
-					$colaborador->colab_update_id = $colaborador->colab_id_pk;
+					$colaborador->colab_nome       = $_POST['FormInscricaoPublico']['colab_nome'      ];
+					$colaborador->colab_pis        = $_POST['FormInscricaoPublico']['colab_pis'       ];
+					$colaborador->colab_rg         = $_POST['FormInscricaoPublico']['colab_rg'        ];
+					$colaborador->colab_email      = $_POST['FormInscricaoPublico']['colab_email'     ];
+					$colaborador->colab_nascimento = $_POST['FormInscricaoPublico']['colab_nascimento'];
+					$colaborador->colab_celular_1  = $_POST['FormInscricaoPublico']['colab_celular_1' ];
+					$colaborador->colab_banco_id   = $_POST['FormInscricaoPublico']['colab_banco_id'  ];
+					$colaborador->colab_agencia    = $_POST['FormInscricaoPublico']['colab_agencia'   ];
+					$colaborador->colab_conta      = $_POST['FormInscricaoPublico']['colab_conta'     ];
+					$colaborador->colab_conta_dv   = $_POST['FormInscricaoPublico']['colab_conta_dv'  ];
+					$colaborador->colab_update_id  = $colaborador->colab_id_pk;
 
 					$colaborador->setScenario('inscricaoPublico');
 
@@ -206,15 +208,16 @@ class InscricaoPublicoController extends CController {
 
 						$form->colaborador->banco           = $colaborador->banco;
 
-						$form->colaborador->colab_nome      = $colaborador->colab_nome;
-						$form->colaborador->colab_pis       = $colaborador->colab_pis;
-						$form->colaborador->colab_rg        = $colaborador->colab_rg;
-						$form->colaborador->colab_email     = $colaborador->colab_email;
-						$form->colaborador->colab_celular_1 = $colaborador->colab_celular_1;						
-						$form->colaborador->colab_banco_id  = $colaborador->colab_banco_id;
-						$form->colaborador->colab_agencia   = $colaborador->colab_agencia;
-						$form->colaborador->colab_conta     = $colaborador->colab_conta;
-						$form->colaborador->colab_conta_dv  = $colaborador->colab_conta_dv;
+						$form->colaborador->colab_nome       = $colaborador->colab_nome;
+						$form->colaborador->colab_pis        = $colaborador->colab_pis;
+						$form->colaborador->colab_rg         = $colaborador->colab_rg;
+						$form->colaborador->colab_email      = $colaborador->colab_email;
+						$form->colaborador->colab_nascimento = $colaborador->colab_nascimento;
+						$form->colaborador->colab_celular_1  = $colaborador->colab_celular_1;						
+						$form->colaborador->colab_banco_id   = $colaborador->colab_banco_id;
+						$form->colaborador->colab_agencia    = $colaborador->colab_agencia;
+						$form->colaborador->colab_conta      = $colaborador->colab_conta;
+						$form->colaborador->colab_conta_dv   = $colaborador->colab_conta_dv;
 						
 					}
 					else {									

@@ -68,6 +68,22 @@
 		</tr>
 
 		<tr>
+			<th class="label" style="text-align: right;">Data de Nascimento:</th>
+			<td>
+				<?php $this->widget('CMaskedTextField',array(
+					'model'=>$form,
+					'attribute'=>'colab_nascimento',
+					'mask'=>'99/99/9999',
+					'placeholder'=>'_',
+					'htmlOptions'=>array(
+						'size'=>8,
+						'maxlength'=>8
+					)
+				)); ?>
+			</td>
+		</tr>
+
+		<tr>
 			<th class="label" style="text-align: right;">PIS | PASEP | NIS | NIT:</th>
 			<td>
 				<?php $this->widget('CMaskedTextField',array(
