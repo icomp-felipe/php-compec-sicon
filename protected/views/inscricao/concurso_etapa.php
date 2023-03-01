@@ -14,18 +14,17 @@
         <?php foreach($models as $n=>$model): ?>
             <tr class="<?php echo $n % 2 ? 'even' : 'odd';?>">
 
-                <td><?php echo CHtml::encode($model->descricao); ?>
-                    <font color="#FF0066"><?php echo ($model->emteste == 1 ? ' (Restrito)' : ''); ?></font></td>
+                <td><?php echo CHtml::encode($model->conc_nome); ?>
                 </td>
 
                 <td align="center">
-                    <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$model->datainicioinscricao)); ?> - 
-                    <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$model->datafiminscricao)); ?>
+                    <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$model->conc_data_interno_inicio)); ?> - 
+                    <?php echo CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy',$model->conc_data_interno_fim)); ?>
                 </td>
 
                 <td align="center">
                     <?php echo CHtml::link(CHtml::encode(Yii::app()->dateFormatter->format('dd/MM/yyyy', $model->conc_data_realizacao)),
-                                            array('selecionarConcursoEtapa','idconcurso' => $model->idconcurso)); ?>
+                                            array('selecionarConcursoEtapa','idconcurso' => $model->conc_id_pk)); ?>
                 </td>
 
             </tr>
