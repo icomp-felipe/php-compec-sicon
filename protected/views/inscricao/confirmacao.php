@@ -33,7 +33,7 @@
 
 		</li>
 
-		<li><b>Função</b>: <?php echo $form->funcao->nome.' ['.CHtml::link('Trocar',array('selecionarFuncao')).']'; ?></li>
+		<li><b>Função</b>: <?php echo $form->funcao->func_nome.' ['.CHtml::link('Trocar',array('selecionarFuncao')).']'; ?></li>
 		
     </ul>
 </div>

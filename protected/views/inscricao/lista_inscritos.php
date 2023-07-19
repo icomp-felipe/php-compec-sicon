@@ -48,14 +48,14 @@
             <tr class="<?php echo $n % 2 ? 'even' : 'odd'; ?>">
 
                 <td style="text-align: center;"><?php echo $i++; ?></td>
-                <td style="text-align: center;"><?php echo CHtml::link  ($inscricao->cpfFormatado, array('colaborador/update','id' => $inscricao->idColaborador)); ?></td>
+                <td style="text-align: center;"><?php echo CHtml::link  ($inscricao->cpfFormatado, array('colaborador/update','id' => $inscricao->colab_id_pk)); ?></td>
                 <td><?php echo CHtml::encode($inscricao->nomeProprio); ?></td>
-                <td style="text-align: center;"><?php echo CHtml::encode($inscricao->funcao); ?></td>
+                <td style="text-align: center;"><?php echo CHtml::encode($inscricao->func_apelido); ?></td>
                 <td style="text-align: center;">
-                    <?php echo CHtml::link('Trocar Função', array('selecionarFuncao', 'idinscricao' => $inscricao->idinscricao)); ?><br>
+                    <?php echo CHtml::link('Trocar Função', array('selecionarFuncao', 'idinscricao' => $inscricao->insc_id_pk)); ?><br>
                     <?php echo CHtml::linkButton('Cancelar Inscrição', array(
                                 'submit'  => '',
-                                'params'  => array('command' => 'delete', 'id' => $inscricao->idinscricao),
+                                'params'  => array('command' => 'delete', 'id' => $inscricao->insc_id_pk),
                                 'confirm' => "Confirma o cancelamento da inscrição do colaborador: '{$inscricao->nomeProprio}'?")); ?>
                 </td>
             </tr>

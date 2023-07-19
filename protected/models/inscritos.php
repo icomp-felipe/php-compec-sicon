@@ -51,7 +51,7 @@ class inscritos extends CActiveRecord {
 
     // Retorna o CPF com a sua devida máscara (apenas se o CPF tiver exatamente 11 dígitos)
 	public function getCpfFormatado() {
-		return (strlen($this->cpf) == 11) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($this->colab_cpf)) : $this->colab_cpf;
+		return (strlen($this->colab_cpf) == 11) ? vsprintf("%s%s%s.%s%s%s.%s%s%s-%s%s", str_split($this->colab_cpf)) : $this->colab_cpf;
 	}
 
 	// Retorna o nome do colaborador com apenas a primeira letra maiúscula

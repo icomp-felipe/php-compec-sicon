@@ -9,7 +9,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Nº de Inscrição:</th>
-			<td><?php echo inscricao::load($form->colaborador->colab_id_pk, $form->concurso->conc_id_pk)->idinscricao; ?></td>
+			<td><?php echo inscricao::load($form->colaborador->colab_id_pk, $form->concurso->conc_id_pk)->insc_id_pk; ?></td>
 		</tr>
 
 		<tr>
@@ -39,7 +39,7 @@
 
 		<tr>
 			<th class="label" style="text-align: right;">Função:</th>
-			<td><?php echo $form->funcao->nome; ?></td>
+			<td><?php echo $form->funcao->func_apelido; ?></td>
 		</tr>
 
 		<tr>

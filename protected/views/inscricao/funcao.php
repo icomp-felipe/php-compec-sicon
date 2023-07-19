@@ -50,7 +50,7 @@
 		<tbody>
 			<?php foreach($models as $n=>$model): ?>
 				<tr class="<?php echo $n%2?'even':'odd';?>">
-					<td><?php echo CHtml::link($model->nome,array('selecionarFuncao','idfuncao'=>$model->idFuncao)); ?></td>
+					<td><?php echo CHtml::link($model->func_apelido,array('selecionarFuncao','idfuncao'=>$model->func_id_pk)); ?></td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
