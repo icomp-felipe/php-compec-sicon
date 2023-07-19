@@ -55,10 +55,10 @@ class FormInscricaoPublico extends CFormModel {
 			array('colab_nome, colab_nascimento, colab_rg, colab_celular_1, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, ciente', 'required', 'on' => 'inscricaoPublico'),
 
 			// Validação (interna) de ciência de procedimentos, no cenário 'inscricaoPublico'
-			array('ciente', 'validarCiencia', 'on' => 'inscricaoPublico'),
+			array('ciente', 'validarCiencia', 'on' => 'inscricaoPublico')
 
 			// Validação (externa) dos dígitos do PIS, no cenário 'inscricaoPublico'
-			array('colab_pis', 'ext.validators.PISValidator', 'message'=>'O PIS informado é inválido!', 'on' => 'inscricaoPublico')
+			//array('colab_pis', 'ext.validators.PISValidator', 'message'=>'O PIS informado é inválido!', 'on' => 'inscricaoPublico')
 
 		);
 	}

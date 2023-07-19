@@ -17,7 +17,6 @@ class InscricaoPublicoController extends CController {
 
 		$form->colab_nome       = $form->colaborador->nomeProprio;
 		$form->colab_cpf        = $session["cpf"];
-		$form->colab_pis        = $form->colaborador->colab_pis;
 		$form->colab_rg         = $form->colaborador->colab_rg;
 		$form->colab_nascimento = $form->colaborador->colab_nascimento;
 		$form->colab_celular_1  = $form->colaborador->colab_celular_1;
@@ -211,7 +210,6 @@ class InscricaoPublicoController extends CController {
 					$colaborador = $this->loadcolaborador($inscricao->insc_colab_id);
 
 					$colaborador->colab_nome       = $_POST['FormInscricaoPublico']['colab_nome'      ];
-					$colaborador->colab_pis        = $_POST['FormInscricaoPublico']['colab_pis'       ];
 					$colaborador->colab_rg         = $_POST['FormInscricaoPublico']['colab_rg'        ];
 					$colaborador->colab_email      = $_POST['FormInscricaoPublico']['colab_email'     ];
 					$colaborador->colab_nascimento = $_POST['FormInscricaoPublico']['colab_nascimento'];
@@ -229,7 +227,6 @@ class InscricaoPublicoController extends CController {
 						$form->colaborador->banco           = $colaborador->banco;
 
 						$form->colaborador->colab_nome       = $colaborador->colab_nome;
-						$form->colaborador->colab_pis        = $colaborador->colab_pis;
 						$form->colaborador->colab_rg         = $colaborador->colab_rg;
 						$form->colaborador->colab_email      = $colaborador->colab_email;
 						$form->colaborador->colab_nascimento = $colaborador->colab_nascimento;

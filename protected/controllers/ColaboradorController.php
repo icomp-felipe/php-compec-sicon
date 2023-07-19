@@ -62,7 +62,11 @@ class ColaboradorController extends CController
 	public function actionCreate()
 	{
 		$model = new colaborador;
-		$model->inscPublico = $_GET['inscPublico'];
+
+		if (isset($_GET['inscPublico']))
+			$model->inscPublico = $_GET['inscPublico'];
+		else
+			$model->inscPublico = null;
 
 		if(isset($_POST['colaborador']))
 		{
