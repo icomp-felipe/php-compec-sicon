@@ -4,14 +4,6 @@
 
 	<h1 style="color: green">Bem-vindo(a)!</h1>
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
-	
-	<!-- <h1>Inscriçômetro:
-		<?php if ($inscricometro->inscricometro <= 0): ?>
-			<span style="color: red">Todas as vagas públicas para aplicador de prova foram completadas!</span>
-		<?php else: ?>
-			<span style="color: green"><?php echo $inscricometro->inscricometro; ?> vagas públicas restantes</span>
-		<?php endif; ?>
-	</h1> -->
 
 <?php // Homepage de usuário logado ?>
 

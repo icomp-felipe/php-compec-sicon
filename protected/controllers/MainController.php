@@ -55,10 +55,10 @@ class MainController extends CController {
 		}
 
 		// Inscriçômetro
-		$inscricometro = inscricometro::model()->find();
+		#$inscricometro = inscricometro::model()->find();
 		
 		// Renderizando o index
-		$this->render('homepage', array('instituicoesDirigidas' => $instituicoesDirigidas, 'colaborador' => $colaborador, 'inscricometro' => $inscricometro));
+		$this->render('homepage', array('instituicoesDirigidas' => $instituicoesDirigidas, 'colaborador' => $colaborador));
 	}
 	
 	/** Comportamento do menu de entrga de manual. */

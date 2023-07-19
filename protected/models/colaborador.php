@@ -23,7 +23,7 @@ class colaborador extends CActiveRecord {
 		return array(
 			'municipio' => array(self::BELONGS_TO, 'municipio', 'colab_municipio_id'),
 			'banco' => array(self::BELONGS_TO, 'banco', 'colab_banco_id'),
-			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'idColaborador'),
+			'inscricaos' => array(self::HAS_MANY, 'inscricao', 'insc_colab_id'),
 			'instituicoesDirigidas' => array(self::HAS_MANY, 'instituicao', 'inst_coordenador_id'),
 			'usuarios' => array(self::HAS_MANY, 'usuario', 'user_colab_id'),
 			'categoria' => array(self::BELONGS_TO, 'categoria', 'colab_categoria_id')

@@ -10,7 +10,7 @@ class InscricaoConsultaController extends CController {
 
 		$form = new FormInscricaoConsulta();
 
-		$form->cpf         = $session["cpf"];
+		$form->colab_cpf         = $session["colab_cpf"];
         $form->colaborador = $session["colaborador"];
         $form->concurso    = $session["concurso"];
 				
@@ -21,7 +21,7 @@ class InscricaoConsultaController extends CController {
 
 		$session = Yii::app()->getSession();
 
-		$session["cpf"]         = $form->cpf;
+		$session["colab_cpf"]         = $form->colab_cpf;
         $session["colaborador"] = $form->colaborador;
         $session["concurso"]    = $form->concurso;
 
@@ -61,11 +61,12 @@ class InscricaoConsultaController extends CController {
 		if(isset($_GET['id'])) {
 
             $inscricao = $this->loadInscricao($form->colaborador->colab_id_pk, $_GET['id']);
+			$funcaoConcurso = funcao_concurso::model()->findByPk($inscricao->mapa->mapa_fconc_id);
 
             if (!isset($inscricao))
                 $this->render('erro', array('form' => $form, 'mensagem' => 'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));
             else
-                $this->render('inscricao', array('inscricao' => $inscricao));
+                $this->render('inscricao', array('inscricao' => $inscricao, 'funcaoConcurso' => $funcaoConcurso));
 
             return;
 
@@ -83,10 +84,13 @@ class InscricaoConsultaController extends CController {
     public function getConcursosColaborador($colaborador) {
 	
 		$data = array(
-			    'order'     => 'conc_id_pk desc',
-			    'condition' => 'conc_id_pk in (select distinct(idconcurso) from inscricao where idColaborador = ' . $colaborador->colab_id_pk . ')'
+				'join' => 'join funcao_concurso fc on concurso.conc_id_pk = fc.fconc_conc_id
+						   join mapa m on fc.fconc_id_pk = m.mapa_fconc_id
+						   join inscricao i on m.mapa_id_pk = i.insc_mapa_id',
+			    'order' => 'conc_id_pk desc',
+			    'condition' => 'insc_ativa and insc_colab_id = :colaborador',
+				'params'=>array('colaborador' => $colaborador->colab_id_pk)
 			);
-
 
 		$criteria = new CDbCriteria($data);
 
@@ -98,7 +102,7 @@ class InscricaoConsultaController extends CController {
 	}
 
     public function loadInscricao($idColaborador, $idconcurso) {
-        return inscricao::model()->findByAttributes(array('idColaborador' => $idColaborador, 'idconcurso' => $idconcurso));
+        return inscricao::model()->load($idColaborador, $idconcurso);
     }
 
 }

@@ -40,10 +40,10 @@ class inscricao extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('selecionado','length','max'=>1),
-			array('candidatociente','length','max'=>1),
-			array('dt_hr', 'required'),
-			array('codinscricao, tipoinscricao', 'numerical', 'integerOnly'=>true)
+			//array('selecionado','length','max'=>1),
+			//array('candidatociente','length','max'=>1),
+			//array('dt_hr', 'required'),
+			//array('codinscricao, tipoinscricao', 'numerical', 'integerOnly'=>true)
 		);
 	}
 
@@ -55,12 +55,12 @@ class inscricao extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'colaborador' => array(self::BELONGS_TO, 'colaborador', 'idColaborador'),
-			'concurso' => array(self::BELONGS_TO, 'concurso', 'idconcurso'),
-			'instituicao' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaoopcao1'),
-			'idinstituicaoopcao20' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaoopcao2'),
-			'funcao' => array(self::BELONGS_TO, 'funcao', 'idFuncao'),
-			'selecaos' => array(self::HAS_MANY, 'selecao', 'idinscricao'),
+			'colaborador' => array(self::BELONGS_TO, 'colaborador', 'insc_colab_id'),
+			'mapa' => array(self::BELONGS_TO, 'mapa', 'insc_mapa_id')
+			//'instituicao' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaoopcao1'),
+			//'idinstituicaoopcao20' => array(self::BELONGS_TO, 'instituicao', 'idinstituicaoopcao2'),
+			//'funcao' => array(self::BELONGS_TO, 'funcao', 'idFuncao'),
+			//'selecaos' => array(self::HAS_MANY, 'selecao', 'idinscricao'),
 		);
 	}
 
@@ -87,16 +87,32 @@ class inscricao extends CActiveRecord
 	
 	public static function verificarDuplicidadeInscricao($idcolaborador, $idconcurso)
 	{	
-		$inscricao = inscricao::model()->findByAttributes(array('idColaborador' => $idcolaborador,'idconcurso'=>$idconcurso));
-		
-		return $inscricao;
+
+		$data = array(
+			'condition'=>'insc_ativa and insc_colab_id = :idcolaborador and fconc_conc_id = :idconcurso',
+			'join'=>'join mapa m on inscricao.insc_mapa_id = m.mapa_id_pk
+					 join funcao_concurso fc on m.mapa_fconc_id = fc.fconc_id_pk',
+			'params'=>array('idconcurso' => $idconcurso, 'idcolaborador' => $idcolaborador)
+		 );
+
+		$criteria=new CDbCriteria($data);
+
+		return inscricao::model()->find($criteria);
 	}	
 	
 	public static function load($idcolaborador, $idconcurso)
 	{	
-		$inscricao = inscricao::model()->findByAttributes(array('idColaborador' => $idcolaborador,'idconcurso'=>$idconcurso));
-		
-		return $inscricao;
+
+		$data = array(
+			'condition'=>'insc_ativa and insc_colab_id = :insc_colab_id and fconc_conc_id = :fconc_conc_id',
+			'join'=>'join mapa m on inscricao.insc_mapa_id = m.mapa_id_pk
+					 join funcao_concurso fc on m.mapa_fconc_id = fc.fconc_id_pk',
+			'params'=>array('insc_colab_id' => $idcolaborador, 'fconc_conc_id' => $idconcurso)
+		 );
+
+		$criteria=new CDbCriteria($data);
+
+		return inscricao::model()->find($criteria);
 	}		
 	
 	public function getTipoinscricaoOptions(){

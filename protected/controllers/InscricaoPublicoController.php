@@ -175,20 +175,29 @@ class InscricaoPublicoController extends CController {
 
 			if($form->validate('inscricaoPublico')) {
 	
+				$data = array(
+					'condition'=>'mapa_vaga_publica and fconc_conc_id = :idconcurso and mapa_inst_id = :instid',
+					'join'=>'join funcao_concurso fc on mapa.mapa_fconc_id = fc.fconc_id_pk',
+					'params'=>array('idconcurso' => $form->concurso->conc_id_pk, 'instid' => $form->instituicao->inst_id_pk),
+				 );
+
+				$criteria=new CDbCriteria($data);
+
+				$mapa = mapa::model()->find($criteria);
+
 				$inscricao = new inscricao();
 
-				$inscricao->idinstituicaoopcao1 = $form->instituicao->inst_id_pk;
-				$inscricao->idconcurso 			= $form->concurso->conc_id_pk;
-				$inscricao->idColaborador		= $form->colaborador->colab_id_pk;
-				$inscricao->selecionado			= 'W';
-				$inscricao->tipoinscricao		= 1;
-				$inscricao->candidatociente		= 'W';
-				$inscricao->idFuncao			= 1;
-				$inscricao->dt_hr				= date('Y-m-d H:i:s',time());
+				$inscricao->insc_mapa_id = $mapa->mapa_id_pk;
+				$inscricao->insc_colab_id = $form->colaborador->colab_id_pk;
+				$inscricao->insc_ativa = 1;
+				$inscricao->insc_create_datetime = date('Y-m-d H:i:s',time());
+				$inscricao->insc_update_datetime = date('Y-m-d H:i:s',time());
+				$inscricao->insc_update_acao = 'I';
+				$inscricao->insc_update_colab_id = $form->colaborador->colab_id_pk;
 		
 				if($inscricao->save()) {
 			
-					$colaborador = $this->loadcolaborador($inscricao->idColaborador);
+					$colaborador = $this->loadcolaborador($inscricao->insc_colab_id);
 
 					$colaborador->colab_nome       = $_POST['FormInscricaoPublico']['colab_nome'      ];
 					$colaborador->colab_pis        = $_POST['FormInscricaoPublico']['colab_pis'       ];
@@ -283,18 +292,15 @@ class InscricaoPublicoController extends CController {
 	public function getInstituicoesDisponiveis($idconcurso)
 	{
 		$data = array(
-					'order'=>'inst_nome',
-					'condition'=>' inst_id_pk in 
-										(select idinstituicao from config_concurso cc1
-												where mapa_concurso_id  = :idconcurso 
-												  and idfuncao = 1 /*fiscal*/
-												  and vagasofertadasnormal > (select count(*) 
-												  								from inscricao i1
-																			   where cc1.mapa_concurso_id  = i1.idconcurso
-																				 and cc1.idfuncao = i1.idfuncao
-																				 and cc1.idinstituicao =
-																				     i1.idinstituicaoopcao1
-																				 and tipoinscricao = 1 /*internet*/))',
+					'select'=>'inst_id_pk, inst_codigo, inst_nome, inst_logradouro, inst_numero, inst_cep, inst_bairro, inst_maps, inst_municipio_id, inst_uf_id, muni_id_pk, muni_nome, mapa_id_pk, mapa_vagas, count(insc_id_pk) as inscricoes',
+					'condition'=>'fconc_conc_id = :idconcurso and fconc_func_id = 1 and mapa_vaga_publica and (insc_ativa or insc_id_pk is null)',
+					'join'=>'join mapa on mapa_inst_id = inst_id_pk
+							 join funcao_concurso on mapa_fconc_id = fconc_id_pk
+							 join municipio on instituicao.inst_municipio_id = muni_id_pk
+							 join uf on instituicao.inst_uf_id = uf.uf_id_pk
+							 left join inscricao on mapa_id_pk = insc_mapa_id',
+					'group'=>'inst_municipio_id, inst_codigo, inst_id_pk, mapa_vagas',
+					'having'=>'mapa_vagas > inscricoes',
 					'params'=>array('idconcurso' => $idconcurso),
 				 );
 

@@ -75,6 +75,9 @@ class instituicao extends CActiveRecord {
 	}
 	
 	public function getEndereco() {
+
+		$this->inst_municipio = municipio::model()->findByPk($this->inst_municipio_id);
+
 		return $this->inst_logradouro . ', ' .
 					(isset($this->numero) ? $this->numero : 's/n') . ', ' .
 					$this->inst_bairro . ', ' .
