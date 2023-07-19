@@ -6,6 +6,8 @@
  */
 class colaborador extends CActiveRecord {
 
+	var $inscPublico = null;
+
 	/** @return CActiveRecord the static model of the specified AR class. */
 	public static function model($className=__CLASS__) {
 		return parent::model($className);
@@ -66,7 +68,7 @@ class colaborador extends CActiveRecord {
 			array('colab_conta_dv','length','max' =>  1),
             
 			// Campos Obrigatórios
-			array('colab_nome, colab_cpf, colab_nascimento, colab_sexo, colab_pis, colab_rg, colab_rg_orgao, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, colab_categoria_id', 'required'),
+			array('colab_nome, colab_cpf, colab_nascimento, colab_sexo, colab_rg, colab_rg_orgao, colab_banco_id, colab_celular_1, colab_agencia, colab_conta, colab_conta_dv, colab_categoria_id', 'required'),
 			array('colab_cpf','required', 'on'=>'formCPF'),
 			array('colab_pis, colab_rg, colab_email, colab_nascimento, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on'=>'inscricaoPublico'),
 			array('colab_status, colab_banco_id, colab_categoria_id', 'numerical', 'integerOnly' => true)
@@ -82,7 +84,7 @@ class colaborador extends CActiveRecord {
 			'colab_id_pk'           => 'Nº da Ficha',
 			'colab_nome'            => 'Nome',
 			'colab_cpf'             => 'CPF' ,
-			'colab_nascimento'      => 'Data de Nascimento',
+			'colab_nascimento'      => 'Dt. Nascim.',
 			'colab_sexo'            => 'Sexo',
 			'colab_pis'             => 'PIS/PASEP',
 			'colab_rg'              => 'Nº do RG',

@@ -182,7 +182,7 @@ class InscricaoController extends CController
 		$concurso = $form->concurso;
 		$instituicao = $form->instituicao;
 
-		$condition = 'idconcurso = :idconcurso and idinstituicao = :idinstituicao';
+		$condition = 'fconc_conc_id = :idconcurso and mapa_inst_id = :idinstituicao';
 		$params = array(':idconcurso' => $concurso->conc_id_pk, ':idinstituicao' => $instituicao->inst_id_pk);
 
 		$criteria = new CDbCriteria(array('condition' => $condition, 'params' => $params));
@@ -475,20 +475,17 @@ class InscricaoController extends CController
 			$params=array('idresponsavel'=>$this->usuarioLogado->user_colab_id, 'idconcurso'=>$form->concurso->conc_id_pk);			
 		}	
 	
-		$data = array(
-					'order'=>' inst_codigo',
-					'condition'=>' '.$condicao_usuario_interno.
-								   'inst_id_pk in 
-										(select idinstituicao from config_concurso cc1
-												where mapa_concurso_id  = :idconcurso 
-												  and vagasofertadasadicional > (select count(*) 
-												  								from inscricao i1
-																			   where cc1.mapa_concurso_id  = i1.idconcurso
-																				 and cc1.idfuncao = i1.idfuncao
-																				 and cc1.idinstituicao =
-																				     i1.idinstituicaoopcao1
-																				 and tipoinscricao = 2 /*instituic.*/))',
-					'params'=>$params,
+		 $data = array(
+					'select'=>'inst_id_pk, inst_codigo, inst_nome, inst_logradouro, inst_numero, inst_cep, inst_bairro, inst_maps, inst_municipio_id, inst_uf_id, muni_id_pk, muni_nome, mapa_id_pk, mapa_vagas, count(insc_id_pk) as inscricoes',
+					'condition'=>' '.$condicao_usuario_interno.'fconc_conc_id = :idconcurso and mapa_vaga_publica = 0 and (insc_ativa or insc_id_pk is null)',
+					'join'=>'join mapa on mapa_inst_id = inst_id_pk
+							 join funcao_concurso on mapa_fconc_id = fconc_id_pk
+							 join municipio on instituicao.inst_municipio_id = muni_id_pk
+							 join uf on instituicao.inst_uf_id = uf.uf_id_pk
+							 left join inscricao on mapa_id_pk = insc_mapa_id',
+					'group'=>'inst_municipio_id, inst_codigo, inst_id_pk',
+					'having'=>'mapa_vagas > inscricoes',
+					'params'=>$params
 				 );
 
 		$criteria=new CDbCriteria($data);

@@ -32,9 +32,11 @@
                 'maxlength'=>11,
             )
         )); ?>
+        
+    </div>
 
-        Dt. Nasc.:
-
+    <div class="simple">
+        <?php echo CHtml::activeLabelEx($model,'colab_nascimento'); ?>
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$model,
             'attribute'=>'colab_nascimento',
@@ -44,8 +46,7 @@
                 'size'=>8,
                 'maxlength'=>8,
             )
-        )); ?>&nbsp;Ex: 30/10/2010
-        
+        )); ?>
     </div>
 
     <!-- Sexo -->
@@ -209,12 +210,6 @@
         <?php echo CHtml::activeDropDownList($model,'colab_status',
 												            colaborador::model()->statusOptions,
 												            array('empty' => 'Ativado', 'disabled' => 'disabled')); ?>
-    </div>
-
-    <!-- Observações -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx ($model,'colab_obs'); ?>
-        <?php echo CHtml::activeTextArea($model,'colab_obs', array('rows' => 8, 'cols' => 55, 'disabled' => 'disabled')); ?>
     </div>
 
     <!-- Fim dos campos de dados -->

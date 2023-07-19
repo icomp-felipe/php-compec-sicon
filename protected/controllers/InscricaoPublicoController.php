@@ -64,11 +64,22 @@ class InscricaoPublicoController extends CController {
 			// validate 
 			if($form->validate('cpf')){
 
-				$this->setSessionForm($form);
+				if (isset($form->colaborador)) {
+
+					$this->setSessionForm($form);
 				
-				$this->actionSelecionarConcurso();
-				
-				return;
+					$this->actionSelecionarConcurso();
+					
+					return;
+
+				}
+				else {
+
+					$this->redirect(array('colaborador/create', 'inscPublico' => true));
+					return;
+
+				}
+
 			}
 		}
 		$this->render('cpf',array('form'=>$form));

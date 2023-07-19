@@ -52,7 +52,7 @@ class FormInscricaoPublico extends CFormModel {
 			array('colab_cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarConcurso'),
 
 			// Define campos obrigatórios no cenário 'inscricaoPublico'
-			array('colab_nome, colab_nascimento, colab_pis, colab_rg, colab_celular_1, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, ciente', 'required', 'on' => 'inscricaoPublico'),
+			array('colab_nome, colab_nascimento, colab_rg, colab_celular_1, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, ciente', 'required', 'on' => 'inscricaoPublico'),
 
 			// Validação (interna) de ciência de procedimentos, no cenário 'inscricaoPublico'
 			array('ciente', 'validarCiencia', 'on' => 'inscricaoPublico'),
@@ -73,7 +73,6 @@ class FormInscricaoPublico extends CFormModel {
 			'colab_nome'       => 'Nome',
 			'colab_cpf'        => 'CPF',
 			'colab_nascimento' => 'Data de Nascimento',
-			'colab_pis'        => 'PIS | PASEP | NIS | NIT',
 			'colab_rg'         => 'Nº do RG',
 			'colab_celular_1'  => 'Celular (WhatsApp)',
 			'colab_email'      => 'e-mail',
@@ -133,11 +132,11 @@ class FormInscricaoPublico extends CFormModel {
 		$colaborador = colaborador::model()->findByAttributes(array('colab_cpf' => $colab_cpf));
 		
 		// Verifica se o colaborador possui cadastro
-		if ($colaborador == null)
-			$this->errorCode=self::ERRO_COLAB_SEM_CADASTRO;
+		//if ($colaborador == null)
+			//$this->errorCode=self::ERRO_COLAB_SEM_CADASTRO;
 		
 		// Verifica se o colaborador está ativo
-		elseif ($colaborador->colab_status != 1)
+		if (isset($colaborador) && $colaborador->colab_status != 1)
 			$this->errorCode=self::ERRO_COLAB_BLOQUEADO;
 		
 		return $colaborador;

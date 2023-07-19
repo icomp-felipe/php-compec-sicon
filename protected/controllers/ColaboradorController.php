@@ -33,7 +33,7 @@ class ColaboradorController extends CController
 	{
 		return array(
 			array('allow',  // allow all users to perform 'list' and 'show' actions
-				'actions'=>array('show'),
+				'actions'=>array('show','create'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -62,16 +62,20 @@ class ColaboradorController extends CController
 	public function actionCreate()
 	{
 		$model = new colaborador;
-		
+		$model->inscPublico = $_GET['inscPublico'];
+
 		if(isset($_POST['colaborador']))
 		{
 			$model->colab_status = 1;
 			$model->attributes   = $_POST['colaborador'];
-
+			
 			$model->setScenario('create');
 
 			if($model->save())
-				$this->redirect(array('show', 'id' => $model->colab_id_pk, 'update' => false));
+				if (isset($model->inscPublico) && $model->inscPublico == 1)
+					$this->redirect(array('inscricaoPublico/autentica'));
+				else
+					$this->redirect(array('show', 'id' => $model->colab_id_pk, 'update' => false));
 
 		}
 		$this->render('create',array('model'=>$model));
