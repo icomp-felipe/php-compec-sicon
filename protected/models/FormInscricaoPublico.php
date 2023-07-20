@@ -134,10 +134,29 @@ class FormInscricaoPublico extends CFormModel {
 		// Verifica se o colaborador possui cadastro
 		//if ($colaborador == null)
 			//$this->errorCode=self::ERRO_COLAB_SEM_CADASTRO;
-		
+
 		// Verifica se o colaborador está ativo
-		if (isset($colaborador) && $colaborador->colab_status != 1)
-			$this->errorCode=self::ERRO_COLAB_BLOQUEADO;
+		if (isset($colaborador)) {
+
+			$data = array(
+				'condition'=>'colab_id_pk = :colab_id_pk and block_ativo',
+				'join'=>'join inscricao on block_insc_id = insc_id_pk
+						 join colaborador on insc_colab_id = colab_id_pk
+						 join mapa on insc_mapa_id = mapa_id_pk
+						 join funcao_concurso on mapa_fconc_id = fconc_id_pk
+						 join funcao on fconc_func_id = func_id_pk
+						 join concurso on fconc_conc_id = conc_id_pk',
+				'params'=>array('colab_id_pk' => $colaborador->colab_id_pk)
+			 );
+
+			$criteria=new CDbCriteria($data);
+
+			$bloqueio = bloqueio::model()->find($criteria);
+
+			if (isset($bloqueio))	
+				$this->errorCode=self::ERRO_COLAB_BLOQUEADO;
+
+		}
 		
 		return $colaborador;
 	}
