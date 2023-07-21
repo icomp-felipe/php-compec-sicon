@@ -5,6 +5,8 @@
 	<h1 style="color: green">Bem-vindo(a)!</h1>
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 
+	<h2>Consulte aqui a <a href="arquivo/psc/2023-e12/chamada-publica-psc2023-e12.pdf">Nota de Chamada Pública para o PSC 2023 - Etapas 1 e 2</a></h2>
+
 <?php // Homepage de usuário logado ?>
 
 <?php else: ?>
