@@ -182,7 +182,7 @@ class InscricaoController extends CController
 		$concurso = $form->concurso;
 		$instituicao = $form->instituicao;
 
-		$condition = 'fconc_conc_id = :idconcurso and mapa_inst_id = :idinstituicao';
+		$condition = 'fconc_conc_id = :idconcurso and mapa_inst_id = :idinstituicao and mapa_vaga_publica = 0';
 		$params = array(':idconcurso' => $concurso->conc_id_pk, ':idinstituicao' => $instituicao->inst_id_pk);
 
 		$criteria = new CDbCriteria(array('condition' => $condition, 'params' => $params));
