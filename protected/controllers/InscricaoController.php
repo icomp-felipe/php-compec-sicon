@@ -360,7 +360,7 @@ class InscricaoController extends CController
 			if($form->validate('inscricao')) {
 
 				$data = array(
-					'condition'=>'mapa_vaga_publica and fconc_conc_id = :idconcurso and mapa_inst_id = :instid',
+					'condition'=>'mapa_vaga_publica = 0 and fconc_conc_id = :idconcurso and mapa_inst_id = :instid',
 					'join'=>'join funcao_concurso fc on mapa.mapa_fconc_id = fc.fconc_id_pk',
 					'params'=>array('idconcurso' => $form->concurso->conc_id_pk, 'instid' => $form->instituicao->inst_id_pk),
 				 );
