@@ -511,14 +511,13 @@ class InscricaoController extends CController
 	public function getFuncoesDisponiveis($mapa_concurso_id, $idinstituicao)
 	{
 		$data = array(
-					'select'=>'func_id_pk, func_nome, func_apelido, mapa_vagas, count(insc_id_pk) as inscricoes',
+					'select'=>'func_id_pk, func_nome, func_apelido, mapa_vagas, count( case when insc_id_pk is not null then if(insc_ativa, 1, null) end ) as inscricoes',
 					'join'=>'join funcao_concurso fc on funcao.func_id_pk = fc.fconc_func_id
 							 join mapa m on fc.fconc_id_pk = m.mapa_fconc_id
 							 left join inscricao i on m.mapa_id_pk = i.insc_mapa_id',
 					'condition'=>'fconc_conc_id = :mapa_concurso_id
 								  and mapa_inst_id = :idinstituicao
-								  and mapa_vaga_publica = 0
-								  and (insc_ativa or insc_id_pk is null)',
+								  and mapa_vaga_publica = 0',
 					'group'=>'func_id_pk, mapa_vagas',
 					'having'=>'mapa_vagas > inscricoes',
 					'params'=>array('mapa_concurso_id'=>$mapa_concurso_id,'idinstituicao'=>$idinstituicao),					
@@ -532,15 +531,14 @@ class InscricaoController extends CController
 	public function getVagasDisponiveis($mapa_concurso_id, $idinstituicao, $idfuncao)
 	{
 		$data = array(
-			'select'=>'func_id_pk, func_nome, func_apelido, mapa_vagas, count(insc_id_pk) as inscricoes',
+			'select'=>'func_id_pk, func_nome, func_apelido, mapa_vagas, count( case when insc_id_pk is not null then if(insc_ativa, 1, null) end ) as inscricoes',
 			'join'=>'join funcao_concurso fc on funcao.func_id_pk = fc.fconc_func_id
 					 join mapa m on fc.fconc_id_pk = m.mapa_fconc_id
 					 left join inscricao i on m.mapa_id_pk = i.insc_mapa_id',
 			'condition'=>'fconc_conc_id = :mapa_concurso_id
 						  and fconc_func_id = :func_id_pk
 						  and mapa_inst_id = :idinstituicao
-						  and mapa_vaga_publica = 0
-						  and (insc_ativa or insc_id_pk is null)',
+						  and mapa_vaga_publica = 0',
 			'group'=>'func_id_pk, mapa_vagas',
 			'having'=>'mapa_vagas > inscricoes',
 			'params'=>array('mapa_concurso_id'=>$mapa_concurso_id,'idinstituicao'=>$idinstituicao,'func_id_pk'=>$idfuncao)
