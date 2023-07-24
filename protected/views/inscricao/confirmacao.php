@@ -84,22 +84,6 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;">PIS | PASEP | NIS | NIT:</th>
-			<td>
-				<?php $this->widget('CMaskedTextField',array(
-					'model'=>$form,
-					'attribute'=>'colab_pis',
-					'mask'=>'999.99999.99-9',
-					'placeholder'=>'_',
-					'htmlOptions'=>array(
-						'size'=>15,
-						'maxlength'=>15,
-					)
-				)); ?>
-			</td>
-		</tr>
-
-		<tr>
 			<th class="label" style="text-align: right;">Nº do RG:</th>
 			<td><?php echo CHtml::activeTextField($form,'colab_rg',array('size'=>15,'maxlength'=>15)); ?></td>
 		</tr>

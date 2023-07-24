@@ -50,10 +50,7 @@ class FormInscricao extends CFormModel {
 			array('colab_cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarColaborador'),
 
 			// Define campos obrigatórios no cenário 'inscricao'
-			array('colab_pis, colab_nascimento, colab_rg, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on' => 'inscricao'),
-
-			// Validação (externa) dos dígitos do PIS, no cenário 'inscricao'
-			array('colab_pis', 'ext.validators.PISValidator', 'message' => 'O PIS informado é inválido!','on' => 'inscricao')
+			array('colab_nascimento, colab_rg, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on' => 'inscricao')
 
 		);
 	}

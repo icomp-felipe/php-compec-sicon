@@ -27,7 +27,6 @@ class InscricaoController extends CController
 		
 		if (isset($form->colaborador)) {
 
-			$form->colab_pis        = $form->colaborador->colab_pis;
 			$form->colab_rg         = $form->colaborador->colab_rg;
 			$form->colab_nascimento = $form->colaborador->colab_nascimento;
 			$form->colab_banco_id   = $form->colaborador->colab_banco_id;
@@ -383,7 +382,6 @@ class InscricaoController extends CController
 				
 					$colaborador = $this->loadcolaborador($inscricao->insc_colab_id);
 
-					$colaborador->colab_pis        = $_POST['FormInscricao']['colab_pis'     ];
 					$colaborador->colab_rg         = $_POST['FormInscricao']['colab_rg'      ];
 					$colaborador->colab_banco_id   = $_POST['FormInscricao']['colab_banco_id'];
 					$colaborador->colab_nascimento = $_POST['FormInscricao']['colab_nascimento'];
@@ -393,7 +391,6 @@ class InscricaoController extends CController
 					
 					if ($colaborador->save(false)) {
 	
-						$form->colaborador->colab_pis        = $colaborador->colab_pis;
 						$form->colaborador->colab_rg         = $colaborador->colab_rg;
 						$form->colaborador->colab_nascimento = $colaborador->colab_nascimento;
 						$form->colaborador->banco            = $colaborador->banco;
