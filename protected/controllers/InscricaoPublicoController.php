@@ -186,8 +186,13 @@ class InscricaoPublicoController extends CController {
 			if($form->validate('inscricaoPublico')) {
 	
 				$data = array(
+					'select'=>'mapa_id_pk, mapa_vagas, inst_nome, count( case when insc_id_pk is not null then if(insc_ativa, 1, null) end ) as inscricoes',
 					'condition'=>'mapa_vaga_publica and fconc_conc_id = :idconcurso and mapa_inst_id = :instid',
-					'join'=>'join funcao_concurso fc on mapa.mapa_fconc_id = fc.fconc_id_pk',
+					'join'=>'join inscricao on insc_mapa_id = mapa_id_pk
+							 join funcao_concurso fc on mapa.mapa_fconc_id = fc.fconc_id_pk
+							 join instituicao on mapa_inst_id = inst_id_pk',
+					'group'=>'inst_municipio_id, inst_codigo, inst_id_pk, mapa_vagas',
+					'having'=>'mapa_vagas > inscricoes',
 					'params'=>array('idconcurso' => $form->concurso->conc_id_pk, 'instid' => $form->instituicao->inst_id_pk),
 				 );
 
@@ -195,60 +200,72 @@ class InscricaoPublicoController extends CController {
 
 				$mapa = mapa::model()->find($criteria);
 
-				$inscricao = new inscricao();
+				if (isset($mapa)) {
 
-				$inscricao->insc_mapa_id = $mapa->mapa_id_pk;
-				$inscricao->insc_colab_id = $form->colaborador->colab_id_pk;
-				$inscricao->insc_ativa = 1;
-				$inscricao->insc_create_datetime = date('Y-m-d H:i:s',time());
-				$inscricao->insc_update_datetime = date('Y-m-d H:i:s',time());
-				$inscricao->insc_update_acao = 'I';
-				$inscricao->insc_update_colab_id = $form->colaborador->colab_id_pk;
-		
-				if($inscricao->save()) {
+					$inscricao = new inscricao();
+
+					$inscricao->insc_mapa_id = $mapa->mapa_id_pk;
+					$inscricao->insc_colab_id = $form->colaborador->colab_id_pk;
+					$inscricao->insc_ativa = 1;
+					$inscricao->insc_create_datetime = date('Y-m-d H:i:s',time());
+					$inscricao->insc_update_datetime = date('Y-m-d H:i:s',time());
+					$inscricao->insc_update_acao = 'I';
+					$inscricao->insc_update_colab_id = $form->colaborador->colab_id_pk;
 			
-					$colaborador = $this->loadcolaborador($inscricao->insc_colab_id);
-
-					$colaborador->colab_nome       = $_POST['FormInscricaoPublico']['colab_nome'      ];
-					$colaborador->colab_rg         = $_POST['FormInscricaoPublico']['colab_rg'        ];
-					$colaborador->colab_email      = $_POST['FormInscricaoPublico']['colab_email'     ];
-					$colaborador->colab_nascimento = $_POST['FormInscricaoPublico']['colab_nascimento'];
-					$colaborador->colab_celular_1  = $_POST['FormInscricaoPublico']['colab_celular_1' ];
-					$colaborador->colab_banco_id   = $_POST['FormInscricaoPublico']['colab_banco_id'  ];
-					$colaborador->colab_agencia    = $_POST['FormInscricaoPublico']['colab_agencia'   ];
-					$colaborador->colab_conta      = $_POST['FormInscricaoPublico']['colab_conta'     ];
-					$colaborador->colab_conta_dv   = $_POST['FormInscricaoPublico']['colab_conta_dv'  ];
-					$colaborador->colab_update_id  = $colaborador->colab_id_pk;
-
-					$colaborador->setScenario('inscricaoPublico');
-
-					if ($colaborador->save()) {
-
-						$form->colaborador->banco           = $colaborador->banco;
-
-						$form->colaborador->colab_nome       = $colaborador->colab_nome;
-						$form->colaborador->colab_rg         = $colaborador->colab_rg;
-						$form->colaborador->colab_email      = $colaborador->colab_email;
-						$form->colaborador->colab_nascimento = $colaborador->colab_nascimento;
-						$form->colaborador->colab_celular_1  = $colaborador->colab_celular_1;						
-						$form->colaborador->colab_banco_id   = $colaborador->colab_banco_id;
-						$form->colaborador->colab_agencia    = $colaborador->colab_agencia;
-						$form->colaborador->colab_conta      = $colaborador->colab_conta;
-						$form->colaborador->colab_conta_dv   = $colaborador->colab_conta_dv;
-						
+					if($inscricao->save()) {
+				
+						$colaborador = $this->loadcolaborador($inscricao->insc_colab_id);
+	
+						$colaborador->colab_nome       = $_POST['FormInscricaoPublico']['colab_nome'      ];
+						$colaborador->colab_rg         = $_POST['FormInscricaoPublico']['colab_rg'        ];
+						$colaborador->colab_email      = $_POST['FormInscricaoPublico']['colab_email'     ];
+						$colaborador->colab_nascimento = $_POST['FormInscricaoPublico']['colab_nascimento'];
+						$colaborador->colab_celular_1  = $_POST['FormInscricaoPublico']['colab_celular_1' ];
+						$colaborador->colab_banco_id   = $_POST['FormInscricaoPublico']['colab_banco_id'  ];
+						$colaborador->colab_agencia    = $_POST['FormInscricaoPublico']['colab_agencia'   ];
+						$colaborador->colab_conta      = $_POST['FormInscricaoPublico']['colab_conta'     ];
+						$colaborador->colab_conta_dv   = $_POST['FormInscricaoPublico']['colab_conta_dv'  ];
+						$colaborador->colab_update_id  = $colaborador->colab_id_pk;
+	
+						$colaborador->setScenario('inscricaoPublico');
+	
+						if ($colaborador->save()) {
+	
+							$form->colaborador->banco           = $colaborador->banco;
+	
+							$form->colaborador->colab_nome       = $colaborador->colab_nome;
+							$form->colaborador->colab_rg         = $colaborador->colab_rg;
+							$form->colaborador->colab_email      = $colaborador->colab_email;
+							$form->colaborador->colab_nascimento = $colaborador->colab_nascimento;
+							$form->colaborador->colab_celular_1  = $colaborador->colab_celular_1;						
+							$form->colaborador->colab_banco_id   = $colaborador->colab_banco_id;
+							$form->colaborador->colab_agencia    = $colaborador->colab_agencia;
+							$form->colaborador->colab_conta      = $colaborador->colab_conta;
+							$form->colaborador->colab_conta_dv   = $colaborador->colab_conta_dv;
+							
+						}
+						else {									
+							$inscricao->delete();
+							$this->render('erro', array('form' => $form, 'mensagem' => 'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
+							return;	
+						}
+	
+						$this->redirect(array('confirmado'));
+	
 					}
-					else {									
-						$inscricao->delete();
-						$this->render('erro', array('form' => $form, 'mensagem' => 'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));	
-						return;	
-					}
 
-					$this->redirect(array('confirmado'));
+					$this->setSessionForm($form);
+					return;
+
+				}
+				else {
+
+					$this->render('nao_ha_vagas',array('form'=>$form));
+					return;
 
 				}
 
-				$this->setSessionForm($form);
-				return;
+				
 			}
 
 		}
