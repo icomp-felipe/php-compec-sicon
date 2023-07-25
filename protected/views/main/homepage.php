@@ -30,7 +30,11 @@
 			
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
-			<a href="/inscricao/arquivo/psead/2023/nota-gestores-psead-pslind23.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores - PSEAD + PSLIND 2023</a>
+			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
+				<a href="/inscricao/arquivo/psc/2023-e12/nota-gestores-capital-psc2023-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2023 - Etapas 1 e 2</a>
+			<?php else: ?>
+				<a href="/inscricao/arquivo/psc/2023-e12/nota-gestores-interior-psc2023-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2023 - Etapas 1 e 2</a>
+			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>
 
