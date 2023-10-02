@@ -62,11 +62,12 @@ class InscricaoConsultaController extends CController {
 
             $inscricao = $this->loadInscricao($form->colaborador->colab_id_pk, $_GET['id']);
 			$funcaoConcurso = funcao_concurso::model()->findByPk($inscricao->mapa->mapa_fconc_id);
+			$arquivo = arquivo::model()->findByAttributes(array('arq_conc_id' => $funcaoConcurso->fconc_conc_id, 'arq_tipo' => 4));
 
             if (!isset($inscricao))
                 $this->render('erro', array('form' => $form, 'mensagem' => 'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));
             else
-                $this->render('inscricao', array('inscricao' => $inscricao, 'funcaoConcurso' => $funcaoConcurso));
+                $this->render('inscricao', array('inscricao' => $inscricao, 'funcaoConcurso' => $funcaoConcurso, 'arquivo' => $arquivo));
 
             return;
 

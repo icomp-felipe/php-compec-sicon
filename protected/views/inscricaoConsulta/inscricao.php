@@ -1,22 +1,6 @@
 <h2>Confirmação de Inscrição</h2>
 
-	<?php if ($funcaoConcurso->concurso->conc_id_pk == 58): ?>
-        <a href="/inscricao/arquivo/pse/2020/manual-aplicador-pse2020.pdf">Manual de Instruções do Aplicador (PSE 2020)</a>
-    <?php elseif ($funcaoConcurso->concurso->conc_id_pk == 59): ?>
-		<a href="/inscricao/arquivo/pstec/2021/manual-aplicador-pstec2021.pdf">Manual de Instruções do Aplicador (Concurso Público 2021)</a>
-	<?php elseif ($funcaoConcurso->concurso->conc_id_pk == 60): ?>
-		<a href="/inscricao/arquivo/psc/2021-e3/manual-aplicador-psc2021-e3.pdf">Manual de Instruções do Aplicador (PSC 2021 - Etapa 3)</a>
-	<?php elseif ($funcaoConcurso->concurso->conc_id_pk == 62): ?>
-		<a href="/inscricao/arquivo/psc/2021-e12/manual-aplicador-psc2021-e12.pdf">Manual de Instruções do Aplicador (PSC 2021 - Etapas 1 e 2)</a>
-	<?php elseif ($funcaoConcurso->concurso->conc_id_pk == 63): ?>
-		<a href="/inscricao/arquivo/pstec/2022/manual-aplicador-pstec2022.pdf">Manual de Instruções do Aplicador (Concurso Público 2022)</a>
-	<?php elseif ($funcaoConcurso->concurso->conc_id_pk == 65): ?>
-		<a href="/inscricao/arquivo/psc/2022-e3/manual-aplicador-psc2022-e3.pdf">Manual de Instruções do Aplicador (PSC 2022 - Etapa 3)</a>
-	<?php elseif ($funcaoConcurso->concurso->conc_id_pk == 69): ?>
-		<a href="/inscricao/arquivo/psc/2022-e12/manual-aplicador-psc2022-e12.pdf">Manual de Instruções do Aplicador (PSC 2022 - Etapas 1 e 2)</a>
-	<?php elseif ($funcaoConcurso->concurso->conc_id_pk == 77): ?>
-		<a href="/inscricao/arquivo/psc/2023-e12/manual-aplicador-psc2023-e12.pdf">Manual de Instruções do Aplicador (PSC 2023 - Etapas 1 e 2)</a>
-	<?php endif; ?>
+<a href="<?php echo $arquivo->arq_caminho; ?>" target="_blank" rel="noopener noreferrer"><?php echo $arquivo->arq_nome; ?></a>
 
 <h2></h2>
 

@@ -5,7 +5,7 @@
 	Obs.: não é necessário imprimir este manual, no dia do concurso o disponibilizaremos no formato impresso.
 </h3>
 
-<a href="/inscricao/arquivo/psc/2023-e12/manual-aplicador-psc2023-e12.pdf">Manual de Instruções do Aplicador (PSC 2023 - Etapas 1 e 2)</a>
+<a href="<?php echo $arquivo->arq_caminho; ?>" target="_blank" rel="noopener noreferrer"><?php echo $arquivo->arq_nome; ?></a>
 
 <h2></h2>
 

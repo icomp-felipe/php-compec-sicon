@@ -277,8 +277,9 @@ class InscricaoPublicoController extends CController {
 	{
 		//recupera dados da sessão e os dados postados
 		$form = $this->getSessionForm();
-		
-		$this->render('confirmado',array('form'=>$form));
+		$arquivo = arquivo::model()->findByAttributes(array('arq_conc_id' => $form->concurso->conc_id_pk, 'arq_tipo' => 4));
+
+		$this->render('confirmado', array('form' => $form, 'arquivo' => $arquivo));
 		
 	}		
 	
