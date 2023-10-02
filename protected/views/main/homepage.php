@@ -5,7 +5,7 @@
 	<h1 style="color: green">Bem-vindo(a)!</h1>
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 
-	<h2>Consulte aqui a <a href="arquivo/psc/2023-e12/chamada-publica-psc2023-e12.pdf">Nota de Chamada Pública para o PSC 2023 - Etapas 1 e 2</a></h2>
+	<h2>Consulte aqui a <a href="arquivo/pstec/2023/chamada-publica-pscte2023.pdf">Nota de Chamada Pública para o PSTEC 2023</a></h2>
 
 <?php // Homepage de usuário logado ?>
 
@@ -31,9 +31,9 @@
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
 			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
-				<a href="/inscricao/arquivo/psc/2023-e12/nota-gestores-capital-psc2023-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2023 - Etapas 1 e 2</a>
+				<a href="/inscricao/arquivo/pstec/2023/nota-gestores-capital-pstec2023.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSTEC 2023</a>
 			<?php else: ?>
-				<a href="/inscricao/arquivo/psc/2023-e12/nota-gestores-interior-psc2023-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2023 - Etapas 1 e 2</a>
+				<a href="/inscricao/arquivo/pstec/2023/nota-gestores-interior-pstec2023.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSTEC 2023</a>
 			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>
