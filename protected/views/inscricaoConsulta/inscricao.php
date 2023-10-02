@@ -1,6 +1,8 @@
 <h2>Confirmação de Inscrição</h2>
 
-<a href="<?php echo $arquivo->arq_caminho; ?>" target="_blank" rel="noopener noreferrer"><?php echo $arquivo->arq_nome; ?></a>
+	<?php if ($arquivo != null): ?>
+		<a href="<?php echo $arquivo->arq_caminho; ?>" target="_blank" rel="noopener noreferrer"><?php echo $arquivo->arq_nome; ?></a>
+	<?php endif; ?>
 
 <h2></h2>
 

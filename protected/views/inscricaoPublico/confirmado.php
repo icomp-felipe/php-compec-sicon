@@ -5,7 +5,9 @@
 	Obs.: não é necessário imprimir este manual, no dia do concurso o disponibilizaremos no formato impresso.
 </h3>
 
-<a href="<?php echo $arquivo->arq_caminho; ?>" target="_blank" rel="noopener noreferrer"><?php echo $arquivo->arq_nome; ?></a>
+<?php if ($arquivo != null): ?>
+	<a href="<?php echo $arquivo->arq_caminho; ?>" target="_blank" rel="noopener noreferrer"><?php echo $arquivo->arq_nome; ?></a>
+<?php endif; ?>
 
 <h2></h2>
 
