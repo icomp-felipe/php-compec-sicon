@@ -188,7 +188,7 @@ class InscricaoPublicoController extends CController {
 				$data = array(
 					'select'=>'mapa_id_pk, mapa_vagas, inst_nome, count( case when insc_id_pk is not null then if(insc_ativa, 1, null) end ) as inscricoes',
 					'condition'=>'mapa_vaga_publica and fconc_conc_id = :idconcurso and mapa_inst_id = :instid',
-					'join'=>'join inscricao on insc_mapa_id = mapa_id_pk
+					'join'=>'left join inscricao on insc_mapa_id = mapa_id_pk
 							 join funcao_concurso fc on mapa.mapa_fconc_id = fc.fconc_id_pk
 							 join instituicao on mapa_inst_id = inst_id_pk',
 					'group'=>'inst_municipio_id, inst_codigo, inst_id_pk, mapa_vagas',
