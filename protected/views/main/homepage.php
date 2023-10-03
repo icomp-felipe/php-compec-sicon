@@ -5,7 +5,7 @@
 	<h1 style="color: green">Bem-vindo(a)!</h1>
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 
-	<h2>Consulte aqui a <a href="arquivo/pstec/2023/chamada-publica-pscte2023.pdf">Nota de Chamada Pública para o PSTEC 2023</a></h2>
+	<h2>Consulte aqui a <a href="arquivo/pstec/2023/chamada-publica-pstec2023.pdf">Nota de Chamada Pública para o PSTEC 2023</a></h2>
 
 <?php // Homepage de usuário logado ?>
 
