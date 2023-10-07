@@ -67,7 +67,7 @@ class InscricaoConsultaController extends CController {
             if (!isset($inscricao))
                 $this->render('erro', array('form' => $form, 'mensagem' => 'Identificamos uma inconsistência no processo de inscrição, por favor reinicie o processo!'));
             else
-                $this->render('inscricao', array('inscricao' => $inscricao, 'funcaoConcurso' => $funcaoConcurso, 'arquivo' => $arquivo));
+                $this->render('inscricao', array('inscricao' => $inscricao, 'funcaoConcurso' => $funcaoConcurso, 'arquivo' => $funcaoConcurso->fconc_func_id == 1 ? $arquivo : null));
 
             return;
 
