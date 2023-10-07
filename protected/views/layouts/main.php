@@ -56,14 +56,15 @@
 	<div id="mainmenu">
 	<?php $this->widget('application.components.MainMenu',array(
 		'items'=>array(
-			array('label' => 'Início'                              , 'url' => array('/main/index')),
-			array('label' => 'Site da COMPEC'                      , 'url' => 'https://www.compec.ufam.edu.br'),
-			array('label' => 'Inscrição (Público)'                 , 'url' => array('/inscricaoPublico'       ), 'visible' => Yii::app()->user->isGuest),
+			array('label' => 'Início'                        , 'url' => array('/main/index')),
+			array('label' => 'Site da COMPEC'                , 'url' => 'https://www.compec.ufam.edu.br'),
+			array('label' => 'Documentos'                    , 'url' => array('/documentos')),
+			array('label' => 'Inscrição (Público)'           , 'url' => array('/inscricaoPublico'       ), 'visible' => Yii::app()->user->isGuest),
 			//array('label' => 'Inscrição (Público - Confirmação)'   , 'url' => array('/confirmaPublico'        ), 'visible' => Yii::app()->user->isGuest),
-			array('label' => 'Inscrição (Público - Consulta)'      , 'url' => array('/inscricaoConsulta'      ), 'visible' => Yii::app()->user->isGuest),			
-			array('label' => 'Inscrição (Institucional)'           , 'url' => array('/inscricao'              ), 'visible' => !Yii::app()->user->isGuest && !UserIdentity::isUsuarioInterno()),
-			array('label' => 'Área Restrita'                       , 'url' => array('/main/login'             ), 'visible' => Yii::app()->user->isGuest),
-			array('label' => 'Logout'                              , 'url' => array('/main/logout'            ), 'visible' => !Yii::app()->user->isGuest)
+			array('label' => 'Inscrição (Público - Consulta)', 'url' => array('/inscricaoConsulta'      ), 'visible' => Yii::app()->user->isGuest),			
+			array('label' => 'Inscrição (Institucional)'     , 'url' => array('/inscricao'              ), 'visible' => !Yii::app()->user->isGuest && !UserIdentity::isUsuarioInterno()),
+			array('label' => 'Área Restrita'                 , 'url' => array('/main/login'             ), 'visible' => Yii::app()->user->isGuest),
+			array('label' => 'Logout'                        , 'url' => array('/main/logout'            ), 'visible' => !Yii::app()->user->isGuest)
 		)
 	)); ?>
 	</div><!-- mainmenu -->
