@@ -5,7 +5,7 @@
 	<h1 style="color: green">Bem-vindo(a)!</h1>
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 
-	<h2>Consulte aqui a <a href="arquivo/psc/2024/chamada-publica-psc2024-e3.pdf">Nota de Chamada Pública para o PSC 2024 - Etapa 3</a></h2>
+	<h2>Consulte aqui o documento de <a href="arquivo/psc/2024/homologacao-psc2024-e3.pdf">Homologação de Aplicadores [PSC 2024 - Etapa 3]</a> indicando a lista de aplicadores convocados a trabalhar no referido concurso, no dia 10/12/2023.</h2>
 
 <?php // Homepage de usuário logado ?>
 
