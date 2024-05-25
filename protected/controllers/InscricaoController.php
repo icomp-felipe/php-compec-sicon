@@ -189,7 +189,7 @@ class InscricaoController extends CController
 		$sort=new CSort('inscritos');
 		$sort->applyOrder($criteria);
 
-		$inscricoes = inscritos::model()->findAll($criteria);
+		$inscricoes = inscritos::model()->byName()->findAll($criteria);
 
 		$this->render('lista_inscritos',array('form' => $form, 'inscricoes' => $inscricoes, 'sort' => $sort));
 

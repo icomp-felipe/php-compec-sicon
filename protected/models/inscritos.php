@@ -26,6 +26,10 @@ class inscritos extends CActiveRecord {
 		);
 	}
 
+	public function scopes() {
+		return array('byName' => array('order' => 'func_apelido, colab_nome'));
+	}
+
     /** @return array validation rules for model attributes. */
 	public function rules()	{
 

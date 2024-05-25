@@ -64,11 +64,6 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_pis'); ?>:</th>
-    		<td><?php echo $form->colaborador->pisFormatado; ?></td>
-		</tr>
-
-		<tr>
 			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_rg'); ?>:</th>
     		<td><?php echo $form->colaborador->colab_rg; ?></td>
 		</tr>

@@ -43,11 +43,6 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;">PIS | PASEP | NIS | NIT:</th>
-    		<td><?php echo $form->colaborador->pisFormatado; ?></td>
-		</tr>
-
-		<tr>
 			<th class="label" style="text-align: right;">Nº do RG:</th>
     		<td><?php echo $form->colaborador->colab_rg; ?></td>
 		</tr>

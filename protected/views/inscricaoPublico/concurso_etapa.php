@@ -19,7 +19,7 @@
 
         <thead>
             <tr>
-                <th>Nome do Concurso</th>
+                <th>Concurso</th>
                 <th>Período de Inscrições</th>
 	            <th>Data de Realização</th>
             </tr>

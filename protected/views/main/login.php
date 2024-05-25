@@ -1,6 +1,6 @@
-<?php $this->pageTitle=Yii::app()->name . ' - Área Restrita'; ?>
+<?php $this->pageTitle=Yii::app()->name . ' - Área da Coordenação'; ?>
 
-<h2>Login na Área Restrita</h2>
+<h2>Login na Área da Coordenação</h2>
 
 <div class="yiiForm">
     <?php echo CHtml::beginForm(); ?>

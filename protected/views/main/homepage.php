@@ -5,7 +5,8 @@
 	<h1 style="color: green">Bem-vindo(a)!</h1>
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 
-	<h2>Consulte aqui o documento de <a href="arquivo/psc/2024/homologacao-psc2024-e3.pdf">Homologação de Aplicadores [PSC 2024 - Etapa 3]</a> indicando a lista de aplicadores convocados a trabalhar no referido concurso, no dia 10/12/2023.</h2>
+	<h2>Acesse aqui a <a href="/inscricao/arquivo/psc/2024-e12/chamada-publica-psc2024-e12.pdf" target="_blank" rel="noopener noreferrer">Nota Pública de Chamada para o PSC 2024 - Etapas 1 e 2</a></h2>
+	<h2><?php echo 'A qualquer momento o colaborador pode consultar sua inscrição na aba "'. CHtml::link('Inscrição (Público - Consulta)', array('/inscricaoConsulta')) . '"'; ?></h2>
 
 <?php // Homepage de usuário logado ?>
 
@@ -13,10 +14,10 @@
 
 	<?php if ($colaborador->colab_sexo == 'F'): ?>
 		<center><h1>Seja bem vinda ao site de Inscrição de Colaboradores!</h1></center>
-		<h2>Gestora: <?php echo CHtml::encode($colaborador->nomeProprio); ?></h2>
+		<h2>Coordenadora: <?php echo CHtml::encode($colaborador->nomeProprio); ?></h2>
 	<?php else: ?>
 		<center><h1>Seja bem vindo ao site de Inscrição de Colaboradores!</h1></center>
-		<h2>Gestor: <?php echo CHtml::encode($colaborador->nomeProprio); ?></h2>
+		<h2>Coordenador: <?php echo CHtml::encode($colaborador->nomeProprio); ?></h2>
 	<?php endif;?>
 
 	<p></p>
@@ -31,9 +32,9 @@
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
 			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
-				<a href="/inscricao/arquivo/psc/2024/nota-gestores-capital-psc2024-e3.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSTEC 2023</a>
+				<a href="/inscricao/arquivo/psc/2024-e12/nota-gestores-capital-psc2024-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2024 - Etapas 1 e 2</a>
 			<?php else: ?>
-				<a href="/inscricao/arquivo/psc/2024/nota-gestores-interior-psc2024-e3.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSTEC 2023</a>
+				<a href="/inscricao/arquivo/psc/2024-e12/nota-gestores-interior-psc2024-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2024 - Etapas 1 e 2</a>
 			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>

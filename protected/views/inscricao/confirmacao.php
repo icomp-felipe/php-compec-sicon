@@ -58,7 +58,7 @@
 		</thead>
 
 		<tr>
-			<th class="label" style="text-align: right;">Nome:</th>
+			<th class="label" style="text-align: right;">Nome (sem abreviações E conforme cadastro na <a href="https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaSituacao/ConsultaPublica.asp" target="_blank" rel="noopener noreferrer">Receita Federal<a>):</th>
 			<td><?php echo $form->colaborador->nomeProprio; ?></td>
 		</tr>
 

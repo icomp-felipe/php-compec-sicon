@@ -11,7 +11,7 @@
 	<table class="dataGrid">
 
 		<tr>
-			<th class="label" style="text-align: right;">Nome:</th>
+			<th class="label" style="text-align: right;">Nome (sem abreviações E conforme cadastro na <a href="https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaSituacao/ConsultaPublica.asp" target="_blank" rel="noopener noreferrer">Receita Federal<a>):</th>
     		<td><?php echo CHtml::activeTextField($form,'colab_nome',array('size' => 44, 'maxlength' => 60)); ?></td>
 		</tr>
 

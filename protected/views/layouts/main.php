@@ -63,7 +63,7 @@
 			//array('label' => 'Inscrição (Público - Confirmação)'   , 'url' => array('/confirmaPublico'        ), 'visible' => Yii::app()->user->isGuest),
 			array('label' => 'Inscrição (Público - Consulta)', 'url' => array('/inscricaoConsulta'      ), 'visible' => Yii::app()->user->isGuest),			
 			array('label' => 'Inscrição (Institucional)'     , 'url' => array('/inscricao'              ), 'visible' => !Yii::app()->user->isGuest && !UserIdentity::isUsuarioInterno()),
-			array('label' => 'Área Restrita'                 , 'url' => array('/main/login'             ), 'visible' => Yii::app()->user->isGuest),
+			array('label' => 'Área da Coordenação'           , 'url' => array('/main/login'             ), 'visible' => Yii::app()->user->isGuest),
 			array('label' => 'Logout'                        , 'url' => array('/main/logout'            ), 'visible' => !Yii::app()->user->isGuest)
 		)
 	)); ?>

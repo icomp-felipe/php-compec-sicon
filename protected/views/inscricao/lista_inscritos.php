@@ -34,8 +34,8 @@
         <tr>
             <th>#</th>
             <th>CPF</th>
-            <th><?php echo $sort->link('nome'); ?></th>
-            <th><?php echo $sort->link('funcao'); ?></th>
+            <th>Nome</th>
+            <th>Função</th>
 	        <th>Operações</th>
         </tr>
     </thead>

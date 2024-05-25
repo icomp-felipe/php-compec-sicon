@@ -82,7 +82,7 @@ class colaborador extends CActiveRecord {
 
 			// Identificação
 			'colab_id_pk'           => 'Nº da Ficha',
-			'colab_nome'            => 'Nome',
+			'colab_nome'            => 'Nome (sem abreviações)',
 			'colab_cpf'             => 'CPF' ,
 			'colab_nascimento'      => 'Dt. Nascim.',
 			'colab_sexo'            => 'Sexo',
