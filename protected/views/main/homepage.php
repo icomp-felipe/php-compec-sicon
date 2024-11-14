@@ -5,7 +5,8 @@
 	<h1 style="color: green">Bem-vindo(a)!</h1>
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
 	<h2>Acesse aqui a <a href="arquivo/psc/2025/chamada-publica-psc2025-e3.pdf">Nota Pública de Chamada para o PSC 2025 - Etapa 3</a></h2>
-	<h2>A qualquer momento o colaborador pode consultar sua inscrição na aba "<a href="">Inscrição (Público - Consulta)</a>"</h2>
+	<h2 style="color: red">Atenção! Os colaboradores que se inscreveram a partir das 20:00 de 12/11/2024 tiveram inscrição automaticamente cancelada devido a então não disponibilidade da nota pública de chamada.</h2>
+	<h2><?php echo 'A qualquer momento o colaborador pode consultar sua inscrição na aba "'. CHtml::link('Inscrição (Público - Consulta)', array('/inscricaoConsulta')) . '"'; ?></h2>
 
 <?php // Homepage de usuário logado ?>
 
