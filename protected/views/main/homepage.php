@@ -4,10 +4,7 @@
 
 	<h1 style="color: green">Bem-vindo(a)!</h1>
 	<h2>Neste site você poderá se inscrever nos concursos em aberto.</h2>
-	<h2>Acesse aqui a <a href="arquivo/psc/2025/chamada-publica-psc2025-e3.pdf">Nota Pública de Chamada para o PSC 2025 - Etapa 3</a></h2>
-	<h2 style="color: red">Atenção! Os colaboradores que se inscreveram a partir das 20:00 de 12/11/2024 tiveram inscrição automaticamente cancelada devido a então não disponibilidade da nota pública de chamada.</h2>
-	<h2><?php echo 'A qualquer momento o colaborador pode consultar sua inscrição na aba "'. CHtml::link('Inscrição (Público - Consulta)', array('/inscricaoConsulta')) . '"'; ?></h2>
-
+	
 <?php // Homepage de usuário logado ?>
 
 <?php else: ?>
@@ -32,9 +29,9 @@
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
 			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
-				<a href="/inscricao/arquivo/psc/2025/nota-gestores-capital-psc2025-e3.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2025 - Etapa 3</a>
+				<a href="/inscricao/arquivo/psc/2025/nota-gestores-capital-psc2025-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) - PSC 2025 [Etapas 1 e 2]</a>
 			<?php else: ?>
-				<a href="/inscricao/arquivo/psc/2025/nota-gestores-interior-psc2025-e3.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2025 - Etapa 3</a>
+				<a href="/inscricao/arquivo/psc/2025/nota-gestores-interior-psc2025-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) - PSC 2025 [Etapas 1 e 2]</a>
 			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>
