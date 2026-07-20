@@ -12,9 +12,7 @@ class FormInscricao extends CFormModel {
 	// Atributos do Colaborador
 	public $colab_cpf        = null;
 	public $colab_nascimento = null;
-	public $colab_pis        = null;
-	public $colab_rg         = null;
-	public $colab_celular_1  = null;
+	public $colab_celular    = null;
 	public $colab_email      = null;
 	public $colab_banco_id   = null;
 	public $colab_agencia    = null;
@@ -50,7 +48,7 @@ class FormInscricao extends CFormModel {
 			array('colab_cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarColaborador'),
 
 			// Define campos obrigatórios no cenário 'inscricao'
-			array('colab_nascimento, colab_rg, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on' => 'inscricao')
+			array('colab_nascimento, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on' => 'inscricao')
 
 		);
 	}
@@ -59,9 +57,7 @@ class FormInscricao extends CFormModel {
 		return array(
 
 			'colab_cpf'        => 'CPF',
-			'colab_pis'        => 'PIS | PASEP | NIS | NIT',
 			'colab_nascimento' => 'Data de Nascimento',
-			'colab_rg'         => 'Nº do RG',
 			'colab_banco_id'   => 'Banco',
 			'colab_agencia'    => 'Nº da Agência',
 			'colab_conta'      => 'Nº da Conta',
@@ -110,8 +106,27 @@ class FormInscricao extends CFormModel {
 			$this->errorCode=self::ERRO_COLAB_SEM_CADASTRO;
 		
 		// Verifica se o colaborador está ativo
-		elseif ($colaborador->colab_status != 1)
-			$this->errorCode=self::ERRO_COLAB_BLOQUEADO;
+		elseif (isset($colaborador)) {
+
+			$data = array(
+				'condition'=>'colab_id_pk = :colab_id_pk and block_ativo and block_data_validade >= curdate()',
+				'join'=>'join inscricao on block_insc_id = insc_id_pk
+						 join colaborador on insc_colab_id = colab_id_pk
+						 join mapa on insc_mapa_id = mapa_id_pk
+						 join funcao_concurso on mapa_fconc_id = fconc_id_pk
+						 join funcao on fconc_func_id = func_id_pk
+						 join concurso on fconc_conc_id = conc_id_pk',
+				'params'=>array('colab_id_pk' => $colaborador->colab_id_pk)
+			 );
+
+			$criteria=new CDbCriteria($data);
+
+			$bloqueio = bloqueio::model()->find($criteria);
+
+			if (isset($bloqueio))	
+				$this->errorCode=self::ERRO_COLAB_BLOQUEADO;
+
+		}
 		
 		return $colaborador;
 	}

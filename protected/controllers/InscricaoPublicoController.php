@@ -17,9 +17,8 @@ class InscricaoPublicoController extends CController {
 
 		$form->colab_nome       = $form->colaborador->nomeProprio;
 		$form->colab_cpf        = $session["cpf"];
-		$form->colab_rg         = $form->colaborador->colab_rg;
 		$form->colab_nascimento = $form->colaborador->colab_nascimento;
-		$form->colab_celular_1  = $form->colaborador->colab_celular_1;
+		$form->colab_celular    = $form->colaborador->colab_celular;
 		$form->colab_email      = $form->colaborador->colab_email;
 		$form->colab_banco_id   = $form->colaborador->colab_banco_id;
 		$form->colab_agencia    = $form->colaborador->colab_agencia;
@@ -217,10 +216,9 @@ class InscricaoPublicoController extends CController {
 						$colaborador = $this->loadcolaborador($inscricao->insc_colab_id);
 	
 						$colaborador->colab_nome       = $_POST['FormInscricaoPublico']['colab_nome'      ];
-						$colaborador->colab_rg         = $_POST['FormInscricaoPublico']['colab_rg'        ];
 						$colaborador->colab_email      = $_POST['FormInscricaoPublico']['colab_email'     ];
 						$colaborador->colab_nascimento = $_POST['FormInscricaoPublico']['colab_nascimento'];
-						$colaborador->colab_celular_1  = $_POST['FormInscricaoPublico']['colab_celular_1' ];
+						$colaborador->colab_celular    = $_POST['FormInscricaoPublico']['colab_celular'   ];
 						$colaborador->colab_banco_id   = $_POST['FormInscricaoPublico']['colab_banco_id'  ];
 						$colaborador->colab_agencia    = $_POST['FormInscricaoPublico']['colab_agencia'   ];
 						$colaborador->colab_conta      = $_POST['FormInscricaoPublico']['colab_conta'     ];
@@ -234,10 +232,9 @@ class InscricaoPublicoController extends CController {
 							$form->colaborador->banco           = $colaborador->banco;
 	
 							$form->colaborador->colab_nome       = $colaborador->colab_nome;
-							$form->colaborador->colab_rg         = $colaborador->colab_rg;
 							$form->colaborador->colab_email      = $colaborador->colab_email;
 							$form->colaborador->colab_nascimento = $colaborador->colab_nascimento;
-							$form->colaborador->colab_celular_1  = $colaborador->colab_celular_1;						
+							$form->colaborador->colab_celular    = $colaborador->colab_celular;						
 							$form->colaborador->colab_banco_id   = $colaborador->colab_banco_id;
 							$form->colaborador->colab_agencia    = $colaborador->colab_agencia;
 							$form->colaborador->colab_conta      = $colaborador->colab_conta;
@@ -319,13 +316,13 @@ class InscricaoPublicoController extends CController {
 	{
 		$data = array(
 					'select'=>'inst_id_pk, inst_codigo, inst_nome, inst_logradouro, inst_numero, inst_cep, inst_bairro, inst_maps, inst_municipio_id, inst_uf_id, muni_id_pk, muni_nome, mapa_id_pk, mapa_vagas, count(insc_id_pk) as inscricoes',
-					'condition'=>'fconc_conc_id = :idconcurso and fconc_func_id = 1 and mapa_vaga_publica and (insc_ativa or insc_id_pk is null)',
+					'condition'=>'fconc_conc_id = :idconcurso and fconc_func_id = 1 and mapa_vaga_publica',
 					'join'=>'join mapa on mapa_inst_id = inst_id_pk
 							 join funcao_concurso on mapa_fconc_id = fconc_id_pk
-							 join municipio on instituicao.inst_municipio_id = muni_id_pk
-							 join uf on instituicao.inst_uf_id = uf.uf_id_pk
-							 left join inscricao on mapa_id_pk = insc_mapa_id',
-					'group'=>'inst_municipio_id, inst_codigo, inst_id_pk, mapa_vagas',
+							 join municipio on inst_municipio_id = muni_id_pk
+							 join uf on inst_uf_id = uf_id_pk
+							 left join inscricao on mapa_id_pk = insc_mapa_id and insc_ativa',
+					'group'=>'inst_municipio_id, inst_codigo, inst_id_pk, mapa_vagas, inst_nome, inst_logradouro, inst_numero, inst_cep, inst_bairro, inst_maps, inst_uf_id, muni_id_pk, muni_nome, mapa_id_pk',
 					'having'=>'mapa_vagas > inscricoes',
 					'params'=>array('idconcurso' => $idconcurso),
 				 );

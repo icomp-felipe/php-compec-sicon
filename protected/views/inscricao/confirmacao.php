@@ -84,11 +84,6 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;">Nº do RG:</th>
-			<td><?php echo CHtml::activeTextField($form,'colab_rg',array('size'=>15,'maxlength'=>15)); ?></td>
-		</tr>
-
-		<tr>
 			<th class="label" style="text-align: right;">Banco:</th>
 			<td><?php echo CHtml::activeDropDownList($form, 'colab_banco_id', 
 									CHtml::listData(banco::model()->findAll(),'banco_id_pk','bancoComCodigo'),

@@ -36,18 +36,9 @@
         <th class="label" style="text-align: right"><?php echo CHtml::encode($model->getAttributeLabel('colab_cpf')); ?></th>
         <td><?php echo CHtml::encode($model->cpfFormatado); ?></td>
     </tr>
-
-    <tr>
-        <th class="label" style="text-align: right"><?php echo CHtml::encode($model->getAttributeLabel('colab_rg')); ?></th>
-        <td><?php echo CHtml::encode($model->colab_rg); ?></td>
-    </tr>
-
-    <tr>
-        <th class="label" style="text-align: right"><?php echo CHtml::encode($model->getAttributeLabel('colab_pis')); ?></th>
-        <td><?php echo CHtml::encode($model->pisFormatado); ?></td>
-    </tr>
     
-        <tr><th class="label" style="text-align: right"><?php echo CHtml::encode($model->getAttributeLabel('colab_banco_id')); ?></th>
+     <tr>
+        <th class="label" style="text-align: right"><?php echo CHtml::encode($model->getAttributeLabel('colab_banco_id')); ?></th>
         <td><?php echo CHtml::encode($model->banco->bancoComCodigo); ?>
     </td>
 

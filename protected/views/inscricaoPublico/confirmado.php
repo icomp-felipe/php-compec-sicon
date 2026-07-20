@@ -54,18 +54,13 @@
 		</tr>
 
 		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_celular_1'); ?>:</th>
+			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_celular'); ?>:</th>
     		<td><?php echo $form->colaborador->celularFormatado; ?></td>
 		</tr>
 
 		<tr>
 			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_email'); ?>:</th>
     		<td><?php echo $form->colab_email; ?></td>
-		</tr>
-
-		<tr>
-			<th class="label" style="text-align: right;"><?php echo CHtml::activeLabel($form,'colab_rg'); ?>:</th>
-    		<td><?php echo $form->colaborador->colab_rg; ?></td>
 		</tr>
 
 		<tr>

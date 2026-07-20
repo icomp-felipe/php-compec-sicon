@@ -11,10 +11,8 @@ class FormInscricaoPublico extends CFormModel {
 	// Atributos do Colaborador
 	public $colab_nome       = null;
 	public $colab_cpf        = null;
-	public $colab_pis        = null;
-	public $colab_rg         = null;
 	public $colab_nascimento = null;
-	public $colab_celular_1  = null;
+	public $colab_celular    = null;
 	public $colab_email      = null;
 	public $colab_banco_id   = null;
 	public $colab_agencia    = null;
@@ -52,13 +50,10 @@ class FormInscricaoPublico extends CFormModel {
 			array('colab_cpf', 'verificarDuplicidadeInscricao', 'on' => 'selecionarConcurso'),
 
 			// Define campos obrigatórios no cenário 'inscricaoPublico'
-			array('colab_nome, colab_nascimento, colab_rg, colab_celular_1, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, ciente', 'required', 'on' => 'inscricaoPublico'),
+			array('colab_nome, colab_nascimento, colab_celular, colab_email, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv, ciente', 'required', 'on' => 'inscricaoPublico'),
 
 			// Validação (interna) de ciência de procedimentos, no cenário 'inscricaoPublico'
 			array('ciente', 'validarCiencia', 'on' => 'inscricaoPublico')
-
-			// Validação (externa) dos dígitos do PIS, no cenário 'inscricaoPublico'
-			//array('colab_pis', 'ext.validators.PISValidator', 'message'=>'O PIS informado é inválido!', 'on' => 'inscricaoPublico')
 
 		);
 	}
@@ -73,8 +68,7 @@ class FormInscricaoPublico extends CFormModel {
 			'colab_nome'       => 'Nome',
 			'colab_cpf'        => 'CPF',
 			'colab_nascimento' => 'Data de Nascimento',
-			'colab_rg'         => 'Nº do RG',
-			'colab_celular_1'  => 'Celular (WhatsApp)',
+			'colab_celular'    => 'Celular (WhatsApp)',
 			'colab_email'      => 'e-mail',
 			'colab_banco_id'   => 'Banco',
 			'colab_agencia'    => 'Nº da Agência (s/ dígito)',
@@ -139,7 +133,7 @@ class FormInscricaoPublico extends CFormModel {
 		if (isset($colaborador)) {
 
 			$data = array(
-				'condition'=>'colab_id_pk = :colab_id_pk and block_ativo',
+				'condition'=>'colab_id_pk = :colab_id_pk and block_ativo and block_data_validade >= curdate()',
 				'join'=>'join inscricao on block_insc_id = insc_id_pk
 						 join colaborador on insc_colab_id = colab_id_pk
 						 join mapa on insc_mapa_id = mapa_id_pk

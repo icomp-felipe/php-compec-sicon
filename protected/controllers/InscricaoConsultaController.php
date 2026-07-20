@@ -10,7 +10,7 @@ class InscricaoConsultaController extends CController {
 
 		$form = new FormInscricaoConsulta();
 
-		$form->colab_cpf         = $session["colab_cpf"];
+		$form->colab_cpf   = $session["colab_cpf"];
         $form->colaborador = $session["colaborador"];
         $form->concurso    = $session["concurso"];
 				
@@ -21,7 +21,7 @@ class InscricaoConsultaController extends CController {
 
 		$session = Yii::app()->getSession();
 
-		$session["colab_cpf"]         = $form->colab_cpf;
+		$session["colab_cpf"]   = $form->colab_cpf;
         $session["colaborador"] = $form->colaborador;
         $session["concurso"]    = $form->concurso;
 

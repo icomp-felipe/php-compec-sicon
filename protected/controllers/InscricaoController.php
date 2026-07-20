@@ -27,7 +27,6 @@ class InscricaoController extends CController
 		
 		if (isset($form->colaborador)) {
 
-			$form->colab_rg         = $form->colaborador->colab_rg;
 			$form->colab_nascimento = $form->colaborador->colab_nascimento;
 			$form->colab_banco_id   = $form->colaborador->colab_banco_id;
 			$form->colab_agencia    = $form->colaborador->colab_agencia;
@@ -53,7 +52,6 @@ class InscricaoController extends CController
 		$session["multiplasInstituicoes"] = $form->multiplasInstituicoes;
 
 	}
-
 
 	/**
 	 * Specifies the access control rules.
@@ -382,7 +380,6 @@ class InscricaoController extends CController
 				
 					$colaborador = $this->loadcolaborador($inscricao->insc_colab_id);
 
-					$colaborador->colab_rg         = $_POST['FormInscricao']['colab_rg'      ];
 					$colaborador->colab_banco_id   = $_POST['FormInscricao']['colab_banco_id'];
 					$colaborador->colab_nascimento = $_POST['FormInscricao']['colab_nascimento'];
 					$colaborador->colab_agencia    = $_POST['FormInscricao']['colab_agencia' ];
@@ -391,7 +388,6 @@ class InscricaoController extends CController
 					
 					if ($colaborador->save(false)) {
 	
-						$form->colaborador->colab_rg         = $colaborador->colab_rg;
 						$form->colaborador->colab_nascimento = $colaborador->colab_nascimento;
 						$form->colaborador->banco            = $colaborador->banco;
 						$form->colaborador->colab_banco_id   = $colaborador->colab_banco_id;

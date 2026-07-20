@@ -56,7 +56,7 @@
     		<td>
 				<?php $this->widget('CMaskedTextField', array(
 						'model'       => $form,
-						'attribute'   => 'colab_celular_1',
+						'attribute'   => 'colab_celular',
 						'mask'        => '99 99999-9999',
 						'placeholder' => '_',
 						'htmlOptions' => array(
@@ -70,11 +70,6 @@
 		<tr>
 			<th class="label" style="text-align: right;">e-mail:</th>
     		<td><?php echo CHtml::activeTextField($form, 'colab_email', array('size' => 44, 'maxlength' => 60)); ?></td>
-		</tr>
-
-		<tr>
-			<th class="label" style="text-align: right;">Nº do RG:</th>
-    		<td><?php echo CHtml::activeTextField($form,'colab_rg',array('size' => 20, 'maxlength' => 20)); ?></td>
 		</tr>
 
 		<tr>

@@ -57,90 +57,14 @@
 												            array('empty'=>'Selecione')); ?>
     </div>
 
-    <!-- PIS -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_pis'); ?>
-        <?php $this->widget('CMaskedTextField',array(
-            'model'=>$model,
-            'attribute'=>'colab_pis',
-            'mask'=>'999.99999.99-9',
-            'placeholder'=>'_',
-            'htmlOptions'=>array(
-                'size'=>11,
-                'maxlength'=>11,
-            )
-        )); ?>
-    </div>
-
-    <!-- Dados do RG -->
-    <div class="simple">
-
-        <?php echo CHtml::activeLabelEx($model,'colab_rg'); ?>
-        <?php echo CHtml::activeTextField($model,'colab_rg',array('size'=>20,'maxlength'=>20)); ?>
-
-        Órgão Emissor
-
-        <?php echo CHtml::activeTextField($model,'colab_rg_orgao',array('size'=>5,'maxlength'=>10)); ?>
-
-    </div>
-
-    <h2>Endereço</h2>
-
-    <!-- Logradouro -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_logradouro'); ?>
-        <?php echo CHtml::activeTextField($model,'colab_logradouro',array('size'=>50,'maxlength'=>50)); ?>
-    </div>
-
-    <!-- Número Logradouro -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_logradouro_numero'); ?>
-        <?php echo CHtml::activeTextField($model,'colab_logradouro_numero',array('size'=>5,'maxlength'=>5)); ?>
-    </div>
-
-    <!-- Bairro -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_bairro'); ?>
-        <?php echo CHtml::activeTextField($model,'colab_bairro',array('size'=>50,'maxlength'=>80)); ?>
-    </div>
-
-    <!-- Município -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_municipio_id'); ?>
-        <?php echo CHtml::activeDropDownList($model, 'colab_municipio_id', 
-									CHtml::listData(municipio::model()->findAll(),'muni_id_pk','muni_nome'),
-									array('empty'=>'Selecione')) ?>
-    </div>
-
-    <!-- CEP -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_cep'); ?>
-        <?php $this->widget('CMaskedTextField',array(
-            'model'=>$model,
-            'attribute'=>'colab_cep',
-            'mask'=>'99999-999',
-            'placeholder'=>'_',
-            'htmlOptions'=>array(
-                'size'=>9,
-                'maxlength'=>9,
-            )
-        )); ?>
-    </div>
-
-    <!-- Complemento de Endereço -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_complemento'); ?>
-        <?php echo CHtml::activeTextField($model,'colab_complemento',array('size'=>50,'maxlength'=>50)); ?>
-    </div>
-
     <h2>Contatos</h2>
 
     <!-- Celular -->
     <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_celular_1'); ?>
+        <?php echo CHtml::activeLabelEx($model,'colab_celular'); ?>
         <?php $this->widget('CMaskedTextField',array(
             'model'=>$model,
-            'attribute'=>'colab_celular_1',
+            'attribute'=>'colab_celular',
             'mask'=>'99 99999-9999',
             'placeholder'=>'_',
             'htmlOptions'=>array(
@@ -202,14 +126,6 @@
         <?php echo CHtml::activeDropDownList($model, 'colab_categoria_id', 
 									CHtml::listData(categoria::model()->findAll(),'categ_id_pk','categ_nome'),
 									array('empty' => 'Selecione')) ?>
-    </div>
-
-    <!-- Status do Cadastro -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_status'); ?>
-        <?php echo CHtml::activeDropDownList($model,'colab_status',
-												            colaborador::model()->statusOptions,
-												            array('empty' => 'Ativado', 'disabled' => 'disabled')); ?>
     </div>
 
     <!-- Fim dos campos de dados -->
