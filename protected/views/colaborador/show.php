@@ -29,7 +29,7 @@
 
     <tr>
 	    <th class="label" style="text-align: right"><?php echo CHtml::encode($model->getAttributeLabel('colab_nome')); ?></th>
-        <td><?php echo CHtml::encode($model->colab_nome); ?></td>
+        <td><?php echo CHtml::encode($model->nomeProprio); ?></td>
     </tr>
 
     <tr>

@@ -56,7 +56,7 @@ class colaborador extends CActiveRecord {
 			array('colab_conta_dv','length','max' =>  1),
             
 			// Campos Obrigatórios
-			array('colab_nome, colab_cpf, colab_nascimento, colab_sexo, colab_banco_id, colab_celular, colab_agencia, colab_conta, colab_conta_dv, colab_categoria_id', 'required'),
+			array('colab_nome, colab_cpf, colab_nascimento, colab_sexo, colab_banco_id, colab_celular, colab_agencia, colab_conta, colab_conta_dv', 'required'),
 			array('colab_cpf','required', 'on'=>'formCPF'),
 			array('colab_celular, colab_email, colab_nascimento, colab_banco_id, colab_agencia, colab_conta, colab_conta_dv','required', 'on'=>'inscricaoPublico'),
 			array('colab_banco_id, colab_categoria_id', 'numerical', 'integerOnly' => true)
@@ -84,10 +84,6 @@ class colaborador extends CActiveRecord {
 			'colab_agencia'  => 'Agência',
 			'colab_conta'    => 'Nº da Conta',
 			'colab_conta_dv' => 'DV da Conta',
-
-			// Informações Cadastrais
-			'colab_categoria_id' => 'Categoria',
-			'colab_obs'          => 'Observações'
 			
 		);
 	}
@@ -120,6 +116,9 @@ class colaborador extends CActiveRecord {
 		// Preenche os campos de data
 		$this->colab_create_date = date('Y-m-d H:i:s',time());
 		$this->colab_update_date = date('Y-m-d H:i:s',time());
+
+		// Define a categoria do colaborador como 'outros'
+		$this->colab_categoria_id = 7;
 
 		// Vincula no objeto 'colaborador' qual usuário o criou/atualizou
 		if (isset($usuario))

@@ -118,16 +118,6 @@
         <?php echo CHtml::activeTextField($model,'colab_conta_dv',array('size'=>1,'maxlength'=>1)); ?>
     </div>
 
-    <h2>Informações Cadastrais</h2>
-
-    <!-- Tipo de Vínculo com a UFAM -->
-    <div class="simple">
-        <?php echo CHtml::activeLabelEx($model,'colab_categoria_id'); ?>
-        <?php echo CHtml::activeDropDownList($model, 'colab_categoria_id', 
-									CHtml::listData(categoria::model()->findAll(),'categ_id_pk','categ_nome'),
-									array('empty' => 'Selecione')) ?>
-    </div>
-
     <!-- Fim dos campos de dados -->
     <br>
 

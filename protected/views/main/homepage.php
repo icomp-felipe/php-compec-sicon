@@ -3,7 +3,7 @@
 <?php if (Yii::app()->user->isGuest):?>
 
 	<h1 style="color: green">Bem-vindo(a)!</h1>
-	<h2>Consulte aqui a <a href="arquivo/psc/2026/homologacao-psc2026-e12.pdf">Homologação de Aplicadores de Prova [PSC 2026]</a></h2>
+	<h2>Neste site você pode se inscrever em concursos em aberto.</h2>
 	
 <?php // Homepage de usuário logado ?>
 
@@ -29,9 +29,9 @@
 			<h2>Consulte abaixo o edital de chamada:</h2>
 
 			<?php if ($instituicoesDirigidas[0]->inst_municipio_id == 1): ?>
-				<a href="/inscricao/arquivo/psc/2026/nota-gestores-capital-psc2026-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Manaus) [PSC 2026]</a>
+				<a href="/inscricao/arquivo/ead/2026/nota-gestores-ead2026.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores [EAD 2026]</a>
 			<?php else: ?>
-				<a href="/inscricao/arquivo/psc/2026/nota-gestores-interior-psc2026-e12.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores (Interior) [PSC 2026]</a>
+				<a href="/inscricao/arquivo/ead/2026/nota-gestores-ead2026.pdf" target="_blank" rel="noopener noreferrer">Nota aos Coordenadores [EAD 2026]</a>
 			<?php endif; ?>
 
 			<h2>Abaixo está a instituição sob sua responsabilidade:</h2>
