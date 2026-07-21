@@ -70,7 +70,7 @@ class ColaboradorController extends CController
 
 		if(isset($_POST['colaborador']))
 		{
-			$model->colab_status = 1;
+			
 			$model->attributes   = $_POST['colaborador'];
 			
 			$model->setScenario('create');
